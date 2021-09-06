@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RSI_Calendar.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace RSI_Calendar
 {
@@ -23,6 +25,13 @@ namespace RSI_Calendar
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRouting(options => options.LowercaseUrls = true);
+
+            services.AddMemoryCache();
+            services.AddSession();
+
+            services.AddControllersWithViews();
+            services.AddDbContext<CalendarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CalendarContext")));
             services.AddControllersWithViews();
         }
 
