@@ -10,7 +10,7 @@ using RSI_Calendar.Models;
 namespace RSI_Calendar.Migrations
 {
     [DbContext(typeof(CalendarContext))]
-    [Migration("20210906231212_initial")]
+    [Migration("20210907233404_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
