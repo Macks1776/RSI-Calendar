@@ -57,6 +57,19 @@ namespace RSI_Calendar
 
             app.UseEndpoints(endpoints =>
             {
+                // The Admin route, when an admin logs in this will be where they go initially
+                endpoints.MapAreaControllerRoute(
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=User}/{action=ViewUsers}/{id?}");
+
+                // The Cultrual Ambassador route, when a cultrual ambassador (CulAm) logs in this will be where they go initially
+                endpoints.MapAreaControllerRoute(
+                    name: "CulAm",
+                    areaName: "CulAm",
+                    pattern: "CulAm/{controller=Event}/{action=ViewAll}/{id?}");
+
+                // The default route, the average user will be here
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
