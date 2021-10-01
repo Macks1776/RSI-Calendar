@@ -15,7 +15,7 @@ namespace RSI_Calendar.Controllers
 
         public IActionResult Search()
         {
-            return View("Details");
+            return View("Search");
         }
     }
 }
