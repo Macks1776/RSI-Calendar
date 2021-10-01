@@ -9,9 +9,9 @@ namespace RSI_Calendar.Controllers
     public class CalendarController : Controller
     {
 
-        public IActionResult Calendar()
+        public IActionResult Month()
         {
-            return View("Calendar");
+            return View("Month");
         }
 
         public IActionResult Day()
@@ -19,9 +19,9 @@ namespace RSI_Calendar.Controllers
             return View("Day");
         }
         
-        public IActionResult MonthList()
+        public IActionResult Schedule()
         {
-            return View("MonthList");
+            return View("Schedule");
         }
 
     }
