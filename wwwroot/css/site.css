@@ -74,10 +74,22 @@ body {
 }
 
 /* RSI color pallette */
-.rsi-blue {
-
+.text-rsi-blue {
+    color: #062C48;
 }
 
-.rsi-red {
+.text-rsi-red {
+    color: #EB1C2C;
+}
 
+.bg-rsi-blue {
+    background-color: #062C48;
+}
+
+.bg-rsi-red {
+    background-color: #EB1C2C;
+}
+
+.navbar-light {
+    background-color: #062C48;
 }
