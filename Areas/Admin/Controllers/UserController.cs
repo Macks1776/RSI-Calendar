@@ -22,10 +22,5 @@ namespace RSI_Calendar.Areas.Admin.Controllers
         {
             return View("Search");
         }
-
-        public IActionResult ViewUsers()
-        {
-            return View("ViewUsers");
-        }
     }
 }
