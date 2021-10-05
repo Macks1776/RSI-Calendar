@@ -17,10 +17,5 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         {
             return View("Delete");
         }
-
-        public IActionResult ViewAll()
-        {
-            return View("ViewAll");
-        }
     }
 }
