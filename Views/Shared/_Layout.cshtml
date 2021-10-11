@@ -16,6 +16,8 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                @using Microsoft.AspNetCore.Identity
+                @inject SignInManager<User> signInManager
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -27,7 +29,53 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="Schedule">Schedule</a>
                         </li>
+
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            // signed-in user - Log Out button and username
+                            <li class="nav-item" stye="text-decoration: none">
+                                <form method="post" asp-action="LogOut" asp-controller="User"
+                                      asp-area="">
+                                    <input type="submit" value="Log Out"
+                                           class="btn btn-outline-Dark" />
+                                    <span class="text-dark">@User.Identity.Name</span>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+
+                            <li class="nav-item" stye="text-decoration: none">
+                                <a asp-action="LogIn" asp-controller="User"
+                                   asp-area="" class="btn btn-outline-dark">Log In</a>
+                            </li>
+                        }
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            //if the user is signed in, display the user name
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="User" asp-action="Settings" asp-area="">Settings</a>
+                                    <div class="dropdown-divider"></div>
+                                    @if (User.IsInRole("Admin"))
+                                    {
+
+                                        <a class="dropdown-item" asp-controller="Users" asp-action="ViewUsers" asp-area="Admin">Users</a>
+                                        <div class="dropdown-divider"></div>
+                                    }
+                                    @if (User.IsInRole("CulAm"))
+                                    {
+
+                                        <a class="dropdown-item" asp-controller="Event" asp-action="ViewEvents" asp-area="CulAm">Events</a>
+                                        <div class="dropdown-divider"></div>
+                                    }
+                                    <a class="dropdown-item" asp-controller="User" asp-action="LogOut" asp-area="">Log Out</a>
+                                </div>
+                            </li>
+                        }
                     </ul>
+
                 </div>
             </div>
         </nav>

@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>White CSS Theme (AJAX Event Calendar)</title>
+
+    <!-- head -->
+    <meta charset="utf-8"/>
+    <meta name="referrer" content="no-referrer-when-downgrade"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../helpers/v2/main.css?v=2021.2.261" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"/>
+    <script src="../js/daypilot-all.min.js?v=2021.2.261"></script>
+
+    <!-- /head -->
+
+    <link href="../themes/calendar_white.css?v=2021.2.261" type="text/css" rel="stylesheet"/>
+
+</head>
+<body>
+
+<!-- top -->
+<template id="content" data-version="2021.2.261">
+
+    <!-- /top -->
+
+    <div class="note"><b>Note:</b> You can create a theme using the online <strong>DayPilot Theme Designer</strong>: <a
+        href="http://themes.daypilot.org/">http://themes.daypilot.org/</a></div>
+
+    <div id="dp"></div>
+
+    <div id="print"></div>
+
+    <script type="text/javascript">
+
+        var dp = new DayPilot.Calendar("dp");
+
+        // behavior and appearance
+        dp.theme = "calendar_white";
+
+        // view
+        dp.startDate = "2021-03-25";
+        dp.viewType = "Week";
+
+        // event creating
+        dp.onTimeRangeSelected = function (args) {
+            var name = prompt("New event name:", "Event");
+            if (!name) return;
+            var e = new DayPilot.Event({
+                start: args.start,
+                end: args.end,
+                id: DayPilot.guid(),
+                text: name
+            });
+            dp.events.add(e);
+            dp.clearSelection();
+        };
+
+        dp.onEventClick = function (args) {
+            alert("clicked: " + args.e.id());
+        };
+
+        dp.init();
+
+        var e = new DayPilot.Event({
+            start: new DayPilot.Date("2021-03-25T12:00:00"),
+            end: new DayPilot.Date("2021-03-25T12:00:00").addHours(3),
+            id: DayPilot.guid(),
+            text: "Special event"
+        });
+        dp.events.add(e);
+
+    </script>
+
+    <!-- bottom -->
+</template>
+
+<script src="../helpers/v2/app.js?v=2021.2.261"></script>
+
+<!-- /bottom -->
+
+</body>
+</html>
+

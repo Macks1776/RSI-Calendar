@@ -69,3 +69,46 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+/* Styles for the Calendar Page */
+#calendar {
+    border-top: 5px solid #062C48;
+}
+
+.calendar-box {
+    border: 2px solid #062C48;
+    background-color: #F2F2F2;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 0px;
+    margin: 1px 1px 1px 1px;
+}
+
+.event-mandatory {
+    background-color: #EB1C2C;
+    color: white;
+    border: 1px solid #062C48;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+.event-optional {
+    background-color: #062C48;
+    color: white;
+    border: 1px solid #062C48;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+.event-fun {
+    background-color: #46D967;
+    color: white;
+    border: 1px solid #062C48;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+
