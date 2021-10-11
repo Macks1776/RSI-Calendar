@@ -1,6 +1,5 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -57,8 +56,8 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
@@ -73,23 +72,110 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
-/* RSI color pallette */
+/* 
+***************************************************************
+**************************************************************** RURAL SOURCING INC
+***************************************************************
+*/
+
+/* 
+**************************************************** RSI COLOR VARIABLES
+*/
+html {
+    --rsi-blue: #062C48; /* copy and paste to use: var(--rsi-blue) */
+    --rsi-red: #EB1C2C; /* copy and paste to use: var(--rsi-red) */
+    --rsi-gray: #F2F2F2; /* copy and paste to use: var(--rsi-gray) */
+}
+
+
+
+
+/* 
+**************************************************** FORMS
+*/
+.rsi-form {
+    background-color: var(--rsi-gray);
+    border: 2px solid var(--rsi-blue);
+    border-radius: 10px;
+    box-shadow: var(--rsi-blue) 0px 0px 10px 5px;
+}
+
+
+
+
+/* 
+**************************************************** TEXT
+*/
 .text-rsi-blue {
-    color: #062C48;
+    color: var(--rsi-blue);
 }
 
 .text-rsi-red {
-    color: #EB1C2C;
+    color: var(--rsi-red);
 }
 
+
+
+
+/* 
+**************************************************** BACKGROUND
+*/
 .bg-rsi-blue {
-    background-color: #062C48;
+    background-color: var(--rsi-blue);
 }
 
 .bg-rsi-red {
-    background-color: #EB1C2C;
+    background-color: var(--rsi-red);
 }
 
-.navbar-light {
-    background-color: #062C48;
+
+
+
+/* 
+**************************************************** BUTTONS
+    To use: list the "btn" and "shadow-sm" classes
+        whenever using these button classes
+*/
+/* BLUE */
+.rsi-btn-blue {
+    background-color: var(--rsi-blue);
+    color: #FFFFFF;
+    font-weight: 500;
+    border: 2px solid var(--rsi-red);
 }
+.rsi-btn-blue:hover {
+    color: var(--rsi-red);
+}
+
+/* RED */
+.rsi-btn-red {
+    background-color: var(--rsi-red);
+    color: #FFFFFF;
+    font-weight: 500;
+    border: 2px solid var(--rsi-blue);
+}
+.rsi-btn-red:hover {
+    color: var(--rsi-blue);
+}
+
+/* WHITE */
+.rsi-btn-white {
+    background-color: #FFFFFF;
+    color: var(--rsi-red);
+    font-weight: 500;
+    border: 2px solid var(--rsi-blue);
+}
+
+.rsi-btn-white:hover {
+    color: var(--rsi-blue);
+}
+
+
+/* 
+**************************************************** TODO: this currently sets the navbar to blue; that needs to happen using the bg-rsi-blue
+*/
+.navbar-light {
+    background-color: var(--rsi-blue);
+}
+
+
