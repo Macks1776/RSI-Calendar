@@ -98,6 +98,8 @@ html {
     border: 2px solid var(--rsi-blue);
     border-radius: 10px;
     box-shadow: var(--rsi-blue) 0px 0px 10px 5px;
+    margin: 50px auto;
+    padding: 20px;
 }
 
 
