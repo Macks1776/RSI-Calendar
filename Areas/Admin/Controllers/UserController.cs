@@ -8,9 +8,9 @@ namespace RSI_Calendar.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
-        public IActionResult Add()
+        public IActionResult Edit()
         {
-            return View("Add");
+            return View("Edit");
         }
 
         public IActionResult Delete()
@@ -21,11 +21,6 @@ namespace RSI_Calendar.Areas.Admin.Controllers
         public IActionResult Search()
         {
             return View("Search");
-        }
-
-        public IActionResult ViewUsers()
-        {
-            return View("ViewUsers");
         }
     }
 }
