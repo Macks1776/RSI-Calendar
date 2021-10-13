@@ -1,4 +1,5 @@
-﻿@{ }
+﻿@model Employee
+@{ }
 
 <!-- PAGE TITLE -->
 <div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
@@ -14,7 +15,8 @@
         <div class="form-group row">
             <label for="userSettingsFName" class="col-sm-2 col-form-label fw-bold">First Name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="userSettingsFName" value="John">
+                <input type="text" class="form-control shadow-sm" id="userSettingsFName" value="@Model.FName">
+                <span asp-validation-for="FName" class="text-danger"></span>
             </div>
         </div>
 
@@ -22,7 +24,7 @@
         <div class="form-group row">
             <label for="userSettingsLName" class="col-sm-2 col-form-label fw-bold">Last Name:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="userSettingsLName" value="Doe">
+                <input type="text" class="form-control shadow-sm" id="userSettingsLName" value="@Model.LName">
             </div>
         </div>
 
@@ -30,7 +32,7 @@
         <div class="form-group row">
             <label for="userSettingsEmail" class="col-sm-2 col-form-label fw-bold">Email:</label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="userSettingsEmail" value="email@example.com">
+                <input type="text" readonly class="form-control-plaintext" id="userSettingsEmail" value="@Model.Email">
             </div>
         </div>
 
@@ -38,7 +40,7 @@
         <div class="form-group row">
             <label for="userSettingsRole" class="col-sm-2 col-form-label fw-bold">Role:</label>
             <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="userSettingsRole" value="Cultural Ambassador">
+                <input type="text" readonly class="form-control-plaintext" id="userSettingsRole" value="@Model.Role">
             </div>
         </div>
 
@@ -47,6 +49,7 @@
             <label for="userSettingsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-10">
                 <select class="custom-select shadow-sm" id="userSettingsLocation">
+                    <!-- TODO: Set selected to user Location -->
                     <option value="1">Albuquerque, NM</option>
                     <option value="2" selected>Augusta, GA</option>
                     <option value="3">Fort Wayne, IN</option>
@@ -61,9 +64,9 @@
 
         <!-- PASSWORD -->
         <div class="form-group row top-50">
-            <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
+            <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="userSettingsPassword" value="passWord123">
+                <input type="text" class="form-control shadow-sm" id="userSettingsPassword" value="@Model.Password">
             </div>
         </div>
 
