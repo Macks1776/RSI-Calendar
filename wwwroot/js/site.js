@@ -2,3 +2,6 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+var cal = new tui.Calendar('#month', {
+    defaultView: 'month' // monthly view option
+});
