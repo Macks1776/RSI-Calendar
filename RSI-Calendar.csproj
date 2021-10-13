@@ -13,6 +13,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +21,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\CulAm\Data\" />
     <Folder Include="Areas\CulAm\Models\" />
-    <Folder Include="wwwroot\lib\DayPilot\" />
   </ItemGroup>
 
 </Project>

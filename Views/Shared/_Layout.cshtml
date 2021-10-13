@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RSI_Calendar</title>
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fullcalendar/main.min.css" /> <!--Default calendar styles-->
     <link rel="stylesheet" href="~/css/site.css" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('month');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                events: '/calendar/GetCalendarData',
+                initalView: 'dayGridMonth'
+            });
+            calendar.render();
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -93,6 +104,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/fullcalendar/main.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

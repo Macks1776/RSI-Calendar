@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using RSI_Calendar.Models;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using RSI_Calendar.Models;
-using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace RSI_Calendar.Controllers
 {
@@ -23,17 +21,29 @@ namespace RSI_Calendar.Controllers
         {
             return View("Day");
         }
-        
+
         public IActionResult Schedule()
         {
             return View("Schedule");
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Event>>> GetEvents()
+        public string GetCalendarData()
         {
-            return await context.Events.Where(e => e.Date != null).ToListAsync();
-        }
+            var events = context.Events.ToList();
+            List<CalendarEvent> eventList = new List<CalendarEvent>();
 
+            foreach(var data in events)
+            {
+                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate);
+                eventList.Add(calevent);
+            }
+
+            string json = JsonConvert.SerializeObject(eventList);
+
+            return json;
+        }
+        
     }
 }
+
+

@@ -71,8 +71,8 @@ body {
 }
 
 /* Styles for the Calendar Page */
-#calendar {
-    border-top: 5px solid #062C48;
+#month {
+    border: 5px solid #062C48;
 }
 
 .calendar-box {
