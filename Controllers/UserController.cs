@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using RSI_Calendar.Models;
@@ -7,13 +10,15 @@ namespace RSI_Calendar.Controllers
 {
     public class UserController : Controller
     {
+        private CalendarContext context;
         private UserManager<User> userManager;
         private SignInManager<User> signInManager;
 
-        public UserController(UserManager<User> userMgr, SignInManager<User> signInMgr)
+        public UserController(UserManager<User> userMgr, SignInManager<User> signInMgr, CalendarContext ctx)
         {
             userManager = userMgr;
             signInManager = signInMgr;
+            context = ctx;
         }
 
         [HttpGet]
@@ -55,6 +60,15 @@ namespace RSI_Calendar.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
+        public IActionResult Settings(int id = 1)
+        {
+            Employee employee = context.Employees.Find(id);
+
+            return View(employee);
+        }
+
+        [HttpPost]
         public IActionResult Settings()
         {
             return View("Settings");
