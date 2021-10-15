@@ -15,7 +15,7 @@
         <div class="form-group row">
             <label for="userSettingsFName" class="col-sm-2 col-form-label fw-bold">First Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" id="userSettingsFName" value="@Model.FName">
+                <input type="text" class="form-control-plaintext" id="userSettingsFName" value="@Model.FName">
             </div>
         </div>
 
@@ -23,7 +23,7 @@
         <div class="form-group row">
             <label for="userSettingsLName" class="col-sm-2 col-form-label fw-bold">Last Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" id="userSettingsLName" value="@Model.LName">
+                <input type="text" class="form-control-plaintext" id="userSettingsLName" value="@Model.LName">
             </div>
         </div>
 
@@ -43,31 +43,29 @@
             </div>
         </div>
 
-        <!-- DEFAULT LOCATION -->
+        <!-- LOCATION -->
         <div class="form-group row">
             <label for="userSettingsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-7">
-                <select class="custom-select shadow-sm" id="userSettingsLocation">
-                    <!-- TODO: Set selected to user Location -->
-                    <option value="1">Albuquerque, NM</option>
-                    <option value="2" selected>Augusta, GA</option>
-                    <option value="3">Fort Wayne, IN</option>
-                    <option value="4">Jonesboro, AR</option>
-                    <option value="5">Madison, WI</option>
-                    <option value="6">Milwaukee, WI</option>
-                    <option value="7">Mobile, AL</option>
-                    <option value="8">Oklahoma City, OK</option>
-                </select>
+                <input type="text" readonly class="form-control-plaintext" id="userSettingsLocation" value="@Model.Location">
             </div>
         </div>
 
         <!-- PASSWORD -->
         <div class="form-group row top-50">
             <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
+            <!-- TODO: Add an if statement that shows the password or asterisks if "show password" is checked -->
             <div class="col-sm-7">
                 <input type="text" class="form-control shadow-sm" id="userSettingsPassword" value="@Model.Password">
             </div>
+            <!-- SHOW PASSWORD -->
+            <div class="form-check">
+                <label class="form-check-label" for="userSettingsShowPassword">Show Password?</label>
+                <input class="form-check-input" type="checkbox" value="" id="userSettingsShowPassword" checked> <!-- TODO: this should be checked or unchecked dynamically -->
+            </div>
         </div>
+
+        
 
         <!-- NOTIFICATIONS -->
         <div class="form-group row mt-5">
