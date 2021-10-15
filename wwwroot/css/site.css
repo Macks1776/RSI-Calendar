@@ -183,6 +183,7 @@ html {
     background-color: var(--rsi-blue);
     color: #FFFFFF;
     font-weight: 500;
+    border: 2px solid var(--rsi-blue);
 }
 .rsi-btn-blue:hover {
     color: var(--rsi-red);
@@ -194,22 +195,23 @@ html {
     background-color: var(--rsi-red);
     color: #FFFFFF;
     font-weight: 500;
-    border: 2px solid var(--rsi-blue);
+    border: 2px solid var(--rsi-red);
 }
 .rsi-btn-red:hover {
     color: var(--rsi-blue);
+    border: 2px solid var(--rsi-blue);
 }
 
 /* WHITE */
 .rsi-btn-white {
-    background-color: #FFFFFF;
-    color: var(--rsi-red);
-    font-weight: 500;
-    border: 2px solid var(--rsi-blue);
-}
-
-.rsi-btn-white:hover {
+    background-color: white;
     color: var(--rsi-blue);
+    font-weight: 500;
+    border: 2px solid white;
+}
+.rsi-btn-white:hover {
+    color: var(--rsi-red);
+    border: 2px solid var(--rsi-red);
 }
 
 
