@@ -111,7 +111,7 @@ body {
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     margin: 0px 0px 0px 0px;
-=======
+}
 /* 
 ***************************************************************
 **************************************************************** RURAL SOURCING INC
@@ -183,10 +183,10 @@ html {
     background-color: var(--rsi-blue);
     color: #FFFFFF;
     font-weight: 500;
-    border: 2px solid var(--rsi-red);
 }
 .rsi-btn-blue:hover {
     color: var(--rsi-red);
+    border: 2px solid var(--rsi-red);
 }
 
 /* RED */
