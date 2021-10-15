@@ -207,14 +207,18 @@ html {
     background-color: white;
     color: var(--rsi-blue);
     font-weight: 500;
-    border: 2px solid white;
+    border: 2px solid var(--rsi-blue);
 }
 .rsi-btn-white:hover {
     color: var(--rsi-red);
     border: 2px solid var(--rsi-red);
 }
 
-
+/* CheckBoxes */
+:checked.form-check-input {
+    background: var(--rsi-blue);
+    border-color: var(--rsi-red);
+}
 /* 
 **************************************************** TODO: this currently sets the navbar to blue; that needs to happen using the bg-rsi-blue
 */
