@@ -226,4 +226,108 @@ html {
     background-color: var(--rsi-blue);
 }
 
+/* Day View CSS*/
+.day-selector {
+    width: 1000px;
+    height: 70px;
+    margin: 20px auto;
+    background: #FFFFFF;
+    border: 2px solid #062C48;
+    box-shadow: 0px 4px 4px -1px #2E5D7F;
+    border-radius: 45px;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.day-text {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 50px;
+    text-align: center;
+    color: #062C48;
+    margin: 0;
+}
+
+.left-arrow {
+    width: 0;
+    height: 0;
+    border-width: 24px 45px 24px 0;
+    border-color: transparent #062C48 transparent transparent;
+    border-style: solid;
+}
+
+.right-arrow {
+    width: 0;
+    height: 0;
+    border-width: 24px 0 24px 45px;
+    border-color: transparent transparent transparent #062C48;
+    border-style: solid;
+}
+
+.day-event-display {
+    width: 1000px;
+    height: 700px;
+    margin: 20px auto;
+    background: #F4F4F4;
+    border: 1px solid #0E7ED0;
+    box-sizing: border-box;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.day-tr {
+    float: right;
+    width: 90%;
+    height: 70px;
+    background: #EB1C2C;
+    border: 1px solid #000000;
+    margin-top: 20px;
+    border-top-left-radius: 45px;
+    border-bottom-left-radius: 45px;
+}
+
+.day-td {
+    position: relative;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    text-align: center;
+    line-height: 50px;
+    color: #FFFFFF;
+    padding: 9px 30px;
+    box-sizing: border-box;
+}
+
+.day-td-time {
+    width: 30%;
+    border-right: 5px solid #000000;
+}
+
+/* Schedule View CSS*/
+.schedule-heading {
+    width: 1000px;
+    height: 70px;
+    margin: 20px auto;
+    background: var(--rsi-blue);
+    border: 2px solid var(--rsi-blue);
+    box-shadow: 0px 4px 4px -1px #2E5D7F;
+    border-radius: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.schedule-heading-text {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 50px;
+    text-align: center;
+    color: #FFFFFF;
+    margin: 0;
+}
