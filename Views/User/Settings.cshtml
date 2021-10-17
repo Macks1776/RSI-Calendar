@@ -1,4 +1,5 @@
-﻿@{ }
+﻿@model Employee
+@{ }
 
 <!-- PAGE TITLE -->
 <div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
@@ -9,79 +10,78 @@
 
 
 <div class="container mt-5 mb-5 p-5 rsi-form">
-    <form>
+    <form asp-action="Settings" method="post">
         <!-- FIRST NAME -->
         <div class="form-group row">
             <label for="userSettingsFName" class="col-sm-2 col-form-label fw-bold">First Name:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="userSettingsFName" value="John">
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="userSettingsFName" value="@Model.FName">
             </div>
         </div>
 
         <!-- LAST NAME -->
         <div class="form-group row">
             <label for="userSettingsLName" class="col-sm-2 col-form-label fw-bold">Last Name:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="userSettingsLName" value="Doe">
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="userSettingsLName" value="@Model.LName">
             </div>
         </div>
 
         <!-- EMAIL -->
         <div class="form-group row">
             <label for="userSettingsEmail" class="col-sm-2 col-form-label fw-bold">Email:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="userSettingsEmail" value="email@example.com">
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="userSettingsEmail" value="@Model.Email">
             </div>
         </div>
 
         <!-- ROLE -->
         <div class="form-group row">
             <label for="userSettingsRole" class="col-sm-2 col-form-label fw-bold">Role:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="userSettingsRole" value="Cultural Ambassador">
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="userSettingsRole" value="@Model.Role">
             </div>
         </div>
 
-        <!-- DEFAULT LOCATION -->
+        <!-- LOCATION -->
         <div class="form-group row">
             <label for="userSettingsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
-            <div class="col-sm-10">
-                <select class="custom-select shadow-sm" id="userSettingsLocation">
-                    <option value="1">Albuquerque, NM</option>
-                    <option value="2" selected>Augusta, GA</option>
-                    <option value="3">Fort Wayne, IN</option>
-                    <option value="4">Jonesboro, AR</option>
-                    <option value="5">Madison, WI</option>
-                    <option value="6">Milwaukee, WI</option>
-                    <option value="7">Mobile, AL</option>
-                    <option value="8">Oklahoma City, OK</option>
-                </select>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="userSettingsLocation" value="@Model.Location">
             </div>
         </div>
 
         <!-- PASSWORD -->
         <div class="form-group row top-50">
-            <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="userSettingsPassword" value="passWord123">
+            <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
+            <!-- TODO: Add an if statement that shows the password or asterisks if "show password" is checked -->
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" id="userSettingsPassword" value="@Model.Password">
+            </div>
+            <!-- SHOW PASSWORD -->
+            <div class="form-check">
+                <label class="form-check-label" for="userSettingsShowPassword">Show Password?</label>
+                <input class="form-check-input" type="checkbox" value="" id="userSettingsShowPassword" checked> <!-- TODO: this should be checked or unchecked dynamically -->
             </div>
         </div>
+
+        
 
         <!-- NOTIFICATIONS -->
         <div class="form-group row mt-5">
             <label class="col-sm-2"></label>
-            <div class="col-sm-10">
+            <div class="col-sm-7">
                 <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
                     <legend class="fw-bold">Notifications</legend>
                     <!-- NEW EVENTS -->
                     <div class="form-check">
                         <label class="form-check-label" for="userSettingsNotificationsNew">New Events</label>
-                        <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsNew">
+                        <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsNew" checked> <!-- TODO: this should be checked or unchecked dynamically -->
                     </div>
                     <!-- OPTIONAL EVENTS -->
                     <div class="form-check">
                         <label class="form-check-label" for="userSettingsNotificationsOptional">Optional Events</label>
-                        <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsOptional">
+                        <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsOptional"> <!-- TODO: this should be checked or unchecked dynamically -->
                     </div>
                 </fieldset>
             </div>
@@ -90,7 +90,7 @@
         <!-- BUTTONS -->
         <div class="form-group row mt-5">
             <div class="col-sm-2"></div>
-            <div class="col-sm-10">
+            <div class="col-sm-7">
                 <div class="btn-group-lg">
                     <!-- SAVE -->
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">

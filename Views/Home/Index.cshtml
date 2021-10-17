@@ -1,14 +1,41 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@{ ViewData["Title"] = "Home Page"; }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- PAGE TITLE -->
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <h1 class="display-6 text-center text-white">Welcome to the Rural Sourcing Culture Calendar!</h1>
 </div>
 
-<div>
-    <h1>Primitive Nav directions</h1>
+<div class="container rsi-form">
+    <p>
+        <h3>About</h3>
+        Here you will be able to access all the events available to employees of Rural Sourcing.
+        This calendar will consolidate the various events held for our colleagues and communities,
+        such as: game nights, monthly round-ups, softball league games, Greenjackets baseball events,
+        Tech Tuesday learning presentations, etc. This will give you a way to keep track of the
+        events going on without interfering with your personal calendar.
+    </p>
+    <div class="form-group row">
+        
+        <div class="col-sm-8">
+            <h3>Features</h3>
+            <ul>
+                <li>Access past, present, and future events</li>
+                <li>Access on your desktop, laptop, tablet, or mobile device</li>
+                <li>Access to additional information from videos, PDFs, powerpoints</li>
+                <li>Search and view events at any Rural Sourcing branch</li>
+            </ul>
+        </div>
+        <div class="col-sm-4 d-grid align-items-center">
+            <a class="btn btn-lg rsi-btn-blue shadow-sm align-items-center" type="button" asp-controller="User" asp-action="LogIn">Log In</a>
+        </div>
+    </div>
+</div>
+
+<br /><br /><br />
+
+
+<div class="container rsi-form">
+    <h1>Temporary Primitive Nav Links</h1>
     <h2>User</h2>
     <ul>
         <li>

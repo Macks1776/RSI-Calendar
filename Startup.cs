@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using RSI_Calendar.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace RSI_Calendar
 {
@@ -32,7 +33,12 @@ namespace RSI_Calendar
 
             services.AddControllersWithViews();
             services.AddDbContext<CalendarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CalendarContext")));
-            services.AddControllersWithViews();
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<CalendarContext>().AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +80,8 @@ namespace RSI_Calendar
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CalendarContext.CreateMasterUser(app.ApplicationServices).Wait();
         }
     }
 }

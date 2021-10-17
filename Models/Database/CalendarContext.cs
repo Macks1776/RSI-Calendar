@@ -96,5 +96,36 @@ namespace RSI_Calendar.Models
                 }
                 );
         }
+
+        public static async Task CreateMasterUser(IServiceProvider serviceProvider)
+        {
+            UserManager<User> userManager = serviceProvider.GetRequiredService<UserManager<User>>();
+            RoleManager<IdentityRole> roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+            string username = "Master";
+            string password = "RSIteam2021";
+            string roleOne = "Admin";
+            string roleTwo = "CulAm";
+
+            //if roles don't exist, create them
+            if (await roleManager.FindByNameAsync(roleOne) == null)
+                await roleManager.CreateAsync(new IdentityRole(roleOne));
+
+            if (await roleManager.FindByNameAsync(roleTwo) == null)
+                await roleManager.CreateAsync(new IdentityRole(roleTwo));
+
+            //if username doesn't exist, create it and add to role
+            if(await userManager.FindByNameAsync(username) == null)
+            {
+                User user = new User { UserName = username };
+                var result = await userManager.CreateAsync(user, password);
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, roleOne);
+                    await userManager.AddToRoleAsync(user, roleTwo);
+                }
+            }
+        }
     }
 }

@@ -72,6 +72,46 @@ body {
   line-height: 60px; /* Vertically center the text there */
 }
 
+/* Styles for the Calendar Page */
+#month {
+    border: 5px solid #062C48;
+}
+
+.calendar-box {
+    border: 2px solid #062C48;
+    background-color: #F2F2F2;
+    padding-bottom: 4px;
+    padding-left: 4px;
+    padding-right: 0px;
+    margin: 1px 1px 1px 1px;
+}
+
+.event-mandatory {
+    background-color: #EB1C2C;
+    color: white;
+    border: 1px solid #062C48;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+.event-optional {
+    background-color: #062C48;
+    color: white;
+    border: 1px solid #062C48;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+.event-fun {
+    background-color: #46D967;
+    color: white;
+    border: 1px solid #062C48;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    margin: 0px 0px 0px 0px;
+}
 /* 
 ***************************************************************
 **************************************************************** RURAL SOURCING INC
@@ -98,6 +138,8 @@ html {
     border: 2px solid var(--rsi-blue);
     border-radius: 10px;
     box-shadow: var(--rsi-blue) 0px 0px 10px 5px;
+    margin: 50px auto;
+    padding: 20px;
 }
 
 
@@ -141,10 +183,11 @@ html {
     background-color: var(--rsi-blue);
     color: #FFFFFF;
     font-weight: 500;
-    border: 2px solid var(--rsi-red);
+    border: 2px solid var(--rsi-blue);
 }
 .rsi-btn-blue:hover {
     color: var(--rsi-red);
+    border: 2px solid var(--rsi-red);
 }
 
 /* RED */
@@ -152,25 +195,30 @@ html {
     background-color: var(--rsi-red);
     color: #FFFFFF;
     font-weight: 500;
-    border: 2px solid var(--rsi-blue);
+    border: 2px solid var(--rsi-red);
 }
 .rsi-btn-red:hover {
     color: var(--rsi-blue);
+    border: 2px solid var(--rsi-blue);
 }
 
 /* WHITE */
 .rsi-btn-white {
-    background-color: #FFFFFF;
-    color: var(--rsi-red);
+    background-color: white;
+    color: var(--rsi-blue);
     font-weight: 500;
     border: 2px solid var(--rsi-blue);
 }
-
 .rsi-btn-white:hover {
-    color: var(--rsi-blue);
+    color: var(--rsi-red);
+    border: 2px solid var(--rsi-red);
 }
 
-
+/* CheckBoxes */
+:checked.form-check-input {
+    background: var(--rsi-blue);
+    border-color: var(--rsi-red);
+}
 /* 
 **************************************************** TODO: this currently sets the navbar to blue; that needs to happen using the bg-rsi-blue
 */
