@@ -40,7 +40,7 @@ namespace RSI_Calendar.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Month", "Calendar");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }

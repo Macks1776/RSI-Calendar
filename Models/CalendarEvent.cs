@@ -13,14 +13,12 @@ namespace RSI_Calendar.Models
         public int id;
         public string title;
         public DateTime start;
-        public DateTime end;
 
-        public CalendarEvent(int num, string name, DateTime dateStart, DateTime dateEnd)
+        public CalendarEvent(int num, string name, DateTime date)
         {
             id = num;
             title = name;
-            start = dateStart;
-            end = dateEnd;
+            start = date;
         }
     }
 }
