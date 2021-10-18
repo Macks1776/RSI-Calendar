@@ -8,96 +8,102 @@
     </div>
 </div>
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<form method="post" asp-action="Register">
-    <!-- FIRST NAME -->
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
-        <div class="col-sm-7">
-            <input type="text" class="form-control-plaintext" asp-for="@Model.fName" />
-        </div>
-    </div>
-
-    <!-- LAST NAME -->
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label fw-bold">Last Name:</label>
-        <div class="col-sm-7">
-            <input type="text" class="form-control-plaintext" asp-for="@Model.lName" />
-        </div>
-    </div>
-
-    <!-- EMAIL -->
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label fw-bold">Email:</label>
-        <div class="col-sm-7">
-            <input type="text" class="form-control-plaintext" asp-for="@Model.email" />
-        </div>
-    </div>
-
-    <!-- LOCATION -->
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label fw-bold">Location:</label>
-        <select asp-for="@Model.location" class="form-select" aria-label="Location Selection">
-            <option selected value="Augusta, GA">Augusta, GA</option>
-            <option value="Albuquerque, NM">Albuquerque, NM</option>
-            <option value="FortWayne, IN">FortWayne, IN</option>
-            <option value="Jonesboro, AR">Jonesboro, AR</option>
-            <option value="Madison, WI">Madison, WI</option>
-            <option value="Milwaukee, WI">Milwaukee, WI</option>
-            <option value="Mobile, AL">Mobile, AL</option>
-            <option value="Oklahoma City, OK">Oklahoma City, OK</option>
-        </select>
-    </div>
-
-    <!-- Role -->
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label fw-bold">Role:</label>
-        <select asp-for="@Model.role" class="form-select" aria-label="Role Selection">
-            <option selected value="user">User</option>
-            <option value="admin">Admin</option>
-            <option value="culam">Cultural Ambassador</option>
-        </select>
-    </div>
-
-    <!-- PASSWORD -->
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label fw-bold">Password:</label>
-        <div class="col-sm-7">
-            <input id="password" type="text" class="form-control-plaintext" asp-for="@Model.Password" />
-            <div class="input-group-append">
-                <span class="input-group-text" onclick="password_show_hide();">
-                    <i class="fas fa-eye" id="show_eye"></i>
-                    <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-                </span>
+<div class="container rsi-form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" asp-action="Register">
+        <!-- FIRST NAME -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="@Model.fName" />
             </div>
         </div>
-    </div>
 
-    <!-- CONFIRM PASSWORD -->
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label fw-bold">Password:</label>
-        <div class="col-sm-7">
-            <input id="confirmPassword" type="text" class="form-control-plaintext" asp-for="@Model.ConfirmPassword" />
-            <div class="input-group-append">
-                <span class="input-group-text" onclick="password_show_hide();">
-                    <i class="fas fa-eye" id="show_eye"></i>
-                    <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-                </span>
+        <!-- LAST NAME -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Last Name:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="@Model.lName" />
             </div>
         </div>
-    </div>
 
-    <div class="form-group row mt-5">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-7">
-            <div class="btn-group-lg">
-                <!-- Register -->
-                <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Register">
-                <!-- CANCEL -->
-                <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+        <!-- EMAIL -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Email:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="@Model.email" />
             </div>
         </div>
-    </div>
 
-</form>
+        <!-- LOCATION -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-7">
+                <select asp-for="@Model.location" class="form-select shadow-sm" aria-label="Location Selection">
+                    <option selected value="Augusta, GA">Augusta, GA</option>
+                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+                    <option value="FortWayne, IN">FortWayne, IN</option>
+                    <option value="Jonesboro, AR">Jonesboro, AR</option>
+                    <option value="Madison, WI">Madison, WI</option>
+                    <option value="Milwaukee, WI">Milwaukee, WI</option>
+                    <option value="Mobile, AL">Mobile, AL</option>
+                    <option value="Oklahoma City, OK">Oklahoma City, OK</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Role -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Role:</label>
+            <div class="col-sm-7">
+                <select asp-for="@Model.role" class="form-select shadow-sm" aria-label="Role Selection">
+                    <option selected value="user">User</option>
+                    <option value="admin">Admin</option>
+                    <option value="culam">Cultural Ambassador</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- PASSWORD -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Password:</label>
+            <div class="col-sm-7">
+                <input id="password" type="text" class="form-control shadow-sm" asp-for="@Model.Password" />
+                <div class="input-group-append">
+                    <span class="input-group-text" onclick="password_show_hide();">
+                        <i class="fas fa-eye" id="show_eye"></i>
+                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONFIRM PASSWORD -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Password:</label>
+            <div class="col-sm-7">
+                <div><input id="confirmPassword" type="text" class="form-control shadow-sm" asp-for="@Model.ConfirmPassword" />
+                <div class="input-group-append">
+                    <span class="input-group-text" onclick="password_show_hide();">
+                        <i class="fas fa-eye" id="show_eye"></i>
+                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                    </span>
+                </div></div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">
+                    <!-- Register -->
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Register">
+                    <!-- CANCEL -->
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
 
