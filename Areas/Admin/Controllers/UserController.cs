@@ -8,16 +8,19 @@ namespace RSI_Calendar.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
+        [Area("Admin")]
         public IActionResult Edit()
         {
             return View("Edit");
         }
 
+        [Area("Admin")]
         public IActionResult Delete()
         {
             return View("Delete");
         }
 
+        [Area("Admin")]
         public IActionResult Search()
         {
             return View("Search");
