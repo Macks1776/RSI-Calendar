@@ -24,3 +24,13 @@ function password_show_hide() {
         hide_eye.style.display = "none";
     }
 }
+
+
+function settings_password_show_hide() {
+    var x = document.getElementById("userSettingsPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
