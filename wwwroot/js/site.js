@@ -24,16 +24,3 @@ function password_show_hide() {
         hide_eye.style.display = "none";
     }
 }
-
-
-
-function settings_password_show_hide() {
-    var x = document.getElementById("userSettingsPassword");
-    var show = document.getElementById("userSettingsShowPassword");
-    if (show.checked) {
-        x.type = "text";
-    } else {
-        x.type = "password";
-    }
-}
-
