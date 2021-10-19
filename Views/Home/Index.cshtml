@@ -39,13 +39,7 @@
     <h2>User</h2>
     <ul>
         <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="Month">Calendar/Month</a>
-        </li>
-        <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="Day">Calendar/Day</a>
-        </li>
-        <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="Schedule">Calendar/Schedule</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar/Calendar</a>
         </li>
         <li>
             <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Details">Event/Details</a>
@@ -63,6 +57,9 @@
 
     <h2>Cultural Ambassador</h2>
     <ul>
+        <li>
+            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">CulAm/CulAmEvent/Add (this uses the edit page, just need a way to create new events)</a>
+        </li>
         <li>
             <a class="nav-link text-dark" asp-area="CulAm" asp-controller="Event" asp-action="Edit">CulAm/Event/Edit</a>
         </li>

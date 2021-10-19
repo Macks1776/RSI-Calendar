@@ -68,7 +68,9 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                     context.Employees.Add(employee);
                     context.SaveChanges();
 
-                    return View("Month");
+                    TempData["message"] = "Added Employee " + employee.FName + " " + employee.LName;
+
+                    return View("Register");
                 }
                 else
                 {
