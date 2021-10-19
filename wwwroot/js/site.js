@@ -26,11 +26,14 @@ function password_show_hide() {
 }
 
 
+
 function settings_password_show_hide() {
     var x = document.getElementById("userSettingsPassword");
-    if (x.type === "password") {
+    var show = document.getElementById("userSettingsShowPassword");
+    if (show.checked) {
         x.type = "text";
     } else {
         x.type = "password";
     }
 }
+
