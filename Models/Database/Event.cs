@@ -15,8 +15,7 @@ namespace RSI_Calendar.Models
         public string Name { get; set; }
         public string Type { get; set; }
         public string Location { get; set; }
-        public string Date { get; set; } // I made Date and Time strings because the input from the user will be string based
-        public string Time { get; set; }
+        public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
     }
