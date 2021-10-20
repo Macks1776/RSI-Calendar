@@ -39,6 +39,8 @@ namespace RSI_Calendar.Controllers
 
                 if (result.Succeeded)
                 {
+                    TempData["message"] = "You logged in successfully something is wrong with the UI if it still says log in in the nav bar.\nDelete this message";
+
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);

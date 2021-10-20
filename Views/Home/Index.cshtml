@@ -42,7 +42,7 @@
             <a class="nav-link text-dark" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar/Calendar</a>
         </li>
         <li>
-            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Details">Event/Details</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Details">Event/Details <em>(this link won't actually work because to view an event you need to pass it an event ID)</em> </a>
         </li>
         <li>
             <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Search">Event/Search</a>
@@ -58,23 +58,23 @@
     <h2>Cultural Ambassador</h2>
     <ul>
         <li>
-            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">CulAm/CulAmEvent/Add (this uses the edit page, just need a way to create new events)</a>
+            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">CulAm/CulAmEvent/Add <em>(this uses the edit page, just need a way to create new events)</em> </a>
         </li>
         <li>
-            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="Event" asp-action="Edit">CulAm/Event/Edit</a>
+            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Edit">CulAm/CulAmEvent/Edit/id <em>(this link won't actually work because to edit an event you need to pass it an event ID)</em> </a>
         </li>
         <li>
-            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="Event" asp-action="Delete">CulAm/Event/Delete</a>
+            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Delete">CulAm/Event/Delete/id <em>(this link won't actually work because to delete an event you need to pass it an event ID)</em> </a>
         </li>
     </ul>
 
     <h2>Administrator</h2>
     <ul>
         <li>
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Edit">Admin/User/Edit</a>
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUser" asp-action="Edit">Admin/AdminUser/Edit/id <em>(this link won't actually work because to delete an Employee you need to pass it an employee ID)</em></a>
         </li>
         <li>
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Delete">Admin/User/Delete</a>
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUser" asp-action="Delete">Admin/AdminUser/Delete/id <em>(this link won't actually work because to delete an Employee you need to pass it an employee ID)</em> </a>
         </li>
         <li>
             <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Search">Admin/User/Search</a>
