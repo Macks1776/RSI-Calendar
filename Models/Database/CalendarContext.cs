@@ -75,8 +75,6 @@ namespace RSI_Calendar.Models
                     Name = "Sample Event",
                     Type = "Optional",
                     Location = "Augusta Tech",
-                    Date = "September 9, 2021",
-                    Time = "6:50 PM"
                 }
                 );
 
