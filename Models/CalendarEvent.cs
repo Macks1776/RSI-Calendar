@@ -13,12 +13,24 @@ namespace RSI_Calendar.Models
         public int id;
         public string title;
         public DateTime start;
+        public DateTime end;
+        public string description;
+        public string url;
 
-        public CalendarEvent(int num, string name, DateTime date)
+        public CalendarEvent(int num, string name, DateTime dateStart, DateTime dateEnd, string desc)
         {
             id = num;
             title = name;
-            start = date;
+            start = dateStart;
+            end = dateEnd;
+            description = desc;
+            GenURL();
+        }
+
+        public void GenURL()
+        {
+            url = "https://localhost:5001/event/details/" + id;
+            return;
         }
     }
 }
