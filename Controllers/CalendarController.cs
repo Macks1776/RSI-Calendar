@@ -34,7 +34,7 @@ namespace RSI_Calendar.Controllers
 
             foreach(var data in events)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate);
+                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description);
                 eventList.Add(calevent);
             }
 

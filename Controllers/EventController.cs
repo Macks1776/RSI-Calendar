@@ -3,14 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RSI_Calendar.Models;
 
 namespace RSI_Calendar.Controllers
 {
     public class EventController : Controller
     {
-        public IActionResult Details()
+        private CalendarContext context;
+
+        public EventController(CalendarContext ctx) => context = ctx;
+
+        [HttpGet]
+        public IActionResult Details(int id)
         {
-            return View("Details");
+            var eventView = context.Events.Find(id);
+            return View(eventView);
         }
 
         public IActionResult Search()
