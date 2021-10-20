@@ -1,6 +1,102 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Event
 @{ }
 
-<h1>Event/Details</h1>
+<!-- EVENT TITLE -->
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">NLCS Game 2</h1>
+    </div>
+</div>
+
+
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form asp-action="Settings" method="post">
+        <!-- START -->
+        <div class="form-group row">
+            <label for="eventDetailsStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDetailsStart" value="10/17/2021 8:08pm">
+            </div>
+        </div>
+        <br />
+
+        <!-- END -->
+        <div class="form-group row">
+            <label for="eventDetailsEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDetailsEnd" value="10/17/2021 11:08pm">
+            </div>
+        </div>
+        <br />
+
+        <!-- DESCRIPTION -->
+        <div class="form-group row">
+            <label for="eventDetailsDescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-7">
+                <textarea class="form-control-plaintext" id="eventDetailsDescription" 
+                          readonly>A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!</textarea>
+            </div>
+        </div>
+        <br />
+
+        <!-- LOCATION -->
+        <div class="form-group row">
+            <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="Augusta, GA">
+            </div>
+        </div>
+        <br />
+
+        <!-- TYPE -->
+        <div class="form-group row">
+            <label for="eventDetailsType" class="col-sm-2 col-form-label fw-bold">Event Type:</label>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsType" value="Fun with Coworkers ">
+            </div>
+        </div>
+        <br />
+
+        <!-- ATTACHMENTS -->
+        <div class="form-group row top-50">
+            <label for="eventDetailsAttachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
+            <div class="col-sm-7">
+                <ul class="list-group" id="eventDetailsAttachments">
+                    <!-- TODO: this will need to be a for loop that will loop through each attachment -->
+                    <li class="list-group-item">
+                        <a 
+                           href="https://tomahawktake.com/2021/10/17/atlanta-braves-vs-dodgers-nlcs-game-2-lineup-odds-prediction-pick-watch/" 
+                           class="link-primary"
+                           >Game Preview
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="https://youtu.be/ZxZOz5C1BbE" class="link-primary">Game Highlights</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+
+
+        <!-- CALL TO ACTION -->
+        <div class="form-group row mt-5">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-7">
+                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
+                    <legend class="fw-bold">Are you coming?</legend>
+                    <!-- YES -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventDetailsComingYes">Yes!</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingYes"> <!-- TODO: this should be checked or unchecked dynamically -->
+                    </div>
+                    <!-- NO -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventDetailsComingNo">No!</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingNo"> <!-- TODO: this should be checked or unchecked dynamically -->
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>
