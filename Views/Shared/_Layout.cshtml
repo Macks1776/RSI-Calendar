@@ -11,7 +11,29 @@
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                events: '/calendar/GetCalendarData',
+                eventSources: [
+                    {
+                        url: '/calendar/getrequiredevents',
+                        color: 'red',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/geteducationevents',
+                        color: 'blue',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/getfunevents',
+                        color: 'green',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/getfamilyevents',
+                        color: 'yellow',
+                        textColor: 'black'
+                    }
+                    
+                ],
                 initalView: 'dayGridMonth',
                 navLinks: true,
                 headerToolbar: {
