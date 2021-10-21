@@ -16,14 +16,16 @@ namespace RSI_Calendar.Models
         public DateTime end;
         public string description;
         public string url;
+        public string type;
 
-        public CalendarEvent(int num, string name, DateTime dateStart, DateTime dateEnd, string desc)
+        public CalendarEvent(int num, string name, DateTime dateStart, DateTime dateEnd, string desc, string tpe)
         {
             id = num;
             title = name;
             start = dateStart;
             end = dateEnd;
             description = desc;
+            type = tpe;
             GenURL();
         }
 

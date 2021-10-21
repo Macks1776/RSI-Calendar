@@ -34,7 +34,7 @@ namespace RSI_Calendar.Controllers
 
             foreach(var data in events)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description);
+                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
                 eventList.Add(calevent);
             }
 
@@ -50,7 +50,7 @@ namespace RSI_Calendar.Controllers
 
             foreach (var data in requiredEvents)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description);
+                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
                 requiredEventList.Add(calevent);
             }
 
@@ -66,7 +66,7 @@ namespace RSI_Calendar.Controllers
 
             foreach (var data in educationEvents)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description);
+                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
                 educationEventList.Add(calevent);
             }
 
@@ -82,7 +82,7 @@ namespace RSI_Calendar.Controllers
 
             foreach (var data in familyEvents)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description);
+                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
                 familyEventList.Add(calevent);
             }
 
@@ -98,7 +98,7 @@ namespace RSI_Calendar.Controllers
 
             foreach (var data in funEvents)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description);
+                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
                 funEventList.Add(calevent);
             }
 
