@@ -1,6 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{ }
+﻿@model Event
 
 <h1>Event/Details</h1>
+
+<form>
+    <div class="form-group">
+        <label asp-for="Name">Event Name</label>
+        <input asp-for="Name" class="form-control" disabled readonly/>
+    </div>
+    <div class="form-group">
+        <label asp-for="Type">Event Type</label>
+        <input asp-for="Type" class="form-control" disabled readonly />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" type="text" disabled readonly>@Model.Description</textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate">Start</label>
+        <input asp-for="StartDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" disabled readonly />
+        <label asp-for="EndDate">End</label>
+        <input asp-for="EndDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" diabled  readonly/>
+    </div>
+</form>

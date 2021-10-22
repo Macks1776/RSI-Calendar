@@ -11,13 +11,48 @@
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                events: '/calendar/GetCalendarData',
+                eventSources: [
+                    {
+                        url: '/calendar/getrequiredevents',
+                        color: 'red',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/geteducationevents',
+                        color: 'blue',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/getfunevents',
+                        color: 'green',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/getfamilyevents',
+                        color: 'yellow',
+                        textColor: 'black'
+                    }
+                    
+                ],
                 initalView: 'dayGridMonth',
                 navLinks: true,
                 headerToolbar: {
                     left: 'prev,next today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                eventClick: function (info) {
+                    var eventObj = info.event;
+                    if (eventObj.url) {
+                        alert(
+                            'Clicked Event: ' + eventObj.title + '.\n' +
+                            'Will open Event Details in a new tab'
+                        );
+                        window.open(eventObj.url);
+                        info.jsEvent.preventDefault();
+                    } else {
+                        alert('Clicked Event: ' + eventObj.title);
+                    }
                 }
             });
             calendar.render();
@@ -38,13 +73,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Month">Month</a>
-                        </li>
-                        <li class="nav-item" >
-                            <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Day">Day</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Schedule">Schedule</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
                         </li>
 
                         @if (signInManager.IsSignedIn(User))
@@ -99,6 +128,10 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if (TempData.Keys.Contains("message"))
+            {
+                <h4 class="bg-info text-center text-white p-2">@TempData["message"]</h4>
+            }
             @RenderBody()
         </main>
     </div>

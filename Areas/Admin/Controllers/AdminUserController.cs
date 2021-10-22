@@ -68,7 +68,9 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                     context.Employees.Add(employee);
                     context.SaveChanges();
 
-                    return View("Month");
+                    TempData["message"] = "Added Employee " + employee.FName + " " + employee.LName;
+
+                    return View("Register");
                 }
                 else
                 {
@@ -115,9 +117,21 @@ namespace RSI_Calendar.Areas.Admin.Controllers
 
         }
 
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
-            return View("Delete");
+            ViewBag.Action = "Delete";
+            var employee = context.Employees.Find(id);
+            return View(employee);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Employee employee)
+        {
+            context.Employees.Remove(employee);
+            context.SaveChanges();
+            TempData["message"] = "Employee " + employee.FName + " " + employee.LName + " Deleted.";
+            return View("Search");
         }
 
         public IActionResult Search()

@@ -56,16 +56,19 @@
             <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
             <!-- TODO: Add an if statement that shows the password or asterisks if "show password" is checked -->
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" id="userSettingsPassword" value="@Model.Password">
+                <input type="password" class="form-control shadow-sm rsi-password" id="userSettingsPassword" value="@Model.Password">
             </div>
-            <!-- SHOW PASSWORD -->
-            <div class="form-check">
+        </div>
+        
+        <!-- SHOW/HIDE PASSWORD -->
+        <div class="form-group row top-50">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-7">
                 <label class="form-check-label" for="userSettingsShowPassword">Show Password?</label>
-                <input class="form-check-input" type="checkbox" value="" id="userSettingsShowPassword" checked> <!-- TODO: this should be checked or unchecked dynamically -->
+                <input class="form-check-input passwordToggle" type="checkbox" id="userSettingsShowPassword" onclick="toggle_password();">
             </div>
         </div>
 
-        
 
         <!-- NOTIFICATIONS -->
         <div class="form-group row mt-5">
@@ -101,3 +104,5 @@
         </div>
     </form>
 </div>
+
+<script src="~/js/Passwords.js"></script>
