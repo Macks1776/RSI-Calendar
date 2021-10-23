@@ -1,7 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{ }
+﻿@model Event
 
+<h1>CulAm/Event/Delete</h1>
 
-<h1>CulAm/Events/Delete</h1>
+<h4>Confirm Delete of Employee</h4>
+
+<div class="container rsi-form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" asp-action="Register">
+        <!-- Event NAME -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="Name" disabled readonly />
+            </div>
+        </div>
+
+        <!-- Event LOCATION -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <input type="text" class="form-control shadow-sm" asp-for="Location" disabled readonly />
+        </div>
+
+        <!-- Type -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Role:</label>
+            <input type="text" class="form-control shadow-sm" asp-for="Type" disabled readonly />
+        </div>
+
+        <div class="form-group row mt-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">
+                    <!-- Delete -->
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
+                    <!-- CANCEL -->
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
