@@ -34,7 +34,7 @@
             <label for="eventDetailsDescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
             <div class="col-sm-7">
                 <textarea class="form-control-plaintext" id="eventDetailsDescription"
-                          readonly>A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!</textarea>
+                          readonly>@Model.Event.Description</textarea>
             </div>
         </div>
         <br />
@@ -68,7 +68,7 @@
                         <li class="list-group-item">
                             <a href="@attachment.Link"
                                class="link-primary">
-                                @attachment.Link
+                                @attachment.Title
                             </a>
                         </li>
 	                }
