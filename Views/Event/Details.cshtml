@@ -1,10 +1,10 @@
-﻿@model Event
+﻿@model EventDetailsViewModel
 @{ }
 
 <!-- EVENT TITLE -->
 <div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
     <div class="container">
-        <h1 class="display-6 text-center text-white">NLCS Game 2</h1>
+        <h1 class="display-6 text-center text-white">@Model.Event.Name</h1>
     </div>
 </div>
 
@@ -15,7 +15,7 @@
         <div class="form-group row">
             <label for="eventDetailsStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDetailsStart" value="10/17/2021 8:08pm">
+                <input type="text" class="form-control-plaintext" id="eventDetailsStart" value="@Model.Event.StartDate">
             </div>
         </div>
         <br />
@@ -24,7 +24,7 @@
         <div class="form-group row">
             <label for="eventDetailsEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDetailsEnd" value="10/17/2021 11:08pm">
+                <input type="text" class="form-control-plaintext" id="eventDetailsEnd" value="@Model.Event.EndDate">
             </div>
         </div>
         <br />
@@ -43,7 +43,7 @@
         <div class="form-group row">
             <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="Augusta, GA">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Location">
             </div>
         </div>
         <br />
@@ -52,7 +52,7 @@
         <div class="form-group row">
             <label for="eventDetailsType" class="col-sm-2 col-form-label fw-bold">Event Type:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDetailsType" value="Fun with Coworkers ">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsType" value="@Model.Event.Type">
             </div>
         </div>
         <br />
@@ -63,15 +63,15 @@
             <label for="eventDetailsAttachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
             <div class="col-sm-7">
                 <ul class="list-group" id="eventDetailsAttachments">
-                    <li class="list-group-item">
-                        <a href="https://tomahawktake.com/2021/10/17/atlanta-braves-vs-dodgers-nlcs-game-2-lineup-odds-prediction-pick-watch/"
-                           class="link-primary">
-                            Game Preview
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="https://youtu.be/ZxZOz5C1BbE" class="link-primary">Game Highlights</a>
-                    </li>
+                    @foreach (var attachment in Model.Attachments)
+	                {
+                        <li class="list-group-item">
+                            <a href="@attachment.Link"
+                               class="link-primary">
+                                @attachment.Link
+                            </a>
+                        </li>
+	                }
                 </ul>
 
             </div>
