@@ -2,6 +2,96 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{ }
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">Delete Event</h1>
+    </div>
+</div>
 
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form>
+        <!-- TITLE -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Title:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control shadow-sm" id="eventeditdate" value="Greenjackets Baseball Game">
+            </div>
+        </div>
+
+
+        <!-- DATE -->
+        <div class="form-group row">
+            <label for="eventeditdate" class="col-sm-2 col-form-label fw-bold">Date:</label>
+            <label for="eventeditdate" class="col-sm-10 col-form-label fw-bold">9/18/2021</label>
+        </div>
+
+
+        <!-- TIME -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Time:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control shadow-sm" id="eventedittime" value="7:00 PM">
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group row">
+            <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value=" A bunch of employees are meeting at the front gate of the greenjacketsgame. Hope you can join us!">
+            </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="form-group row">
+            <label for="eventeditlocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-10">
+                <select class="custom-select shadow-sm" id="eventeditlocation">
+                    <option value="1">Albuquerque, NM</option>
+                    <option value="2" selected>Augusta, GA</option>
+                    <option value="3">Fort Wayne, IN</option>
+                    <option value="4">Jonesboro, AR</option>
+                    <option value="5">Madison, WI</option>
+                    <option value="6">Milwaukee, WI</option>
+                    <option value="7">Mobile, AL</option>
+                    <option value="8">Oklahoma City, OK</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TYPE -->
+        <div class="form-group row">
+            <label for="eventedittype" class="col-sm-2 col-form-label fw-bold">Type:</label>
+            <div class="col-sm-10">
+                <select class="custom-select shadow-sm" id="eventedittype">
+                    <option value="1">Fun with Coworkers</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Attachments -->
+        <div class="form-group row">
+            <label for="eventeditattachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="eventeditattachments" value="1. Fun with Coworkers
+                       2. Rewatch the event">
+            </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="form-group row mt-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">
+                    <!-- Delete -->
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
+                    <!-- Cancel -->
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
 
 <h1>CulAm/Events/Delete</h1>
