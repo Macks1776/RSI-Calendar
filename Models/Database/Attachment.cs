@@ -13,6 +13,7 @@ namespace RSI_Calendar.Models
         [Required(ErrorMessage = "Attachment must be attached to an event.")]
         public int EventID { get; set; }
 
+        public string Title { get; set; }
         public string Link { get; set; }
     }
 }
