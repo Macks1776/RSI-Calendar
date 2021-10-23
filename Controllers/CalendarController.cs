@@ -17,16 +17,6 @@ namespace RSI_Calendar.Controllers
             return View("Calendar");
         }
 
-        public IActionResult Day()
-        {
-            return View("Day");
-        }
-
-        public IActionResult Schedule()
-        {
-            return View("Schedule");
-        }
-
         public string GetCalendarData()
         {
             var events = context.Events.ToList();
