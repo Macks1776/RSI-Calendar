@@ -19,9 +19,13 @@ namespace RSI_Calendar.Controllers
         [HttpGet]
         public IActionResult Details(int id = 1) //TODO: after this is connected to actual events, remove the default id
         {
-            Event e = context.Events.Find(id);
+            EventDetailsViewModel vm = new EventDetailsViewModel()
+            {
+                Event = context.Events.Find(id),
+                Attachments = (List<Attachment>)context.Attachments.Where(a => a.EventID == id).ToList()
+            };
 
-            return View(e);
+            return View(vm);
         }
 
         public IActionResult Search()
