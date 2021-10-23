@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RSI_Calendar.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,6 +55,7 @@ namespace RSI_Calendar.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EventID = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Link = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -89,8 +90,9 @@ namespace RSI_Calendar.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Time = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -205,11 +207,14 @@ namespace RSI_Calendar.Migrations
 
             migrationBuilder.InsertData(
                 table: "Attachments",
-                columns: new[] { "ID", "EventID", "Link" },
+                columns: new[] { "ID", "EventID", "Link", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, "www.samplelink.com" },
-                    { 101, 1, "www.samplelink.com/another" }
+                    { 1, 1, "https://google.com", "Google" },
+                    { 2, 1, "https://nfl.com", "NFL" },
+                    { 3, 2, "https://tomahawktake.com/2021/10/17/atlanta-braves-vs-dodgers-nlcs-game-2-lineup-odds-prediction-pick-watch/", "Game Preview" },
+                    { 4, 2, "https://youtu.be/ZxZOz5C1BbE", "Game Highlights" },
+                    { 5, 4, "https://youtu.be/zjVgQNfAEOs", "IAmTimCorey - Big Changes in .NET 5, C# 9, and Visual Studio 2019 (v16.8)" }
                 });
 
             migrationBuilder.InsertData(
@@ -225,8 +230,15 @@ namespace RSI_Calendar.Migrations
 
             migrationBuilder.InsertData(
                 table: "Events",
-                columns: new[] { "EventID", "Date", "Location", "Name", "Time", "Type" },
-                values: new object[] { 1, "September 9, 2021", "Augusta Tech", "Sample Event", "6:50 PM", "Optional" });
+                columns: new[] { "EventID", "Description", "EndDate", "Location", "Name", "StartDate", "Type" },
+                values: new object[,]
+                {
+                    { 1, "Sample Description", new DateTime(2021, 10, 13, 14, 30, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Sample Event", new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified), "Required" },
+                    { 2, "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!", new DateTime(2021, 10, 19, 23, 8, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "NLCS Game 2", new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified), "Fun with Coworkers" },
+                    { 3, "We're having a good old fashioned cookout so feel free to bring the whole family!", new DateTime(2021, 10, 23, 21, 0, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Cookout", new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified), "Bring the Family" },
+                    { 4, "Tech Tuesday training on what's new in .NET 5.", new DateTime(2021, 10, 26, 9, 30, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", ".NET 5: Whats New?!", new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified), "Required" },
+                    { 5, "Where your best costume!", new DateTime(2021, 10, 30, 17, 0, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Costume Day!", new DateTime(2021, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), "Fun with Coworkers" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

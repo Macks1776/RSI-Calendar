@@ -28,7 +28,10 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 bg-rsi-blue">
             <div class="container">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">RSI_Calendar</a>
+                <!-- LOGO -->
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,10 +40,12 @@
                 @inject SignInManager<User> signInManager
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        <!-- CALENDAR NAV -->
                         <li class="nav-item">
                             <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
                         </li>
 
+                        <!-- SIGN IN/OUT -->
                         @if (signInManager.IsSignedIn(User))
                         {
                             // signed-in user - Log Out button and username
@@ -48,7 +53,7 @@
                                 <form method="post" asp-action="LogOut" asp-controller="User"
                                       asp-area="">
                                     <input type="submit" value="Log Out"
-                                           class="btn btn-outline-Dark" />
+                                           class="btn btn-outline-light" />
                                     <span class="text-dark">@User.Identity.Name</span>
                                 </form>
                             </li>
@@ -58,7 +63,7 @@
 
                             <li class="nav-item" stye="text-decoration: none">
                                 <a asp-action="LogIn" asp-controller="User"
-                                   asp-area="" class="btn btn-outline-dark">Log In</a>
+                                   asp-area="" class="btn btn-outline-light">Log In</a>
                             </li>
                         }
                         @if (signInManager.IsSignedIn(User))

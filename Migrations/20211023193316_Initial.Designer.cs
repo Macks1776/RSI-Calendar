@@ -10,8 +10,8 @@ using RSI_Calendar.Models;
 namespace RSI_Calendar.Migrations
 {
     [DbContext(typeof(CalendarContext))]
-    [Migration("20211003174134_initial")]
-    partial class initial
+    [Migration("20211023193316_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,6 +165,9 @@ namespace RSI_Calendar.Migrations
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("Attachments");
@@ -174,13 +177,36 @@ namespace RSI_Calendar.Migrations
                         {
                             ID = 1,
                             EventID = 1,
-                            Link = "www.samplelink.com"
+                            Link = "https://google.com",
+                            Title = "Google"
                         },
                         new
                         {
-                            ID = 101,
+                            ID = 2,
                             EventID = 1,
-                            Link = "www.samplelink.com/another"
+                            Link = "https://nfl.com",
+                            Title = "NFL"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            EventID = 2,
+                            Link = "https://tomahawktake.com/2021/10/17/atlanta-braves-vs-dodgers-nlcs-game-2-lineup-odds-prediction-pick-watch/",
+                            Title = "Game Preview"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            EventID = 2,
+                            Link = "https://youtu.be/ZxZOz5C1BbE",
+                            Title = "Game Highlights"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            EventID = 4,
+                            Link = "https://youtu.be/zjVgQNfAEOs",
+                            Title = "IAmTimCorey - Big Changes in .NET 5, C# 9, and Visual Studio 2019 (v16.8)"
                         });
                 });
 
@@ -263,8 +289,11 @@ namespace RSI_Calendar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Date")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
@@ -272,8 +301,8 @@ namespace RSI_Calendar.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
@@ -286,11 +315,52 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             EventID = 1,
-                            Date = "September 9, 2021",
-                            Location = "Augusta Tech",
+                            Description = "Sample Description",
+                            EndDate = new DateTime(2021, 10, 13, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Augusta, GA",
                             Name = "Sample Event",
-                            Time = "6:50 PM",
-                            Type = "Optional"
+                            StartDate = new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Required"
+                        },
+                        new
+                        {
+                            EventID = 2,
+                            Description = "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!",
+                            EndDate = new DateTime(2021, 10, 19, 23, 8, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Augusta, GA",
+                            Name = "NLCS Game 2",
+                            StartDate = new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Fun with Coworkers"
+                        },
+                        new
+                        {
+                            EventID = 3,
+                            Description = "We're having a good old fashioned cookout so feel free to bring the whole family!",
+                            EndDate = new DateTime(2021, 10, 23, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Augusta, GA",
+                            Name = "Cookout",
+                            StartDate = new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Bring the Family"
+                        },
+                        new
+                        {
+                            EventID = 4,
+                            Description = "Tech Tuesday training on what's new in .NET 5.",
+                            EndDate = new DateTime(2021, 10, 26, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Augusta, GA",
+                            Name = ".NET 5: Whats New?!",
+                            StartDate = new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Required"
+                        },
+                        new
+                        {
+                            EventID = 5,
+                            Description = "Where your best costume!",
+                            EndDate = new DateTime(2021, 10, 30, 17, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Augusta, GA",
+                            Name = "Costume Day!",
+                            StartDate = new DateTime(2021, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Fun with Coworkers"
                         });
                 });
 

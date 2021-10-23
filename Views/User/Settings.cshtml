@@ -54,7 +54,6 @@
         <!-- PASSWORD -->
         <div class="form-group row top-50">
             <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
-            <!-- TODO: Add an if statement that shows the password or asterisks if "show password" is checked -->
             <div class="col-sm-7">
                 <input type="password" class="form-control shadow-sm rsi-password" id="userSettingsPassword" value="@Model.Password">
             </div>
@@ -98,7 +97,7 @@
                     <!-- SAVE -->
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
                 </div>
             </div>
         </div>

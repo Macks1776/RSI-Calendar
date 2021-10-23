@@ -331,3 +331,8 @@ html {
     color: #FFFFFF;
     margin: 0;
 }
+
+/* RSI LOGO IN NAV BAR */
+#rsi-logo {
+    max-width: 100px;
+}

@@ -1,6 +1,95 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model EventDetailsViewModel
 @{ }
 
-<h1>Event/Details</h1>
+<!-- EVENT TITLE -->
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">@Model.Event.Name</h1>
+    </div>
+</div>
+
+
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form asp-action="Settings" method="post">
+        <!-- START -->
+        <div class="form-group row">
+            <label for="eventDetailsStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDetailsStart" value="@Model.Event.StartDate">
+            </div>
+        </div>
+
+        <!-- END -->
+        <div class="form-group row">
+            <label for="eventDetailsEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDetailsEnd" value="@Model.Event.EndDate">
+            </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="form-group row">
+            <label for="eventDetailsDescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-7">
+                <textarea class="form-control-plaintext" id="eventDetailsDescription"
+                          readonly>@Model.Event.Description</textarea>
+            </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="form-group row">
+            <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Location">
+            </div>
+        </div>
+
+        <!-- TYPE -->
+        <div class="form-group row">
+            <label for="eventDetailsType" class="col-sm-2 col-form-label fw-bold">Event Type:</label>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsType" value="@Model.Event.Type">
+            </div>
+        </div>
+
+        <!-- ATTACHMENTS -->
+        <div class="form-group row top-50">
+            <label for="eventDetailsAttachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
+            <div class="col-sm-7">
+                <ul class="list-group" id="eventDetailsAttachments">
+                    @foreach (var attachment in Model.Attachments)
+	                {
+                        <li class="list-group-item">
+                            <a href="@attachment.Link"
+                               class="link-primary">
+                                @attachment.Title
+                            </a>
+                        </li>
+	                }
+                </ul>
+
+            </div>
+        </div>
+
+        <!-- TODO: This should be radio buttons because a user shouldnt be able to check yes AND no.-->
+        <!-- CALL TO ACTION -->
+        <div class="form-group row mt-5">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-7">
+                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
+                    <legend class="fw-bold">Are you coming?</legend>
+                    <!-- YES -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventDetailsComingYes">Yes!</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingYes"> <!-- TODO: this should be checked or unchecked dynamically -->
+                    </div>
+                    <!-- NO -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventDetailsComingNo">No!</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingNo"> <!-- TODO: this should be checked or unchecked dynamically -->
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>
