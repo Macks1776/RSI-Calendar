@@ -15,7 +15,7 @@ namespace RSI_Calendar.Controllers
 
 
         [HttpGet]
-        public IActionResult Details(int id = 1) //TODO: after this is connected to actual events, remove the default id
+        public IActionResult Details(int id)
         {
             EventDetailsViewModel vm = new EventDetailsViewModel()
             {
