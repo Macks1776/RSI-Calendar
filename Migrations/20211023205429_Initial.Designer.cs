@@ -10,7 +10,7 @@ using RSI_Calendar.Models;
 namespace RSI_Calendar.Migrations
 {
     [DbContext(typeof(CalendarContext))]
-    [Migration("20211023193316_Initial")]
+    [Migration("20211023205429_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -320,7 +320,7 @@ namespace RSI_Calendar.Migrations
                             Location = "Augusta, GA",
                             Name = "Sample Event",
                             StartDate = new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified),
-                            Type = "Required"
+                            Type = "Req"
                         },
                         new
                         {
@@ -330,7 +330,7 @@ namespace RSI_Calendar.Migrations
                             Location = "Augusta, GA",
                             Name = "NLCS Game 2",
                             StartDate = new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified),
-                            Type = "Fun with Coworkers"
+                            Type = "Fun"
                         },
                         new
                         {
@@ -340,7 +340,7 @@ namespace RSI_Calendar.Migrations
                             Location = "Augusta, GA",
                             Name = "Cookout",
                             StartDate = new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified),
-                            Type = "Bring the Family"
+                            Type = "Fam"
                         },
                         new
                         {
@@ -350,17 +350,17 @@ namespace RSI_Calendar.Migrations
                             Location = "Augusta, GA",
                             Name = ".NET 5: Whats New?!",
                             StartDate = new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            Type = "Required"
+                            Type = "Edu"
                         },
                         new
                         {
                             EventID = 5,
-                            Description = "Where your best costume!",
+                            Description = "Wear your best costume!",
                             EndDate = new DateTime(2021, 10, 30, 17, 0, 0, 0, DateTimeKind.Unspecified),
                             Location = "Augusta, GA",
                             Name = "Costume Day!",
                             StartDate = new DateTime(2021, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified),
-                            Type = "Fun with Coworkers"
+                            Type = "Fun"
                         });
                 });
 

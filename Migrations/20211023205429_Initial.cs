@@ -233,11 +233,11 @@ namespace RSI_Calendar.Migrations
                 columns: new[] { "EventID", "Description", "EndDate", "Location", "Name", "StartDate", "Type" },
                 values: new object[,]
                 {
-                    { 1, "Sample Description", new DateTime(2021, 10, 13, 14, 30, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Sample Event", new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified), "Required" },
-                    { 2, "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!", new DateTime(2021, 10, 19, 23, 8, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "NLCS Game 2", new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified), "Fun with Coworkers" },
-                    { 3, "We're having a good old fashioned cookout so feel free to bring the whole family!", new DateTime(2021, 10, 23, 21, 0, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Cookout", new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified), "Bring the Family" },
-                    { 4, "Tech Tuesday training on what's new in .NET 5.", new DateTime(2021, 10, 26, 9, 30, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", ".NET 5: Whats New?!", new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified), "Required" },
-                    { 5, "Where your best costume!", new DateTime(2021, 10, 30, 17, 0, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Costume Day!", new DateTime(2021, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), "Fun with Coworkers" }
+                    { 1, "Sample Description", new DateTime(2021, 10, 13, 14, 30, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Sample Event", new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified), "Req" },
+                    { 2, "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!", new DateTime(2021, 10, 19, 23, 8, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "NLCS Game 2", new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified), "Fun" },
+                    { 3, "We're having a good old fashioned cookout so feel free to bring the whole family!", new DateTime(2021, 10, 23, 21, 0, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Cookout", new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified), "Fam" },
+                    { 4, "Tech Tuesday training on what's new in .NET 5.", new DateTime(2021, 10, 26, 9, 30, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", ".NET 5: Whats New?!", new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified), "Edu" },
+                    { 5, "Wear your best costume!", new DateTime(2021, 10, 30, 17, 0, 0, 0, DateTimeKind.Unspecified), "Augusta, GA", "Costume Day!", new DateTime(2021, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified), "Fun" }
                 });
 
             migrationBuilder.CreateIndex(
