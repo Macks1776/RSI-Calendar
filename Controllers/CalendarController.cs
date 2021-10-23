@@ -12,9 +12,9 @@ namespace RSI_Calendar.Controllers
 
         public CalendarController(CalendarContext ctx) => context = ctx;
 
-        public IActionResult Month()
+        public IActionResult Calendar()
         {
-            return View("Month");
+            return View("Calendar");
         }
 
         public IActionResult Day()
