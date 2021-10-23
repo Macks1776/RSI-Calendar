@@ -18,7 +18,6 @@
                 <input type="text" class="form-control-plaintext" id="eventDetailsStart" value="@Model.Event.StartDate">
             </div>
         </div>
-        <br />
 
         <!-- END -->
         <div class="form-group row">
@@ -27,7 +26,6 @@
                 <input type="text" class="form-control-plaintext" id="eventDetailsEnd" value="@Model.Event.EndDate">
             </div>
         </div>
-        <br />
 
         <!-- DESCRIPTION -->
         <div class="form-group row">
@@ -37,7 +35,6 @@
                           readonly>@Model.Event.Description</textarea>
             </div>
         </div>
-        <br />
 
         <!-- LOCATION -->
         <div class="form-group row">
@@ -46,7 +43,6 @@
                 <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Location">
             </div>
         </div>
-        <br />
 
         <!-- TYPE -->
         <div class="form-group row">
@@ -55,9 +51,7 @@
                 <input type="text" readonly class="form-control-plaintext" id="eventDetailsType" value="@Model.Event.Type">
             </div>
         </div>
-        <br />
 
-        <!-- TODO: there will need to be a for loop that will loop through each attachment -->
         <!-- ATTACHMENTS -->
         <div class="form-group row top-50">
             <label for="eventDetailsAttachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
