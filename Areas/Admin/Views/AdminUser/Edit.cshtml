@@ -1,6 +1,7 @@
-﻿@namespace RSI_Calendar.Areas.Admin.Models
-@model RegisterViewModel
-@{ ViewBag.Title = "Register";}
+﻿@model Employee
+
+
+<h1>Admin/User/Edit</h1>
 
 <div class="jumbotrol jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
     <div class="container">
@@ -10,12 +11,12 @@
 
 <div class="container rsi-form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <form method="post" asp-action="Register">
+    <form method="post" asp-action="Edit">
         <!-- FIRST NAME -->
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" asp-for="@Model.fName" />
+                <input type="text" class="form-control shadow-sm" asp-for="FName" />
             </div>
         </div>
 
@@ -23,7 +24,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Last Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" asp-for="@Model.lName" />
+                <input type="text" class="form-control shadow-sm" asp-for="LName" />
             </div>
         </div>
 
@@ -31,7 +32,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Email:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" asp-for="@Model.email" />
+                <input type="text" class="form-control shadow-sm" asp-for="Email" />
             </div>
         </div>
 
@@ -39,8 +40,9 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-7">
-                <select asp-for="@Model.location" class="form-select shadow-sm" aria-label="Location Selection">
-                    <option selected value="Augusta, GA">Augusta, GA</option>
+                <select asp-for="Location" class="form-select shadow-sm" aria-label="Location Selection">
+                    <option selected value="Location">Location</option>
+                    <option value="Augusta, GA">Augusta, GA</option>
                     <option value="Albuquerque, NM">Albuquerque, NM</option>
                     <option value="FortWayne, IN">FortWayne, IN</option>
                     <option value="Jonesboro, AR">Jonesboro, AR</option>
@@ -56,7 +58,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Role:</label>
             <div class="col-sm-7">
-                <select asp-for="@Model.role" class="form-select shadow-sm" aria-label="Role Selection">
+                <select asp-for="Role" class="form-select shadow-sm" aria-label="Role Selection">
                     <option selected value="user">User</option>
                     <option value="admin">Admin</option>
                     <option value="culam">Cultural Ambassador</option>
@@ -64,11 +66,26 @@
             </div>
         </div>
 
-        <!-- PASSWORD -->
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">Password:</label>
-            <div class="col-sm-7">
-                <input id="password" type="text" class="form-control shadow-sm" asp-for="@Model.Password" />
+        <!-- PASSWORD Right now this is disabled because I have to think hard
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Password:</label>
+        <div class="col-sm-7">
+            <input id="password" type="text" class="form-control shadow-sm" asp-for="" />
+            <div class="input-group-append">
+                <span class="input-group-text" onclick="password_show_hide();">
+                    <i class="fas fa-eye" id="show_eye"></i>
+                    <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+     CONFIRM PASSWORD
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label fw-bold">Password:</label>
+        <div class="col-sm-7">
+            <div>
+                <input id="confirmPassword" type="text" class="form-control shadow-sm" asp-for="" />
                 <div class="input-group-append">
                     <span class="input-group-text" onclick="password_show_hide();">
                         <i class="fas fa-eye" id="show_eye"></i>
@@ -77,35 +94,20 @@
                 </div>
             </div>
         </div>
-
-        <!-- CONFIRM PASSWORD -->
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">Password:</label>
-            <div class="col-sm-7">
-                <div>
-                    <input id="confirmPassword" type="text" class="form-control shadow-sm" asp-for="@Model.ConfirmPassword" />
-                    <div class="input-group-append">
-                        <span class="input-group-text" onclick="password_show_hide();">
-                            <i class="fas fa-eye" id="show_eye"></i>
-                            <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
+        -->
 
         <div class="form-group row mt-5">
             <div class="col-sm-2"></div>
             <div class="col-sm-7">
                 <div class="btn-group-lg">
                     <!-- Register -->
-                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Register">
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Edit">
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
                 </div>
             </div>
         </div>
 
     </form>
 </div>
-

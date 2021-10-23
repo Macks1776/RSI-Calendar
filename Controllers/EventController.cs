@@ -4,17 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RSI_Calendar.Models;
 
 namespace RSI_Calendar.Controllers
 {
     public class EventController : Controller
     {
         private CalendarContext context;
+        public EventController(CalendarContext ctx) => context = ctx;
 
-        public EventController(CalendarContext ctx)
-        {
-            context = ctx;
-        }
 
         [HttpGet]
         public IActionResult Details(int id = 1) //TODO: after this is connected to actual events, remove the default id
