@@ -12,7 +12,7 @@
 <div class="container mt-5 mb-5 p-5 rsi-form">
     <form asp-action="Settings" method="post">
         <!-- START -->
-        <div class="form-group row">
+        <div class="row">
             <label for="eventDetailsStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control-plaintext" id="eventDetailsStart" value="@Model.Event.StartDate">
@@ -20,7 +20,7 @@
         </div>
 
         <!-- END -->
-        <div class="form-group row">
+        <div class="row">
             <label for="eventDetailsEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
             <div class="col-sm-7">
                 <input type="text" class="form-control-plaintext" id="eventDetailsEnd" value="@Model.Event.EndDate">
@@ -28,7 +28,7 @@
         </div>
 
         <!-- DESCRIPTION -->
-        <div class="form-group row">
+        <div class="row">
             <label for="eventDetailsDescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
             <div class="col-sm-7">
                 <textarea class="form-control-plaintext" id="eventDetailsDescription"
@@ -37,7 +37,7 @@
         </div>
 
         <!-- LOCATION -->
-        <div class="form-group row">
+        <div class="row">
             <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-7">
                 <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Location">
@@ -45,7 +45,7 @@
         </div>
 
         <!-- TYPE -->
-        <div class="form-group row">
+        <div class="row">
             <label for="eventDetailsType" class="col-sm-2 col-form-label fw-bold">Event Type:</label>
             <div class="col-sm-7">
                 <input type="text" readonly class="form-control-plaintext" id="eventDetailsType" value="@Model.Event.Type">
@@ -53,7 +53,7 @@
         </div>
 
         <!-- ATTACHMENTS -->
-        <div class="form-group row top-50">
+        <div class="row top-50">
             <label for="eventDetailsAttachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
             <div class="col-sm-7">
                 <ul class="list-group" id="eventDetailsAttachments">
@@ -71,25 +71,26 @@
             </div>
         </div>
 
+        
         <!-- TODO: This should be radio buttons because a user shouldnt be able to check yes AND no.-->
         <!-- CALL TO ACTION -->
-        <div class="form-group row mt-5">
+        <!--<div class="row mt-5">
             <label class="col-sm-2"></label>
             <div class="col-sm-7">
                 <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
-                    <legend class="fw-bold">Are you coming?</legend>
+                    <legend class="fw-bold">Are you coming?</legend>-->
                     <!-- YES -->
-                    <div class="form-check">
-                        <label class="form-check-label" for="eventDetailsComingYes">Yes!</label>
-                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingYes"> <!-- TODO: this should be checked or unchecked dynamically -->
-                    </div>
+                    <!--<div class="form-check">
+                        <label class="form-check-label" for="eventDetailsComingYes">Yes</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingYes">--> <!-- TODO: this should be checked or unchecked dynamically -->
+                    <!--</div>-->
                     <!-- NO -->
-                    <div class="form-check">
-                        <label class="form-check-label" for="eventDetailsComingNo">No!</label>
-                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingNo"> <!-- TODO: this should be checked or unchecked dynamically -->
-                    </div>
+                    <!--<div class="form-check">
+                        <label class="form-check-label" for="eventDetailsComingNo">No</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingNo">--> <!-- TODO: this should be checked or unchecked dynamically -->
+                    <!--</div>
                 </fieldset>
             </div>
-        </div>
+        </div>-->
     </form>
 </div>
