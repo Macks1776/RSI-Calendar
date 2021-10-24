@@ -36,3 +36,141 @@
     <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
     <a asp-controller="Calendar" asp-action="Calendar" asp-area="">Cancel</a>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">Edit Event</h1>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form>
+        <!-- TITLE -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Title:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control shadow-sm" id="eventeditdate" value="Greenjackets Baseball Game">
+            </div>
+        </div>
+
+
+        <!-- Date -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Date:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control shadow-sm" id="eventedittime" value="9/18/2021">
+            </div>
+        </div>
+
+
+        <!-- TIME -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Time:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control shadow-sm" id="eventedittime" value="7:00 PM">
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control shadow-sm" id="eventedittime" value=" A bunch of employees are meeting at the front gate of the greenjacketsgame. Hope you can join us!">
+            </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="form-group row">
+            <label for="eventeditlocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-10">
+                <select class="custom-select shadow-sm" id="eventeditlocation">
+                    <option value="1">Albuquerque, NM</option>
+                    <option value="2" selected>Augusta, GA</option>
+                    <option value="3">Fort Wayne, IN</option>
+                    <option value="4">Jonesboro, AR</option>
+                    <option value="5">Madison, WI</option>
+                    <option value="6">Milwaukee, WI</option>
+                    <option value="7">Mobile, AL</option>
+                    <option value="8">Oklahoma City, OK</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TYPE -->
+        <div class="form-group row">
+            <label for="eventedittype" class="col-sm-2 col-form-label fw-bold">Type:</label>
+            <div class="col-sm-10">
+                <select class="custom-select shadow-sm" id="eventedittype">
+                    <option value="1">Fun with Coworkers</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ATTACHMENTS -->
+        <div class="form-group row mt-5">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-10">
+                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
+                    <legend class="fw-bold">Attachments:</legend>
+                    <label for="eventdetaildescription" class="col-sm-2 col-form-label fw-bold"></label>
+                    <!-- NEW EVENTS -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventdetailattachment">Fun with Coworkers</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventdetailattachment">
+                    </div>
+                    <!-- OPTIONAL EVENTS -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventdetailattachment">Rewatch the event</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventdetailattachment">
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div class="form-group row mt-5">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group-lg">
+                                <!-- SAVE -->
+                                <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
+                                <!-- Remove -->
+                                <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Remove</a>
+                                <!-- CANCEL -->
+                                <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+
+
+
