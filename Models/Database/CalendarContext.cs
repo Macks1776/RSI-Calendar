@@ -22,6 +22,7 @@ namespace RSI_Calendar.Models
 
             builder.Entity<Attachment>().HasKey(x => x.ID);
 
+            // EMPLOYEE SEED DATA
             builder.Entity<Employee>().HasData(
                 new Employee
                 {
@@ -68,29 +69,104 @@ namespace RSI_Calendar.Models
                 }
                 );
 
+            // EVENT SEED DATA
             builder.Entity<Event>().HasData(
                 new Event
                 {
                     EventID = 1,
                     Name = "Sample Event",
-                    Type = "Optional",
-                    Location = "Augusta Tech",
+                    Type = "Req",
+                    Location = "Augusta, GA",
+                    Description = "Sample Description",
+                    StartDate = DateTime.Parse("10/13/2021 2:00:00 PM"),
+                    EndDate = DateTime.Parse("10/13/2021 2:30:00 PM")
+                },
+
+                new Event
+                {
+                    EventID = 2,
+                    Name = "NLCS Game 2",
+                    Type = "Fun",
+                    Location = "Augusta, GA",
+                    Description = "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!",
+                    StartDate = DateTime.Parse("10/19/2021 8:08:00 PM"),
+                    EndDate = DateTime.Parse("10/19/2021 11:08:00 PM")
+                },
+
+                new Event
+                {
+                    EventID = 3,
+                    Name = "Cookout",
+                    Type = "Fam",
+                    Location = "Augusta, GA",
+                    Description = "We're having a good old fashioned cookout so feel free to bring the whole family!",
+                    StartDate = DateTime.Parse("10/23/2021 7:00:00 PM"),
+                    EndDate = DateTime.Parse("10/23/2021 9:00:00 PM")
+                },
+
+                new Event
+                {
+                    EventID = 4,
+                    Name = ".NET 5: Whats New?!",
+                    Type = "Edu",
+                    Location = "Augusta, GA",
+                    Description = "Tech Tuesday training on what's new in .NET 5.",
+                    StartDate = DateTime.Parse("10/26/2021 9:00:00 AM"),
+                    EndDate = DateTime.Parse("10/26/2021 9:30:00 AM")
+                },
+
+                new Event
+                {
+                    EventID = 5,
+                    Name = "Costume Day!",
+                    Type = "Fun",
+                    Location = "Augusta, GA",
+                    Description = "Wear your best costume!",
+                    StartDate = DateTime.Parse("10/30/2021 8:00:00 AM"),
+                    EndDate = DateTime.Parse("10/30/2021 5:00:00 PM")
                 }
                 );
 
+            // ATTACHEMENT SEED DATA
             builder.Entity<Attachment>().HasData(
                 new Attachment
                 {
                     ID = 1,
                     EventID = 1,
-                    Link = "www.samplelink.com"
+                    Title = "Google",
+                    Link = "https://google.com"
                 },
 
                 new Attachment
                 {
-                    ID = 101,
+                    ID = 2,
                     EventID = 1,
-                    Link = "www.samplelink.com/another"
+                    Title = "NFL",
+                    Link = "https://nfl.com"
+                },
+
+                new Attachment
+                {
+                    ID = 3,
+                    EventID = 2,
+                    Title = "Game Preview",
+                    Link = "https://tomahawktake.com/2021/10/17/atlanta-braves-vs-dodgers-nlcs-game-2-lineup-odds-prediction-pick-watch/"
+                },
+
+                new Attachment
+                {
+                    ID = 4,
+                    EventID = 2,
+                    Title = "Game Highlights",
+                    Link = "https://youtu.be/ZxZOz5C1BbE"
+                },
+
+                new Attachment
+                {
+                    ID = 5,
+                    EventID = 4,
+                    Title = "IAmTimCorey - Big Changes in .NET 5, C# 9, and Visual Studio 2019 (v16.8)",
+                    Link = "https://youtu.be/zjVgQNfAEOs"
                 }
                 );
         }
