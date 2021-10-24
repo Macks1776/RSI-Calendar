@@ -10,6 +10,7 @@
 
 <div class="container mt-5 mb-5 p-5 rsi-form">
     <form>
+
         <!-- Title -->
         <div class="form-group row">
             <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Title:</label>
@@ -24,6 +25,7 @@
             <label for="eventeditdate" class="col-sm-2 col-form-label fw-bold">Date:</label>
             <label for="eventeditdate" class="col-sm-10 col-form-label fw-bold">9/18/2021</label>
         </div>
+
 
 
         <!-- Time -->
@@ -42,6 +44,7 @@
             </div>
         </div>
 
+
         <!-- Location -->
         <div class="form-group row">
             <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Location:</label>
@@ -50,40 +53,6 @@
             </div>
         </div>
 
-        <!-- TYPE -->
-        <div class="form-group row">
-            <label for="eventedittype" class="col-sm-2 col-form-label fw-bold">Type:</label>
-            <div class="col-sm-10">
-                <select class="custom-select shadow-sm" id="eventedittype">
-                    <option value="1">Fun with Coworkers</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Attachments -->
-        <div class="form-group row">
-            <label for="eventeditattachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventeditattachments" value="1. Fun with Coworkers
-                       2. Rewatch the event">
-            </div>
-        </div>
-
-        <!-- BUTTONS -->
-        <div class="form-group row mt-5">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-7">
-                <div class="btn-group-lg">
-                    <!-- Delete -->
-                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
-                    <!-- Cancel -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
-                </div>
-            </div>
-        </div>
-
-    </form>
-</div>
 
 
         <!-- Type -->
@@ -109,11 +78,12 @@
                     <div class="col-sm-10">
                         <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value="Rewatch the Event">
                     </div>
-                    
+
                 </fieldset>
             </div>
-        
-</div>
+
+        </div>
+
 
         <!-- BUTTONS -->
         <div class="form-group row mt-5">
@@ -131,4 +101,4 @@
     </form>
 </div>
 
-<h1>CulAm/Events/Delete</h1>
+
