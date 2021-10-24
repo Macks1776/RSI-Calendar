@@ -264,11 +264,17 @@ namespace RSI_Calendar.Migrations
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
@@ -285,8 +291,10 @@ namespace RSI_Calendar.Migrations
                         {
                             EventID = 1,
                             Date = "September 9, 2021",
+                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Location = "Augusta Tech",
                             Name = "Sample Event",
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Time = "6:50 PM",
                             Type = "Optional"
                         });
