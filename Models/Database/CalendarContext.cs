@@ -71,12 +71,13 @@ namespace RSI_Calendar.Models
             builder.Entity<Event>().HasData(
                 new Event
                 {
-                    EventID = 1,
-                    Name = "Sample Event",
-                    Type = "Optional",
-                    Location = "Augusta Tech",
-                    Date = "September 9, 2021",
-                    Time = "6:50 PM"
+                    EventID = 2,
+                    Name = "NLCS Game 2",
+                    Type = "Fun",
+                    Location = "Augusta, GA",
+                    Description = "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!",
+                    StartDate = DateTime.Parse("10/19/2021 8:08:00 PM"),
+                    EndDate = DateTime.Parse("10/19/2021 11:08:00 PM")
                 }
                 );
 
