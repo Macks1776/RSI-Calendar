@@ -1,6 +1,101 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{ }
+@{
+    ViewData["Title"] = "Event Search";
+}
+<!--Page Title-->
+<div class="container bg-rsi-blue p-3 mb-3 rounded">
+    <h1 class="display-6 text-center text-white">Event Search</h1>
+</div>
 
-<h1>Event/Search</h1>
+<!--Search Parameters-->
+<div class="container rsi-form">
+    <form>
+        <!--Event Name-->
+        <div class="row mb-3">
+            <label class="col-form-label col-1 fw-bold" for="eventSearchName">Name:</label>
+            <div class="col-5">
+                <input class="form-control" type="text" id="eventSearchName" />
+            </div>
+            <div class="col-auto align-self-center">
+                <input class="form-check-input" type="checkbox" id="nameCheckbox" />
+            </div>
+        </div>
+        <!--Event Date-->
+        <div class="row mb-3">
+            <label class="col-form-label col-1 fw-bold" for="eventSearchDate">Date:</label>
+            <div class="col-2">
+                <input class="form-control" type="date" id="eventSearchStartDate" />
+            </div>
+            <div class="col-1 text-center align-self-center">
+                through
+            </div>
+            <div class="col-2">
+                <input class="form-control" type="date" id="eventSearchEndDate" />
+            </div>
+            <div class="col-auto align-self-center">
+                <input class="form-check-input" type="checkbox" id="dateCheckbox" />
+            </div>
+        </div>
+        <!--Event Location-->
+        <div class="row mb-3">
+            <label class="col-form-label col-1 fw-bold" for="eventSearchLocation">Location:</label>
+            <div class="col-5">
+                <select class="form-select" id="eventSearchLocation">
+                    <option value="any" selected>Any</option>
+                    <option value="augusta">Augusta, GA</option>
+                    <option value="albuquerque">Albuquerque, NM</option>
+                    <option value="fort-wayne">Fort Wayne, IN</option>
+                    <option value="jonesboro">Jonesboro, AR</option>
+                    <option value="madison">Madison, WI</option>
+                    <option value="milwaukee">Milwaukee, WI</option>
+                    <option value="mobile">Mobile, AL</option>
+                    <option value="oklahoma-city">Oklahoma, OK</option>
+                </select>
+            </div>
+        </div>
+        <!--Event Type-->
+        <div class="row mb-3">
+            <label class="col-form-label col-1 fw-bold" for="eventSearchType">Type:</label>
+            <div class="col-5">
+                <select class="form-select" id="eventSearchType">
+                    <option value="any" selected>Any</option>
+                    <option value="mandatory">Mandatory</option>
+                    <option value="fun">Fun</option>
+                    <option value="family">Family</option>
+                </select>
+            </div>
+        </div>
+        <!--Buttons-->
+        <button type="button" class="btn rsi-btn-blue shadow-sm">Search</button>
+        <button type="reset" class="btn rsi-btn-red shadow-sm">Reset</button>
+        <button type="button" class="btn rsi-btn-white shadow-sm">Cancel</button>
+    </form>
+</div>
+
+<!--Search Results-->
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Test</td>
+            <td>Test</td>
+            <td>Test</td>
+            <td>Test</td>
+        </tr>
+        <tr>
+            <td>Test</td>
+            <td>Test</td>
+            <td>Test</td>
+            <td>Test</td>
+        </tr>
+    </tbody>
+</table>
