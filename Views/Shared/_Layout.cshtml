@@ -44,10 +44,6 @@
                 eventClick: function (info) {
                     var eventObj = info.event;
                     if (eventObj.url) {
-                        alert(
-                            'Clicked Event: ' + eventObj.title + '.\n' +
-                            'Will open Event Details in a new tab'
-                        );
                         window.open(eventObj.url);
                         info.jsEvent.preventDefault();
                     } else {
@@ -108,7 +104,7 @@
                             @if(User.IsInRole("CulAm"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Register">New Event</a>
+                                    <a class="nav-link text-white" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">New Event</a>
                                 </li>
                             }
                             <li class="nav-item" stye="text-decoration: none">
