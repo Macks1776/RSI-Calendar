@@ -90,7 +90,9 @@ namespace RSI_Calendar.Migrations
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Time = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Time = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -225,8 +227,8 @@ namespace RSI_Calendar.Migrations
 
             migrationBuilder.InsertData(
                 table: "Events",
-                columns: new[] { "EventID", "Date", "Location", "Name", "Time", "Type" },
-                values: new object[] { 1, "September 9, 2021", "Augusta Tech", "Sample Event", "6:50 PM", "Optional" });
+                columns: new[] { "EventID", "Date", "EndDate", "Location", "Name", "StartDate", "Time", "Type" },
+                values: new object[] { 1, "September 9, 2021", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Augusta Tech", "Sample Event", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "6:50 PM", "Optional" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

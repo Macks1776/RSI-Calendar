@@ -11,13 +11,44 @@
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                events: '/calendar/GetCalendarData',
+                eventSources: [
+                    {
+                        url: '/calendar/getrequiredevents',
+                        color: 'red',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/geteducationevents',
+                        color: 'blue',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/getfunevents',
+                        color: 'green',
+                        textColor: 'white'
+                    },
+                    {
+                        url: '/calendar/getfamilyevents',
+                        color: 'yellow',
+                        textColor: 'black'
+                    }
+                    
+                ],
                 initalView: 'dayGridMonth',
                 navLinks: true,
                 headerToolbar: {
-                    left: 'prev,next today',
+                    left: 'prevYear,prev,next,nextYear today',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                eventClick: function (info) {
+                    var eventObj = info.event;
+                    if (eventObj.url) {
+                        window.open(eventObj.url);
+                        info.jsEvent.preventDefault();
+                    } else {
+                        alert('Clicked Event: ' + eventObj.title);
+                    }
                 }
             });
             calendar.render();
@@ -28,67 +59,73 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 bg-rsi-blue">
             <div class="container">
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">RSI_Calendar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                <!-- LOGO -->
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
+                </a>
                 @using Microsoft.AspNetCore.Identity
                 @inject SignInManager<User> signInManager
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
-                        </li>
+                @if (!signInManager.IsSignedIn(User))
+                {
 
-                        @if (signInManager.IsSignedIn(User))
-                        {
-                            // signed-in user - Log Out button and username
+
+                    <div class="navbar d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item" stye="text-decoration: none">
+                                <a asp-action="LogIn" asp-controller="User"
+                                   asp-area="" class="btn btn-outline-light">Log In</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                }
+                else
+                {
+                    <button class="navbar-toggler navbar-toggler-icon" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-bs-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <!-- CALENDAR NAV BUTTON -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
+                            </li>
+                            <!-- EVENT SEARCH NAV BUTTON -->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="Search">Event Search</a>
+                            </li>
+                            <!-- ADMIN SPECIFIC NAV LINKS -->
+                            @if(User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">User Search</a>
+                                </li>
+                            }
+                            <!-- CULAM SPECIFIC NAV LINKS -->
+                            @if(User.IsInRole("CulAm"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">New Event</a>
+                                </li>
+                            }
+                            <!-- LOGIN/LOGOUT && SETTINGS -->
                             <li class="nav-item" stye="text-decoration: none">
                                 <form method="post" asp-action="LogOut" asp-controller="User"
                                       asp-area="">
                                     <input type="submit" value="Log Out"
-                                           class="btn btn-outline-Dark" />
-                                    <span class="text-dark">@User.Identity.Name</span>
+                                           class="btn btn-outline-light" />
                                 </form>
                             </li>
-                        }
-                        else
-                        {
-
-                            <li class="nav-item" stye="text-decoration: none">
-                                <a asp-action="LogIn" asp-controller="User"
-                                   asp-area="" class="btn btn-outline-dark">Log In</a>
+                            <li>
+                                <a class="nav-link text-white" 
+                                   asp-controller="User" 
+                                   asp-action="Settings">@User.Identity.Name</a>
                             </li>
-                        }
-                        @if (signInManager.IsSignedIn(User))
-                        {
-                            //if the user is signed in, display the user name
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" asp-controller="User" asp-action="Settings" asp-area="">Settings</a>
-                                    <div class="dropdown-divider"></div>
-                                    @if (User.IsInRole("Admin"))
-                                    {
-
-                                        <a class="dropdown-item" asp-controller="Users" asp-action="ViewUsers" asp-area="Admin">Users</a>
-                                        <div class="dropdown-divider"></div>
-                                    }
-                                    @if (User.IsInRole("CulAm"))
-                                    {
-
-                                        <a class="dropdown-item" asp-controller="Event" asp-action="ViewEvents" asp-area="CulAm">Events</a>
-                                        <div class="dropdown-divider"></div>
-                                    }
-                                    <a class="dropdown-item" asp-controller="User" asp-action="LogOut" asp-area="">Log Out</a>
-                                </div>
-                            </li>
-                        }
-                    </ul>
-
-                </div>
-            </div>
+                        </ul>
+                    </div>
+                }
+            </div>           
         </nav>
     </header>
     <div class="container">

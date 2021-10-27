@@ -1,0 +1,59 @@
+﻿@model Employee
+
+<h1>Admin/User/Delete</h1>
+
+<h4>Confirm Delete of Employee</h4>
+
+<div class="container rsi-form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" asp-action="Delete">
+        <!-- FIRST NAME -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="FName" />
+            </div>
+        </div>
+
+        <!-- LAST NAME -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Last Name:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="LName" />
+            </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Email:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="Email" />
+            </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <input type="text" class="form-control shadow-sm" asp-for="Location" />
+        </div>
+
+        <!-- Role -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Role:</label>
+            <input type="text" class="form-control shadow-sm" asp-for="Role" />
+        </div>
+
+        <div class="form-group row mt-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">
+                    <!-- Delete -->
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
+                    <!-- CANCEL -->
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

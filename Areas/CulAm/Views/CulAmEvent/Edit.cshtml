@@ -1,0 +1,173 @@
+﻿@model Event
+@{ 
+    string title = ViewBag.Action + " Event";
+    ViewData["Title"] = title;
+}
+<h1>CulAm/Event/Edit</h1>
+<h2>@ViewBag.Title</h2>
+
+@*<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Name">Event Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Type">Event Type</label>
+        <select asp-for="Type" class="form-select shadow-sm">
+            <option selected value="Req">Required</option>
+            <option value="Fun">Fun with Coworkers</option>
+            <option value="Fam">Fun with Family</option>
+            <option value="Edu">Education</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <textarea asp-for="Description" type="text"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="StartDate">Start</label>
+        <input asp-for="StartDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
+        <label asp-for="EndDate">End</label>
+        <input asp-for="EndDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <a asp-controller="Calendar" asp-action="Calendar" asp-area="">Cancel</a>
+</form>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">@ViewBag.Action Event</h1>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form asp-action="Edit" method="post">
+        <!-- TITLE -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Title:</label>
+            <div class="col-sm-10">
+                <input asp-for="Name" type="text" class="form-control shadow-sm" id="eventeditdate">
+            </div>
+        </div>
+
+        <!-- TIME -->
+        <div class="form-group row">
+            <div class="col">
+                <label asp-for="StartDate">Start</label>
+                <input asp-for="StartDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
+            </div>
+            <div class="col">
+                <label asp-for="EndDate">End</label>
+                <input asp-for="EndDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group row">
+            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-10">
+                <input asp-for="Description" type="text" class="form-control shadow-sm">
+            </div>
+        </div>
+
+        <!-- LOCATION -->
+        <div class="form-group row">
+            <label for="eventeditlocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-10">
+                <select asp-for="Location" class="custom-select shadow-sm" id="eventeditlocation">
+                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+                    <option value="Augusta, GA" selected>Augusta, GA</option>
+                    <option value="Fort Wayne, IN">Fort Wayne, IN</option>
+                    <option value="Jonesboro, AR">Jonesboro, AR</option>
+                    <option value="Madison, WI">Madison, WI</option>
+                    <option value="Milwaukee, WI">Milwaukee, WI</option>
+                    <option value="Mobile, AL">Mobile, AL</option>
+                    <option value="Oklahoma City, OK">Oklahoma City, OK</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- TYPE -->
+        <div class="form-group row">
+            <label for="eventedittype" class="col-sm-2 col-form-label fw-bold">Type:</label>
+            <div class="col-sm-10">
+                <select asp-for="Type" class="custom-select shadow-sm" id="eventedittype">
+                    <option selected value="Req">Required</option>
+                    <option value="Fun">Fun with Coworkers</option>
+                    <option value="Fam">Fun with Family</option>
+                    <option value="Edu">Education</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ATTACHMENTS -->
+        <div class="form-group row mt-5">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-10">
+                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
+                    <legend class="fw-bold">Attachments:</legend>
+                    <label for="eventdetaildescription" class="col-sm-2 col-form-label fw-bold"></label>
+                    <!-- NEW EVENTS -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventdetailattachment">Fun with Coworkers</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventdetailattachment">
+                    </div>
+                    <!-- OPTIONAL EVENTS -->
+                    <div class="form-check">
+                        <label class="form-check-label" for="eventdetailattachment">Rewatch the event</label>
+                        <input class="form-check-input" type="checkbox" value="" id="eventdetailattachment">
+                    </div>
+
+                    <!-- BUTTONS -->
+                    <div class="form-group row mt-5">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group-lg">
+                                <!-- SAVE -->
+                                <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
+                                <!-- Remove -->
+                                <a class="btn rsi-btn-white shadow-sm" type="button" >Remove</a>
+                                <!-- CANCEL -->
+                                <a class="btn rsi-btn-white shadow-sm" type="button" >Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+
+
+    </form>
+</div>
+
+
+

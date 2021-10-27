@@ -1,0 +1,159 @@
+﻿@model Event
+
+<h1>CulAm/Event/Delete</h1>
+
+<h4>Confirm Delete of Event</h4>
+
+<div class="container rsi-form">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form method="post" asp-action="Register">
+         Event NAME 
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Event Name:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control shadow-sm" asp-for="Name" disabled readonly />
+            </div>
+        </div>
+
+         Event LOCATION 
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <input type="text" class="form-control shadow-sm" asp-for="Location" disabled readonly />
+        </div>
+
+         Type 
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Role:</label>
+            <input type="text" class="form-control shadow-sm" asp-for="Type" disabled readonly />
+        </div>
+
+        <div class="form-group row mt-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">
+                     Delete 
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
+                     CANCEL 
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ }
+<!--<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">Delete Event</h1>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form method="post" asp-action="Delete">-->
+
+        <!-- Title -->
+        <!--<div class="form-group row">
+            <label asp-for="Name" class="col-sm-2 col-form-label fw-bold">Title:</label>
+            <div class="col-sm-10">
+                <input asp-for="Name" type="text" readonly class="form-control-plaintext" id="eventeditdescription" >
+            </div>
+        </div>-->
+
+
+        <!-- DATE -->
+        <!--<div class="form-group row">
+            <label asp-for="StartDate" class="col-sm-2 col-form-label fw-bold">Start Date:</label>
+            <label asp-for="StartDate" class="col-sm-10 col-form-label fw-bold"></label>
+        </div>-->
+
+        <!-- DATE -->
+        <!--<div class="form-group row">
+            <label asp-for="EndDate" class="col-sm-2 col-form-label fw-bold">Start Date:</label>
+            <label asp-for="EndDate" class="col-sm-10 col-form-label fw-bold"></label>
+        </div>-->
+
+        <!-- Description -->
+        <!--<div class="form-group row">
+            <label asp-for="Description" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-10">
+                <input asp-for="Description" type="text" readonly class="form-control-plaintext" id="eventeditdescription">
+            </div>
+        </div>-->
+
+
+        <!-- Location -->
+        <!--<div class="form-group row">
+            <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-10"> 
+                <input asp-for="Location" type="text" readonly class="form-control-plaintext" id="eventeditdescription">
+            </div>
+        </div>-->
+
+
+
+        <!-- Type -->
+        <!--<div class="form-group row">
+            <label asp-for="Location" class="col-sm-2 col-form-label fw-bold">Type:</label>
+            <div class="col-sm-10">
+                <input asp-for="Location" type="text" readonly class="form-control-plaintext" id="eventeditdescription">
+            </div>
+        </div>-->
+
+        <!-- ATTACHMENTS -->
+        <!--<div class="form-group row mt-5">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-10">
+                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
+                    <legend class="fw-bold">Attachments:</legend>
+                    <label for="eventdetaildescription" class="col-sm-2 col-form-label fw-bold"></label>-->
+                    <!-- NEW EVENTS -->
+                    <!--<div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value="">
+                    </div>-->
+                    <!-- OPTIONAL EVENTS -->
+                    <!--<div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value="">
+                    </div>
+
+                </fieldset>
+            </div>
+
+        </div>-->
+
+
+        <!-- BUTTONS -->
+        <!--<div class="form-group row mt-5">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">-->
+                    <!-- Delete -->
+                    <!--<input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">-->
+                    <!-- Cancel -->
+                    <!--<a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>-->
+
+

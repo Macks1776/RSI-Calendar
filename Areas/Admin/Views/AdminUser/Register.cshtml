@@ -82,13 +82,15 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Password:</label>
             <div class="col-sm-7">
-                <div><input id="confirmPassword" type="text" class="form-control shadow-sm" asp-for="@Model.ConfirmPassword" />
-                <div class="input-group-append">
-                    <span class="input-group-text" onclick="password_show_hide();">
-                        <i class="fas fa-eye" id="show_eye"></i>
-                        <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
-                    </span>
-                </div></div>
+                <div>
+                    <input id="confirmPassword" type="text" class="form-control shadow-sm" asp-for="@Model.ConfirmPassword" />
+                    <div class="input-group-append">
+                        <span class="input-group-text" onclick="password_show_hide();">
+                            <i class="fas fa-eye" id="show_eye"></i>
+                            <i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -99,7 +101,7 @@
                     <!-- Register -->
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Register">
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">Cancel</a>
                 </div>
             </div>
         </div>

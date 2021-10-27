@@ -30,6 +30,7 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             var tableEvent = context.Events.Find(id);
             return View(tableEvent);
         }
+
         [HttpPost]
         public IActionResult Edit(Event thisEvent)
         {
@@ -41,7 +42,6 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                     context.Events.Update(thisEvent);
 
                 context.SaveChanges();
-                TempData["message"] = "Event: " + thisEvent.Name + " Added to Calendar";
                 return RedirectToAction("Add");
             }
             else
@@ -51,10 +51,19 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             }
         }
 
-        [Area("CulAm")]
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(int id)
         {
-            return View("Delete");
+            var tableEvent = context.Events.Find(id);
+            return View(tableEvent);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Event deletedEvent)
+        {
+            context.Events.Remove(deletedEvent);
+            context.SaveChanges();
+            return View("Search");
         }
     }
 }

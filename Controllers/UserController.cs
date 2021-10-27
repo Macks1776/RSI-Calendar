@@ -39,13 +39,14 @@ namespace RSI_Calendar.Controllers
 
                 if (result.Succeeded)
                 {
+
                     if (!string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl))
                     {
                         return Redirect(model.ReturnUrl);
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Calendar", "Calendar");
                     }
                 }
             }
