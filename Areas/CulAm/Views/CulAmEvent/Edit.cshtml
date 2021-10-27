@@ -6,7 +6,7 @@
 <h1>CulAm/Event/Edit</h1>
 <h2>@ViewBag.Title</h2>
 
-<form asp-action="Edit" method="post">
+@*<form asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Name">Event Name</label>
@@ -35,7 +35,7 @@
 
     <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
     <a asp-controller="Calendar" asp-action="Calendar" asp-area="">Cancel</a>
-</form>
+</form>*@
 
 
 
@@ -69,30 +69,24 @@
 </div>
 
 <div class="container mt-5 mb-5 p-5 rsi-form">
-    <form>
+    <form asp-action="Edit" method="post">
         <!-- TITLE -->
         <div class="form-group row">
             <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Title:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="eventeditdate" value="Greenjackets Baseball Game">
+                <input asp-for="Name" type="text" class="form-control shadow-sm" id="eventeditdate">
             </div>
         </div>
-
-
-        <!-- Date -->
-        <div class="form-group row">
-            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Date:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="eventedittime" value="9/18/2021">
-            </div>
-        </div>
-
 
         <!-- TIME -->
         <div class="form-group row">
-            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Time:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="eventedittime" value="7:00 PM">
+            <div class="col">
+                <label asp-for="StartDate">Start</label>
+                <input asp-for="StartDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
+            </div>
+            <div class="col">
+                <label asp-for="EndDate">End</label>
+                <input asp-for="EndDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
             </div>
         </div>
 
@@ -100,7 +94,7 @@
         <div class="form-group row">
             <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Description:</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control shadow-sm" id="eventedittime" value=" A bunch of employees are meeting at the front gate of the greenjacketsgame. Hope you can join us!">
+                <input asp-for="Description" type="text" class="form-control shadow-sm">
             </div>
         </div>
 
@@ -108,15 +102,15 @@
         <div class="form-group row">
             <label for="eventeditlocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-10">
-                <select class="custom-select shadow-sm" id="eventeditlocation">
-                    <option value="1">Albuquerque, NM</option>
-                    <option value="2" selected>Augusta, GA</option>
-                    <option value="3">Fort Wayne, IN</option>
-                    <option value="4">Jonesboro, AR</option>
-                    <option value="5">Madison, WI</option>
-                    <option value="6">Milwaukee, WI</option>
-                    <option value="7">Mobile, AL</option>
-                    <option value="8">Oklahoma City, OK</option>
+                <select asp-for="Location" class="custom-select shadow-sm" id="eventeditlocation">
+                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+                    <option value="Augusta, GA" selected>Augusta, GA</option>
+                    <option value="Fort Wayne, IN">Fort Wayne, IN</option>
+                    <option value="Jonesboro, AR">Jonesboro, AR</option>
+                    <option value="Madison, WI">Madison, WI</option>
+                    <option value="Milwaukee, WI">Milwaukee, WI</option>
+                    <option value="Mobile, AL">Mobile, AL</option>
+                    <option value="Oklahoma City, OK">Oklahoma City, OK</option>
                 </select>
             </div>
         </div>
@@ -125,8 +119,11 @@
         <div class="form-group row">
             <label for="eventedittype" class="col-sm-2 col-form-label fw-bold">Type:</label>
             <div class="col-sm-10">
-                <select class="custom-select shadow-sm" id="eventedittype">
-                    <option value="1">Fun with Coworkers</option>
+                <select asp-for="Type" class="custom-select shadow-sm" id="eventedittype">
+                    <option selected value="Req">Required</option>
+                    <option value="Fun">Fun with Coworkers</option>
+                    <option value="Fam">Fun with Family</option>
+                    <option value="Edu">Education</option>
                 </select>
             </div>
         </div>
