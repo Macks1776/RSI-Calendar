@@ -112,8 +112,12 @@
                                       asp-area="">
                                     <input type="submit" value="Log Out"
                                            class="btn btn-outline-light" />
-                                    <span class="text-dark">@User.Identity.Name</span>
                                 </form>
+                            </li>
+                            <li>
+                                <a class="nav-link text-white" 
+                                   asp-controller="User" 
+                                   asp-action="Settings">@User.Identity.Name</a>
                             </li>
                         </ul>
                     </div>
