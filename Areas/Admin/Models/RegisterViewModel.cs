@@ -16,9 +16,9 @@ namespace RSI_Calendar.Areas.Admin.Models
         [StringLength(255)]
         public string lName { get; set; }
 
-        [Required(ErrorMessage = "Select Location")]
+        [Required(ErrorMessage = "Select Branch")]
         [StringLength(255)]
-        public string location { get; set; }
+        public string branch { get; set; }
 
         [Required(ErrorMessage = "Select Role")]
         [StringLength(255)]
