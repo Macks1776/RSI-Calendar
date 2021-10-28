@@ -10,23 +10,23 @@ namespace RSI_Calendar.Areas.Admin.Models
     {
         [Required(ErrorMessage = "Enter First Name")]
         [StringLength(255)]
-        public string fName { get; set; }
+        public string FName { get; set; }
 
         [Required(ErrorMessage = "Enter Last Name")]
         [StringLength(255)]
-        public string lName { get; set; }
+        public string LName { get; set; }
 
         [Required(ErrorMessage = "Select Branch")]
         [StringLength(255)]
-        public string branch { get; set; }
+        public string Branch { get; set; }
 
         [Required(ErrorMessage = "Select Role")]
         [StringLength(255)]
-        public string role { get; set; }
+        public string Role { get; set; }
 
         [Required(ErrorMessage = "Enter Email")]
         [DataType(DataType.EmailAddress)]
-        public string email { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter a password.")]
         [DataType(DataType.Password)]
@@ -37,7 +37,5 @@ namespace RSI_Calendar.Areas.Admin.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
-
-        public string Role { get; set; }
     }
 }
