@@ -54,14 +54,14 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                         Email = model.email
                     };
 
-                    if(model.Role == "Admin")
+                    if(model.Role == "admin")
                     {
-                        IdentityRole adminRole = await roleManager.FindByNameAsync("Admin");
+                        IdentityRole adminRole = await roleManager.FindByNameAsync("admin");
                         await userManager.AddToRoleAsync(user, adminRole.Name);
                     }
-                    else if(model.Role == "CulAm")
+                    else if(model.Role == "culam")
                     {
-                        IdentityRole culAmRole = await roleManager.FindByNameAsync("CulAm");
+                        IdentityRole culAmRole = await roleManager.FindByNameAsync("culam");
                         await userManager.AddToRoleAsync(user, culAmRole.Name);
                     }
 
