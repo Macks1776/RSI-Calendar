@@ -110,17 +110,17 @@
                                 </li>
                             }
                             <!-- LOGIN/LOGOUT && SETTINGS -->
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link text-white" 
+                                   asp-controller="User" 
+                                   asp-action="Settings">@User.Identity.Name</a>
+                            </li>
                             <li class="nav-item" stye="text-decoration: none">
                                 <form method="post" asp-action="LogOut" asp-controller="User"
                                       asp-area="">
                                     <input type="submit" value="Log Out"
                                            class="btn btn-outline-light" />
                                 </form>
-                            </li>
-                            <li>
-                                <a class="nav-link text-white" 
-                                   asp-controller="User" 
-                                   asp-action="Settings">@User.Identity.Name</a>
                             </li>
                         </ul>
                     </div>
