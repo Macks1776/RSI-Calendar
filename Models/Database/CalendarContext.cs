@@ -29,7 +29,7 @@ namespace RSI_Calendar.Models
                     ID = 1,
                     FName = "Larry",
                     LName = "Overholt",
-                    Location = "Augusta",
+                    Branch = "Augusta, GA",
                     Role = "Admin",
                     Email = "loverhol@smartweb.augustatech.edu",
                     Password = "LarryOverholt2021"
@@ -40,7 +40,7 @@ namespace RSI_Calendar.Models
                     ID = 2,
                     FName = "Max",
                     LName = "Swann",
-                    Location = "Augusta",
+                    Branch = "Augusta, GA",
                     Role = "Employee",
                     Email = "maxswann1995@gmail.com",
                     Password = "MaxSwann2021"
@@ -51,7 +51,7 @@ namespace RSI_Calendar.Models
                     ID = 3,
                     FName = "Keyla",
                     LName = "Washington",
-                    Location = "Augusta",
+                    Branch = "Augusta, GA",
                     Role = "CultrualAmbassador",
                     Email = "khobbswa@smartweb.augustatech.edu",
                     Password = "KeylaWashington2021"
@@ -62,7 +62,7 @@ namespace RSI_Calendar.Models
                     ID = 4,
                     FName = "Matthew",
                     LName = "Jeffreys",
-                    Location = "Augusta",
+                    Branch = "Augusta, GA",
                     Role = "CultrualAmbassador",
                     Email = "mcjeffreys7@gmail.com",
                     Password = "MatthewJeffreys2021"
@@ -76,8 +76,9 @@ namespace RSI_Calendar.Models
                     EventID = 1,
                     Name = "Sample Event",
                     Type = "Req",
-                    Location = "Augusta, GA",
+                    Branch = "Augusta, GA",
                     Description = "Sample Description",
+                    Location = "1234 Sample St, Sampleton, GA 12345",
                     StartDate = DateTime.Parse("10/13/2021 2:00:00 PM"),
                     EndDate = DateTime.Parse("10/13/2021 2:30:00 PM")
                 },
@@ -87,8 +88,9 @@ namespace RSI_Calendar.Models
                     EventID = 2,
                     Name = "NLCS Game 2",
                     Type = "Fun",
-                    Location = "Augusta, GA",
+                    Branch = "Augusta, GA",
                     Description = "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!",
+                    Location = "755 Battery Ave SE, Atlanta, GA 30339",
                     StartDate = DateTime.Parse("10/19/2021 8:08:00 PM"),
                     EndDate = DateTime.Parse("10/19/2021 11:08:00 PM")
                 },
@@ -98,8 +100,9 @@ namespace RSI_Calendar.Models
                     EventID = 3,
                     Name = "Cookout",
                     Type = "Fam",
-                    Location = "Augusta, GA",
+                    Branch = "Augusta, GA",
                     Description = "We're having a good old fashioned cookout so feel free to bring the whole family!",
+                    Location = "3012 Peach Orchard Rd, Augusta, GA 30906",
                     StartDate = DateTime.Parse("10/23/2021 7:00:00 PM"),
                     EndDate = DateTime.Parse("10/23/2021 9:00:00 PM")
                 },
@@ -109,8 +112,9 @@ namespace RSI_Calendar.Models
                     EventID = 4,
                     Name = ".NET 5: Whats New?!",
                     Type = "Edu",
-                    Location = "Augusta, GA",
+                    Branch = "Augusta, GA",
                     Description = "Tech Tuesday training on what's new in .NET 5.",
+                    Location = "The Alan Turing room",
                     StartDate = DateTime.Parse("10/26/2021 9:00:00 AM"),
                     EndDate = DateTime.Parse("10/26/2021 9:30:00 AM")
                 },
@@ -120,10 +124,11 @@ namespace RSI_Calendar.Models
                     EventID = 5,
                     Name = "Costume Day!",
                     Type = "Fun",
-                    Location = "Augusta, GA",
+                    Branch = "Augusta, GA",
                     Description = "Wear your best costume!",
-                    StartDate = DateTime.Parse("10/30/2021 8:00:00 AM"),
-                    EndDate = DateTime.Parse("10/30/2021 5:00:00 PM")
+                    Location = "1450 Greene St #200, Augusta, GA 30901",
+                    StartDate = DateTime.Parse("10/30/2021 1:00:00 PM"),
+                    EndDate = DateTime.Parse("10/30/2021 4:30:00 PM")
                 }
                 );
 

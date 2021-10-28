@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RSI_Calendar.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,6 +55,7 @@ namespace RSI_Calendar.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EventID = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Link = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -70,7 +71,7 @@ namespace RSI_Calendar.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Branch = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -88,9 +89,9 @@ namespace RSI_Calendar.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Branch = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Time = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -207,28 +208,38 @@ namespace RSI_Calendar.Migrations
 
             migrationBuilder.InsertData(
                 table: "Attachments",
-                columns: new[] { "ID", "EventID", "Link" },
+                columns: new[] { "ID", "EventID", "Link", "Title" },
                 values: new object[,]
                 {
-                    { 1, 1, "www.samplelink.com" },
-                    { 101, 1, "www.samplelink.com/another" }
+                    { 1, 1, "https://google.com", "Google" },
+                    { 2, 1, "https://nfl.com", "NFL" },
+                    { 3, 2, "https://tomahawktake.com/2021/10/17/atlanta-braves-vs-dodgers-nlcs-game-2-lineup-odds-prediction-pick-watch/", "Game Preview" },
+                    { 4, 2, "https://youtu.be/ZxZOz5C1BbE", "Game Highlights" },
+                    { 5, 4, "https://youtu.be/zjVgQNfAEOs", "IAmTimCorey - Big Changes in .NET 5, C# 9, and Visual Studio 2019 (v16.8)" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Employees",
-                columns: new[] { "ID", "Email", "FName", "LName", "Location", "Password", "Role" },
+                columns: new[] { "ID", "Branch", "Email", "FName", "LName", "Password", "Role" },
                 values: new object[,]
                 {
-                    { 1, "loverhol@smartweb.augustatech.edu", "Larry", "Overholt", "Augusta", "LarryOverholt2021", "Admin" },
-                    { 2, "maxswann1995@gmail.com", "Max", "Swann", "Augusta", "MaxSwann2021", "Employee" },
-                    { 3, "khobbswa@smartweb.augustatech.edu", "Keyla", "Washington", "Augusta", "KeylaWashington2021", "CultrualAmbassador" },
-                    { 4, "mcjeffreys7@gmail.com", "Matthew", "Jeffreys", "Augusta", "MatthewJeffreys2021", "CultrualAmbassador" }
+                    { 1, "Augusta, GA", "loverhol@smartweb.augustatech.edu", "Larry", "Overholt", "LarryOverholt2021", "Admin" },
+                    { 2, "Augusta, GA", "maxswann1995@gmail.com", "Max", "Swann", "MaxSwann2021", "Employee" },
+                    { 3, "Augusta, GA", "khobbswa@smartweb.augustatech.edu", "Keyla", "Washington", "KeylaWashington2021", "CultrualAmbassador" },
+                    { 4, "Augusta, GA", "mcjeffreys7@gmail.com", "Matthew", "Jeffreys", "MatthewJeffreys2021", "CultrualAmbassador" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Events",
-                columns: new[] { "EventID", "Date", "EndDate", "Location", "Name", "StartDate", "Time", "Type" },
-                values: new object[] { 1, "September 9, 2021", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Augusta Tech", "Sample Event", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "6:50 PM", "Optional" });
+                columns: new[] { "EventID", "Branch", "Description", "EndDate", "Location", "Name", "StartDate", "Type" },
+                values: new object[,]
+                {
+                    { 1, "Augusta, GA", "Sample Description", new DateTime(2021, 10, 13, 14, 30, 0, 0, DateTimeKind.Unspecified), "1234 Sample St, Sampleton, GA 12345", "Sample Event", new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified), "Req" },
+                    { 2, "Augusta, GA", "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!", new DateTime(2021, 10, 19, 23, 8, 0, 0, DateTimeKind.Unspecified), "755 Battery Ave SE, Atlanta, GA 30339", "NLCS Game 2", new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified), "Fun" },
+                    { 3, "Augusta, GA", "We're having a good old fashioned cookout so feel free to bring the whole family!", new DateTime(2021, 10, 23, 21, 0, 0, 0, DateTimeKind.Unspecified), "3012 Peach Orchard Rd, Augusta, GA 30906", "Cookout", new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified), "Fam" },
+                    { 4, "Augusta, GA", "Tech Tuesday training on what's new in .NET 5.", new DateTime(2021, 10, 26, 9, 30, 0, 0, DateTimeKind.Unspecified), "The Alan Turing room", ".NET 5: Whats New?!", new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified), "Edu" },
+                    { 5, "Augusta, GA", "Wear your best costume!", new DateTime(2021, 10, 30, 16, 30, 0, 0, DateTimeKind.Unspecified), "1450 Greene St #200, Augusta, GA 30901", "Costume Day!", new DateTime(2021, 10, 30, 13, 0, 0, 0, DateTimeKind.Unspecified), "Fun" }
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

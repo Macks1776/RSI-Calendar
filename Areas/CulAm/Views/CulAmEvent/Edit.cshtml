@@ -100,9 +100,17 @@
 
         <!-- LOCATION -->
         <div class="form-group row">
-            <label for="eventeditlocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <label for="eventEditLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-10">
-                <select asp-for="Location" class="custom-select shadow-sm" id="eventeditlocation">
+                <input id="eventEditLocation" asp-for="Location" type="text" class="form-control shadow-sm">
+            </div>
+        </div>
+
+        <!-- BRANCH -->
+        <div class="form-group row">
+            <label for="eventEditBranch" class="col-sm-2 col-form-label fw-bold">Branch:</label>
+            <div class="col-sm-10">
+                <select asp-for="Branch" class="custom-select shadow-sm" id="eventEditBranch">
                     <option value="Albuquerque, NM">Albuquerque, NM</option>
                     <option value="Augusta, GA" selected>Augusta, GA</option>
                     <option value="Fort Wayne, IN">Fort Wayne, IN</option>
@@ -154,9 +162,9 @@
                                 <!-- SAVE -->
                                 <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
                                 <!-- Remove -->
-                                <a class="btn rsi-btn-white shadow-sm" type="button" >Remove</a>
+                                <a class="btn rsi-btn-white shadow-sm" type="button">Remove</a>
                                 <!-- CANCEL -->
-                                <a class="btn rsi-btn-white shadow-sm" type="button" >Cancel</a>
+                                <a class="btn rsi-btn-white shadow-sm" type="button">Cancel</a>
                             </div>
                         </div>
                     </div>

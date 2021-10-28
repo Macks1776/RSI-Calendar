@@ -35,10 +35,10 @@ namespace RSI_Calendar.Areas.Admin.Controllers
             {
                 var user = new RSI_Calendar.Models.User
                 {
-                    UserName = model.email,
-                    FirstName = model.fName,
-                    LastName = model.lName,
-                    Email = model.email
+                    UserName = model.Email,
+                    FirstName = model.FName,
+                    LastName = model.LName,
+                    Email = model.Email
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
@@ -47,11 +47,11 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                 {
                     var employee = new RSI_Calendar.Models.Employee
                     {
-                        FName = model.fName,
-                        LName = model.lName,
-                        Location = model.location,
-                        Role = model.role,
-                        Email = model.email
+                        FName = model.FName,
+                        LName = model.LName,
+                        Branch = model.Branch,
+                        Role = model.Role,
+                        Email = model.Email
                     };
 
                     if(model.Role == "admin")
