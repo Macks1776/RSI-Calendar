@@ -7,7 +7,7 @@
 <div class="container rsi-form">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <form method="post" asp-action="Register">
-         Event NAME 
+        Event NAME
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Event Name:</label>
             <div class="col-sm-7">
@@ -15,13 +15,22 @@
             </div>
         </div>
 
-         Event BRANCH 
+        <!-- LOCATION -->
+        <div class="row">
+            <label for="eventDeleteLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-7">
+                <textarea class="form-control-plaintext" id="eventDeleteLocation"
+                          asp-for="Location" readonly>@Model.Location</textarea>
+            </div>
+        </div>
+
+        Event BRANCH
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Branch:</label>
             <input type="text" class="form-control shadow-sm" asp-for="Branch" disabled readonly />
         </div>
 
-         Type 
+        Type
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Role:</label>
             <input type="text" class="form-control shadow-sm" asp-for="Type" disabled readonly />
@@ -31,9 +40,9 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-7">
                 <div class="btn-group-lg">
-                     Delete 
+                    Delete
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
-                     CANCEL 
+                    CANCEL
                     <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
                 </div>
             </div>

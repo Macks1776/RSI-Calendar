@@ -36,11 +36,19 @@
             </div>
         </div>
 
+        <!-- LOCATION -->
+        <div class="row">
+            <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-7">
+                <textarea class="form-control-plaintext" id="eventDetailsLocation" readonly>@Model.Event.Location</textarea>
+            </div>
+        </div>
+
         <!-- BRANCH -->
         <div class="row">
-            <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Branch:</label>
+            <label for="eventDetailsBranch" class="col-sm-2 col-form-label fw-bold">Branch:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Branch">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsBranch" value="@Model.Event.Branch">
             </div>
         </div>
 
@@ -64,7 +72,8 @@
                class="link-primary">
                 @attachment.Title
             </a>
-        </li>}
+        </li>
+}
                 </ul>
             </div>
         </div>
@@ -73,26 +82,25 @@
 
         @if (User.IsInRole("CulAm"))
         {
-            <div class="form-group row mt-5">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-7">
-                    <div class="btn-group-lg">
-                        <!-- EDIT -->
-                        <a class="btn rsi-btn-blue shadow-sm"
-                           asp-area="CulAm"
-                           asp-controller="CulAmEvent"
-                           asp-action="Edit"
-                           asp-route-id="@Model.Event.EventID">Edit</a>
-                        <!-- DELETE -->
-                        <a class="btn rsi-btn-red shadow-sm"
-                           asp-area="CulAm"
-                           asp-controller="CulAmEvent"
-                           asp-action="Delete"
-                           asp-route-id="@Model.Event.EventID">Delete</a>
-                    </div>
-                </div>
+    <div class="form-group row mt-5">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-7">
+            <div class="btn-group-lg">
+                <!-- EDIT -->
+                <a class="btn rsi-btn-blue shadow-sm"
+                   asp-area="CulAm"
+                   asp-controller="CulAmEvent"
+                   asp-action="Edit"
+                   asp-route-id="@Model.Event.EventID">Edit</a>
+                <!-- DELETE -->
+                <a class="btn rsi-btn-red shadow-sm"
+                   asp-area="CulAm"
+                   asp-controller="CulAmEvent"
+                   asp-action="Delete"
+                   asp-route-id="@Model.Event.EventID">Delete</a>
             </div>
-        }
+        </div>
+    </div>}
 
         <!-- TODO: This should be radio buttons because a user shouldnt be able to check yes AND no.-->
         <!-- CALL TO ACTION -->
