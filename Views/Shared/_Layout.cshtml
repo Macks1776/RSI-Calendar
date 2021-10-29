@@ -44,10 +44,6 @@
                 eventClick: function (info) {
                     var eventObj = info.event;
                     if (eventObj.url) {
-                        alert(
-                            'Clicked Event: ' + eventObj.title + '.\n' +
-                            'Will open Event Details in a new tab'
-                        );
                         window.open(eventObj.url);
                         info.jsEvent.preventDefault();
                     } else {
@@ -99,24 +95,31 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="Search">Event Search</a>
                             </li>
+                            <!-- ADMIN SPECIFIC NAV LINKS -->
                             @if(User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">Manager Users</a>
+                                    <a class="nav-link text-white" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">User Search</a>
                                 </li>
                             }
+                            <!-- CULAM SPECIFIC NAV LINKS -->
                             @if(User.IsInRole("CulAm"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Register">New Event</a>
+                                    <a class="nav-link text-white" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">New Event</a>
                                 </li>
                             }
+                            <!-- LOGIN/LOGOUT && SETTINGS -->
+                            <li class="nav-item ms-auto">
+                                <a class="nav-link text-white" 
+                                   asp-controller="User" 
+                                   asp-action="Settings">@User.Identity.Name</a>
+                            </li>
                             <li class="nav-item" stye="text-decoration: none">
                                 <form method="post" asp-action="LogOut" asp-controller="User"
                                       asp-area="">
                                     <input type="submit" value="Log Out"
                                            class="btn btn-outline-light" />
-                                    <span class="text-dark">@User.Identity.Name</span>
                                 </form>
                             </li>
                         </ul>

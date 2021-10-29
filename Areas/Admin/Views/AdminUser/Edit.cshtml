@@ -36,11 +36,11 @@
             </div>
         </div>
 
-        <!-- LOCATION -->
+        <!-- BRANCH -->
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <label class="col-sm-2 col-form-label fw-bold">Branch:</label>
             <div class="col-sm-7">
-                <select asp-for="Location" class="form-select shadow-sm" aria-label="Location Selection">
+                <select asp-for="Branch" class="form-select shadow-sm" aria-label="Branch Selection">
                     <option selected value="Location">Location</option>
                     <option value="Augusta, GA">Augusta, GA</option>
                     <option value="Albuquerque, NM">Albuquerque, NM</option>
@@ -104,7 +104,7 @@
                     <!-- Register -->
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Edit">
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">Cancel</a>
                 </div>
             </div>
         </div>

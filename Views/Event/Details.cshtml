@@ -40,7 +40,15 @@
         <div class="row">
             <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Location">
+                <input type="text" class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Location" readonly>
+            </div>
+        </div>
+
+        <!-- BRANCH -->
+        <div class="row">
+            <label for="eventDetailsBranch" class="col-sm-2 col-form-label fw-bold">Branch:</label>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="eventDetailsBranch" value="@Model.Event.Branch">
             </div>
         </div>
 
@@ -58,39 +66,61 @@
             <div class="col-sm-7">
                 <ul class="list-group" id="eventDetailsAttachments">
                     @foreach (var attachment in Model.Attachments)
-	                {
-                        <li class="list-group-item">
-                            <a href="@attachment.Link"
-                               class="link-primary">
-                                @attachment.Title
-                            </a>
-                        </li>
-	                }
+                    {
+        <li class="list-group-item">
+            <a href="@attachment.Link"
+               class="link-primary">
+                @attachment.Title
+            </a>
+        </li>
+}
                 </ul>
-
             </div>
         </div>
 
-        
+        <!-- BUTTONS FOR CULTURAL AMBASSADORS ONLY --><!-- TODO: MAX -->
+
+    <div class="form-group row mt-5">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-7">
+            <div class="btn-group-lg">
+                <!-- DELETE -->
+                <a class="btn rsi-btn-red shadow-sm"
+                   asp-area="CulAm"
+                   asp-controller="CulAmEvent"
+                   asp-action="Delete"
+                   asp-route-id="@Model.Event.EventID">Delete</a>
+                <!-- CANCEL -->
+                <a class="btn rsi-btn-white shadow-sm"
+                   asp-area=""
+                   asp-controller="Event"
+                   asp-action="Details"
+                   asp-route-id="@Model.Event.EventID">Cancel</a>
+            </div>
+        </div>
+    </div>
+
         <!-- TODO: This should be radio buttons because a user shouldnt be able to check yes AND no.-->
         <!-- CALL TO ACTION -->
         <!--<div class="row mt-5">
-            <label class="col-sm-2"></label>
-            <div class="col-sm-7">
-                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
-                    <legend class="fw-bold">Are you coming?</legend>-->
-                    <!-- YES -->
-                    <!--<div class="form-check">
-                        <label class="form-check-label" for="eventDetailsComingYes">Yes</label>
-                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingYes">--> <!-- TODO: this should be checked or unchecked dynamically -->
-                    <!--</div>-->
-                    <!-- NO -->
-                    <!--<div class="form-check">
-                        <label class="form-check-label" for="eventDetailsComingNo">No</label>
-                        <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingNo">--> <!-- TODO: this should be checked or unchecked dynamically -->
-                    <!--</div>
-                </fieldset>
-            </div>
-        </div>-->
+    <label class="col-sm-2"></label>
+    <div class="col-sm-7">
+        <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
+            <legend class="fw-bold">Are you coming?</legend>-->
+        <!-- YES -->
+        <!--<div class="form-check">
+    <label class="form-check-label" for="eventDetailsComingYes">Yes</label>
+    <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingYes">-->
+        <!-- TODO: this should be checked or unchecked dynamically -->
+        <!--</div>-->
+        <!-- NO -->
+        <!--<div class="form-check">
+    <label class="form-check-label" for="eventDetailsComingNo">No</label>
+    <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingNo">-->
+        <!-- TODO: this should be checked or unchecked dynamically -->
+        <!--</div>
+            </fieldset>
+        </div>
+    </div>-->
     </form>
 </div>
