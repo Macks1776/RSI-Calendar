@@ -2,14 +2,14 @@
 @{ }
 
 <!-- EVENT TITLE -->
-<div class="jumbotron jumbotron-fluid bg-rsi-red p-3 mb-3 rounded">
+<div id="event-delete-jumbotron" class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
     <div class="container">
-        <h1 class="display-6 text-center text-white">Are you sure you want to delete this event?</h1>
+        <h1 class="display-6 text-center  text-rsi-red">Are you sure you want to delete this event?</h1>
     </div>
 </div>
 
 
-<div class="container mt-5 mb-5 p-5 rsi-form">
+<div id="event-delete-form" class="container mt-5 mb-5 p-5 rsi-form">
     <form asp-action="Settings" method="post">
         <!-- EVENT NAME -->
         <div class="row">
@@ -92,18 +92,18 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-7">
             <div class="btn-group-lg">
-                <!-- EDIT -->
-                <a class="btn rsi-btn-blue shadow-sm"
-                   asp-area="CulAm"
-                   asp-controller="CulAmEvent"
-                   asp-action="Edit"
-                   asp-route-id="@Model.Event.EventID">Edit</a>
                 <!-- DELETE -->
                 <a class="btn rsi-btn-red shadow-sm"
                    asp-area="CulAm"
                    asp-controller="CulAmEvent"
                    asp-action="Delete"
                    asp-route-id="@Model.Event.EventID">Delete</a>
+                <!-- CANCEL -->
+                <a class="btn rsi-btn-white shadow-sm"
+                   asp-area=""
+                   asp-controller="Event"
+                   asp-action="Details"
+                   asp-route-id="@Model.Event.EventID">Cancel</a>
             </div>
         </div>
     </div>
