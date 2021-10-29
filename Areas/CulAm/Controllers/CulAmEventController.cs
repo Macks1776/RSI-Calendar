@@ -54,8 +54,13 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var tableEvent = context.Events.Find(id);
-            return View(tableEvent);
+            EventDetailsViewModel vm = new EventDetailsViewModel()
+            {
+                Event = context.Events.Find(id),
+                Attachments = (List<Attachment>)context.Attachments.Where(a => a.EventID == id).ToList()
+            };
+
+            return View(vm);
         }
 
         [HttpPost]
