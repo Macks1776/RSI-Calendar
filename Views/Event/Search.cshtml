@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IEnumerable<Event>
 @{
     ViewData["Title"] = "Event Search";
 }
@@ -11,38 +9,38 @@
 
 <!--Search Parameters-->
 <div class="container rsi-form">
-    <form>
+    <form asp-action="getEvents" method="post">
         <!--Event Name-->
         <div class="row mb-3">
-            <label class="col-form-label col-1 fw-bold" for="eventSearchName">Name:</label>
-            <div class="col-5">
+            <label class="col-form-label col-sm-1 fw-bold" for="eventSearchName">Name:</label>
+            <div class="col-sm-5">
                 <input class="form-control" type="text" id="eventSearchName" />
             </div>
-            <div class="col-auto align-self-center">
+            <div class="col-sm-auto align-self-center">
                 <input class="form-check-input" type="checkbox" id="nameCheckbox" />
             </div>
         </div>
         <!--Event Date-->
         <div class="row mb-3">
-            <label class="col-form-label col-1 fw-bold" for="eventSearchDate">Date:</label>
-            <div class="col-2">
+            <label class="col-form-label col-sm-1 fw-bold" for="eventSearchDate">Date:</label>
+            <div class="col-sm-2">
                 <input class="form-control" type="date" id="eventSearchStartDate" />
             </div>
-            <div class="col-1 text-center align-self-center">
+            <div class="col-sm-1 text-center align-self-center">
                 through
             </div>
-            <div class="col-2">
+            <div class="col-sm-2">
                 <input class="form-control" type="date" id="eventSearchEndDate" />
             </div>
-            <div class="col-auto align-self-center">
+            <div class="col-sm-auto align-self-center">
                 <input class="form-check-input" type="checkbox" id="dateCheckbox" />
             </div>
         </div>
         <!--Branch that is hosting the event-->
         <div class="row mb-3">
-            <label class="col-form-label col-1 fw-bold" for="eventSearchLocation">Branch:</label>
-            <div class="col-5">
-                <select class="form-select" id="eventSearchLocation">
+            <label class="col-form-label col-sm-1 fw-bold" for="eventSearchBranch">Branch:</label>
+            <div class="col-sm-5">
+                <select class="form-select" id="eventSearchBranch">
                     <option value="any" selected>Any</option>
                     <option value="augusta">Augusta, GA</option>
                     <option value="albuquerque">Albuquerque, NM</option>
@@ -57,8 +55,8 @@
         </div>
         <!--Event Type-->
         <div class="row mb-3">
-            <label class="col-form-label col-1 fw-bold" for="eventSearchType">Type:</label>
-            <div class="col-5">
+            <label class="col-form-label col-sm-1 fw-bold" for="eventSearchType">Type:</label>
+            <div class="col-sm-5">
                 <select class="form-select" id="eventSearchType">
                     <option value="any" selected>Any</option>
                     <option value="mandatory">Mandatory</option>
@@ -68,34 +66,31 @@
             </div>
         </div>
         <!--Buttons-->
-        <button type="button" class="btn rsi-btn-blue shadow-sm">Search</button>
+        <button type="submit" class="btn rsi-btn-blue shadow-sm">Search</button>
         <button type="reset" class="btn rsi-btn-red shadow-sm">Reset</button>
         <button type="button" class="btn rsi-btn-white shadow-sm">Cancel</button>
     </form>
 </div>
 
 <!--Search Results-->
-<table class="table table-bordered">
+<table class="table table-secondary table-hover table-bordered border-dark">
     <thead>
         <tr>
             <th>Name</th>
             <th>Date</th>
-            <th>Location</th>
+            <th>Branch</th>
             <th>Type</th>
         </tr>
     </thead>
     <tbody>
+        @foreach (Event e in Model)
+        {
         <tr>
-            <td>Test</td>
-            <td>Test</td>
-            <td>Test</td>
-            <td>Test</td>
+            <td>@e.Name</td>
+            <td>@e.StartDate</td>
+            <td>@e.Location</td>
+            <td>@e.Type</td>
         </tr>
-        <tr>
-            <td>Test</td>
-            <td>Test</td>
-            <td>Test</td>
-            <td>Test</td>
-        </tr>
+        }
     </tbody>
 </table>
