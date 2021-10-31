@@ -29,17 +29,28 @@ namespace RSI_Calendar.Controllers
         [HttpGet]
         public IActionResult Search()
         {
-            return View("Search");
+            EventSearchViewModel vm = new EventSearchViewModel()
+            {
+                Results = new List<Event>()
+            };
+
+            return View(vm);
         }
 
         [HttpPost]
-        public ActionResult getEvents(string nameParam, DateTime dateParam, string branchParam, string typeParam)
+        public IActionResult Search(string name, DateTime start, DateTime end, string branch, string type)
         {
-            IList<Event> results = new List<Event>();
+            EventSearchViewModel vm = new EventSearchViewModel()
+            {
+                Results = context.Events.ToList()
+            };
 
-            
+            if (!string.IsNullOrEmpty(name))
+            {
+                vm.Results = (List<Event>)vm.Results.Where(item => item.Name.Contains(name));
+            }
 
-            return View(results);
+            return View(vm);
         }
     }
 }
