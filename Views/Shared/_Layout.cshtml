@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var current = ViewContext.RouteData.Values["area"]?.ToString() ?? ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -71,7 +75,7 @@
 
                     <div class="navbar d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item" stye="text-decoration: none">
+                            <li class="" stye="text-decoration: none">
                                 <a asp-action="LogIn" asp-controller="User"
                                    asp-area="" class="btn btn-outline-light">Log In</a>
                             </li>
@@ -88,24 +92,24 @@
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
                             <!-- CALENDAR NAV BUTTON -->
-                            <li class="nav-item">
+                            <li class="nav-item @Nav.Active("Calendar", current)">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
                             </li>
                             <!-- EVENT SEARCH NAV BUTTON -->
-                            <li class="nav-item">
+                            <li class="nav-item @Nav.Active("Event", current)">
                                 <a class="nav-link text-white" asp-area="" asp-controller="Event" asp-action="Search">Event Search</a>
                             </li>
                             <!-- ADMIN SPECIFIC NAV LINKS -->
                             @if(User.IsInRole("Admin"))
                             {
-                                <li class="nav-item">
+                                <li class="nav-item @Nav.Active("AdminUser", current)">
                                     <a class="nav-link text-white" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">User Search</a>
                                 </li>
                             }
                             <!-- CULAM SPECIFIC NAV LINKS -->
                             @if(User.IsInRole("CulAm"))
                             {
-                                <li class="nav-item">
+                                <li class="nav-item @Nav.Active("CulAmEvent", current)">
                                     <a class="nav-link text-white" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">New Event</a>
                                 </li>
                             }
