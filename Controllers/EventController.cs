@@ -38,16 +38,33 @@ namespace RSI_Calendar.Controllers
         }
 
         [HttpPost]
-        public IActionResult Search(string name, DateTime start, DateTime end, string branch, string type)
+        public IActionResult Search(EventSearchViewModel vm)
         {
-            EventSearchViewModel vm = new EventSearchViewModel()
-            {
-                Results = context.Events.ToList()
-            };
+            vm.Results = context.Events.ToList();
 
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(vm.Name))
             {
-                vm.Results = (List<Event>)vm.Results.Where(item => item.Name.Contains(name));
+                vm.Results = vm.Results.Where(item => item.Name.Contains(vm.Name)).ToList();
+            }
+
+            if (vm.StartDate != null && vm.StartDate.ToString() != "")
+            {
+                vm.Results = vm.Results.Where(item => item.StartDate.Date >= vm.StartDate.Date).ToList();
+            }
+
+            if (vm.EndDate != null && vm.EndDate.ToString() != "")
+            {
+                vm.Results = vm.Results.Where(item => item.StartDate.Date <= vm.EndDate.Date).ToList();
+            }
+
+            if(vm.Branch != "Any")
+            {
+                vm.Results = vm.Results.Where(item => item.Branch.Contains(vm.Branch)).ToList();
+            }
+
+            if(vm.Type != "Any")
+            {
+                vm.Results = vm.Results.Where(item => item.Type.Contains(vm.Type)).ToList();
             }
 
             return View(vm);

@@ -1,4 +1,4 @@
-﻿@model EventSearchViewModel 
+﻿@model EventSearchViewModel
 @{
     ViewData["Title"] = "Event Search";
 }
@@ -69,7 +69,7 @@
         <!--Buttons-->
         <button type="submit" class="btn rsi-btn-blue shadow-sm">Search</button>
         <button type="reset" class="btn rsi-btn-red shadow-sm">Reset</button>
-        <button type="button" class="btn rsi-btn-white shadow-sm">Cancel</button>
+        <a type="button" class="btn rsi-btn-white shadow-sm" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
     </form>
 </div>
 
