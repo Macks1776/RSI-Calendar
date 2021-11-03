@@ -215,6 +215,9 @@ namespace RSI_Calendar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Branch")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -222,9 +225,6 @@ namespace RSI_Calendar.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -241,40 +241,40 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             ID = 1,
+                            Branch = "Augusta, GA",
                             Email = "loverhol@smartweb.augustatech.edu",
                             FName = "Larry",
                             LName = "Overholt",
-                            Location = "Augusta",
                             Password = "LarryOverholt2021",
                             Role = "Admin"
                         },
                         new
                         {
                             ID = 2,
+                            Branch = "Augusta, GA",
                             Email = "maxswann1995@gmail.com",
                             FName = "Max",
                             LName = "Swann",
-                            Location = "Augusta",
                             Password = "MaxSwann2021",
                             Role = "Employee"
                         },
                         new
                         {
                             ID = 3,
+                            Branch = "Augusta, GA",
                             Email = "khobbswa@smartweb.augustatech.edu",
                             FName = "Keyla",
                             LName = "Washington",
-                            Location = "Augusta",
                             Password = "KeylaWashington2021",
                             Role = "CultrualAmbassador"
                         },
                         new
                         {
                             ID = 4,
+                            Branch = "Augusta, GA",
                             Email = "mcjeffreys7@gmail.com",
                             FName = "Matthew",
                             LName = "Jeffreys",
-                            Location = "Augusta",
                             Password = "MatthewJeffreys2021",
                             Role = "CultrualAmbassador"
                         });
@@ -286,6 +286,9 @@ namespace RSI_Calendar.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Branch")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -313,9 +316,10 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             EventID = 1,
+                            Branch = "Augusta, GA",
                             Description = "Sample Description",
                             EndDate = new DateTime(2021, 10, 13, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            Location = "Augusta, GA",
+                            Location = "1234 Sample St, Sampleton, GA 12345",
                             Name = "Sample Event",
                             StartDate = new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Req"
@@ -323,9 +327,10 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             EventID = 2,
+                            Branch = "Augusta, GA",
                             Description = "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!",
                             EndDate = new DateTime(2021, 10, 19, 23, 8, 0, 0, DateTimeKind.Unspecified),
-                            Location = "Augusta, GA",
+                            Location = "755 Battery Ave SE, Atlanta, GA 30339",
                             Name = "NLCS Game 2",
                             StartDate = new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified),
                             Type = "Fun"
@@ -333,9 +338,10 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             EventID = 3,
+                            Branch = "Augusta, GA",
                             Description = "We're having a good old fashioned cookout so feel free to bring the whole family!",
                             EndDate = new DateTime(2021, 10, 23, 21, 0, 0, 0, DateTimeKind.Unspecified),
-                            Location = "Augusta, GA",
+                            Location = "3012 Peach Orchard Rd, Augusta, GA 30906",
                             Name = "Cookout",
                             StartDate = new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Fam"
@@ -343,9 +349,10 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             EventID = 4,
+                            Branch = "Augusta, GA",
                             Description = "Tech Tuesday training on what's new in .NET 5.",
                             EndDate = new DateTime(2021, 10, 26, 9, 30, 0, 0, DateTimeKind.Unspecified),
-                            Location = "Augusta, GA",
+                            Location = "The Alan Turing room",
                             Name = ".NET 5: Whats New?!",
                             StartDate = new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Edu"
@@ -353,11 +360,12 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             EventID = 5,
+                            Branch = "Augusta, GA",
                             Description = "Wear your best costume!",
-                            EndDate = new DateTime(2021, 10, 30, 17, 0, 0, 0, DateTimeKind.Unspecified),
-                            Location = "Augusta, GA",
+                            EndDate = new DateTime(2021, 10, 30, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Location = "1450 Greene St #200, Augusta, GA 30901",
                             Name = "Costume Day!",
-                            StartDate = new DateTime(2021, 10, 30, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2021, 10, 30, 13, 0, 0, 0, DateTimeKind.Unspecified),
                             Type = "Fun"
                         });
                 });

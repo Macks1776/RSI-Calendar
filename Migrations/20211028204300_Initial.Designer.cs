@@ -10,8 +10,8 @@ using RSI_Calendar.Models;
 namespace RSI_Calendar.Migrations
 {
     [DbContext(typeof(CalendarContext))]
-    [Migration("20211019233603_initial")]
-    partial class initial
+    [Migration("20211028204300_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -165,6 +165,9 @@ namespace RSI_Calendar.Migrations
                     b.Property<string>("Link")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("Attachments");
@@ -174,13 +177,36 @@ namespace RSI_Calendar.Migrations
                         {
                             ID = 1,
                             EventID = 1,
-                            Link = "www.samplelink.com"
+                            Link = "https://google.com",
+                            Title = "Google"
                         },
                         new
                         {
-                            ID = 101,
+                            ID = 2,
                             EventID = 1,
-                            Link = "www.samplelink.com/another"
+                            Link = "https://nfl.com",
+                            Title = "NFL"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            EventID = 2,
+                            Link = "https://tomahawktake.com/2021/10/17/atlanta-braves-vs-dodgers-nlcs-game-2-lineup-odds-prediction-pick-watch/",
+                            Title = "Game Preview"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            EventID = 2,
+                            Link = "https://youtu.be/ZxZOz5C1BbE",
+                            Title = "Game Highlights"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            EventID = 4,
+                            Link = "https://youtu.be/zjVgQNfAEOs",
+                            Title = "IAmTimCorey - Big Changes in .NET 5, C# 9, and Visual Studio 2019 (v16.8)"
                         });
                 });
 
@@ -191,6 +217,9 @@ namespace RSI_Calendar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Branch")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -198,9 +227,6 @@ namespace RSI_Calendar.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
@@ -217,40 +243,40 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             ID = 1,
+                            Branch = "Augusta, GA",
                             Email = "loverhol@smartweb.augustatech.edu",
                             FName = "Larry",
                             LName = "Overholt",
-                            Location = "Augusta",
                             Password = "LarryOverholt2021",
                             Role = "Admin"
                         },
                         new
                         {
                             ID = 2,
+                            Branch = "Augusta, GA",
                             Email = "maxswann1995@gmail.com",
                             FName = "Max",
                             LName = "Swann",
-                            Location = "Augusta",
                             Password = "MaxSwann2021",
                             Role = "Employee"
                         },
                         new
                         {
                             ID = 3,
+                            Branch = "Augusta, GA",
                             Email = "khobbswa@smartweb.augustatech.edu",
                             FName = "Keyla",
                             LName = "Washington",
-                            Location = "Augusta",
                             Password = "KeylaWashington2021",
                             Role = "CultrualAmbassador"
                         },
                         new
                         {
                             ID = 4,
+                            Branch = "Augusta, GA",
                             Email = "mcjeffreys7@gmail.com",
                             FName = "Matthew",
                             LName = "Jeffreys",
-                            Location = "Augusta",
                             Password = "MatthewJeffreys2021",
                             Role = "CultrualAmbassador"
                         });
@@ -263,7 +289,10 @@ namespace RSI_Calendar.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Date")
+                    b.Property<string>("Branch")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("EndDate")
@@ -278,9 +307,6 @@ namespace RSI_Calendar.Migrations
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
@@ -292,13 +318,57 @@ namespace RSI_Calendar.Migrations
                         new
                         {
                             EventID = 1,
-                            Date = "September 9, 2021",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Location = "Augusta Tech",
+                            Branch = "Augusta, GA",
+                            Description = "Sample Description",
+                            EndDate = new DateTime(2021, 10, 13, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            Location = "1234 Sample St, Sampleton, GA 12345",
                             Name = "Sample Event",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Time = "6:50 PM",
-                            Type = "Optional"
+                            StartDate = new DateTime(2021, 10, 13, 14, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Req"
+                        },
+                        new
+                        {
+                            EventID = 2,
+                            Branch = "Augusta, GA",
+                            Description = "A bunch of employees are meeting at the front gate at Truist Park. Hope you can join us!",
+                            EndDate = new DateTime(2021, 10, 19, 23, 8, 0, 0, DateTimeKind.Unspecified),
+                            Location = "755 Battery Ave SE, Atlanta, GA 30339",
+                            Name = "NLCS Game 2",
+                            StartDate = new DateTime(2021, 10, 19, 20, 8, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Fun"
+                        },
+                        new
+                        {
+                            EventID = 3,
+                            Branch = "Augusta, GA",
+                            Description = "We're having a good old fashioned cookout so feel free to bring the whole family!",
+                            EndDate = new DateTime(2021, 10, 23, 21, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "3012 Peach Orchard Rd, Augusta, GA 30906",
+                            Name = "Cookout",
+                            StartDate = new DateTime(2021, 10, 23, 19, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Fam"
+                        },
+                        new
+                        {
+                            EventID = 4,
+                            Branch = "Augusta, GA",
+                            Description = "Tech Tuesday training on what's new in .NET 5.",
+                            EndDate = new DateTime(2021, 10, 26, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            Location = "The Alan Turing room",
+                            Name = ".NET 5: Whats New?!",
+                            StartDate = new DateTime(2021, 10, 26, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Edu"
+                        },
+                        new
+                        {
+                            EventID = 5,
+                            Branch = "Augusta, GA",
+                            Description = "Wear your best costume!",
+                            EndDate = new DateTime(2021, 10, 30, 16, 30, 0, 0, DateTimeKind.Unspecified),
+                            Location = "1450 Greene St #200, Augusta, GA 30901",
+                            Name = "Costume Day!",
+                            StartDate = new DateTime(2021, 10, 30, 13, 0, 0, 0, DateTimeKind.Unspecified),
+                            Type = "Fun"
                         });
                 });
 

@@ -10,12 +10,13 @@
 
 
 <div class="container mt-5 mb-5 p-5 rsi-form">
-    <form asp-action="Settings" method="post">
+    <form>
         <!-- START -->
         <div class="row">
             <label for="eventDetailsStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDetailsStart" value="@Model.Event.StartDate">
+                <input type="text" class="form-control-plaintext" id="eventDetailsStart" 
+                       value="@Model.Event.StartDate" readonly>
             </div>
         </div>
 
@@ -23,7 +24,8 @@
         <div class="row">
             <label for="eventDetailsEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDetailsEnd" value="@Model.Event.EndDate">
+                <input type="text" class="form-control-plaintext" id="eventDetailsEnd" 
+                       value="@Model.Event.EndDate" readonly>
             </div>
         </div>
 
@@ -40,7 +42,17 @@
         <div class="row">
             <label for="eventDetailsLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDetailsLocation" value="@Model.Event.Location">
+                <input type="text" class="form-control-plaintext" id="eventDetailsLocation" 
+                       value="@Model.Event.Location" readonly>
+            </div>
+        </div>
+
+        <!-- BRANCH -->
+        <div class="row">
+            <label for="eventDetailsBranch" class="col-sm-2 col-form-label fw-bold">Branch:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDetailsBranch" 
+                       value="@Model.Event.Branch" readonly>
             </div>
         </div>
 
@@ -48,7 +60,8 @@
         <div class="row">
             <label for="eventDetailsType" class="col-sm-2 col-form-label fw-bold">Event Type:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDetailsType" value="@Model.Event.Type">
+                <input type="text" class="form-control-plaintext" id="eventDetailsType" 
+                       value="@Model.Event.Type" readonly>
             </div>
         </div>
 
@@ -59,18 +72,15 @@
                 <ul class="list-group" id="eventDetailsAttachments">
                     @foreach (var attachment in Model.Attachments)
                     {
-        <li class="list-group-item">
-            <a href="@attachment.Link"
-               class="link-primary">
-                @attachment.Title
-            </a>
-        </li>}
+                        <li class="list-group-item">
+                            <a href="@attachment.Link" class="link-primary">@attachment.Title</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
 
-        <!-- BUTTONS FOR CULTURAL AMBASSADORS ONLY --><!-- TODO: MAX -->
-
+        <!-- BUTTONS FOR CULTURAL AMBASSADORS ONLY -->
         @if (User.IsInRole("CulAm"))
         {
             <div class="form-group row mt-5">

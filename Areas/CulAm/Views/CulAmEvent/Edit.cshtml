@@ -3,8 +3,6 @@
     string title = ViewBag.Action + " Event";
     ViewData["Title"] = title;
 }
-<h1>CulAm/Event/Edit</h1>
-<h2>@ViewBag.Title</h2>
 
 @*<form asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
@@ -71,41 +69,53 @@
 <div class="container mt-5 mb-5 p-5 rsi-form">
     <form asp-action="Edit" method="post">
         <!-- TITLE -->
-        <div class="form-group row">
-            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Title:</label>
-            <div class="col-sm-10">
-                <input asp-for="Name" type="text" class="form-control shadow-sm" id="eventeditdate">
+        <div class="row">
+            <label for="eventEditTitle" class="col-sm-2 col-form-label fw-bold">Title:</label>
+            <div class="col-sm-7">
+                <input asp-for="Name" type="text" class="form-control shadow-sm" id="eventEditTitle">
             </div>
         </div>
 
-        <!-- TIME -->
-        <div class="form-group row">
-            <div class="col">
-                <label asp-for="StartDate">Start</label>
-                <input asp-for="StartDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
-            </div>
-            <div class="col">
-                <label asp-for="EndDate">End</label>
-                <input asp-for="EndDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
+        <!-- START -->
+        <div class="row">
+            <label for="eventEditStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
+            <div class="col-sm-7">
+                <input asp-for="StartDate" type="text" class="form-control shadow-sm" id="eventEditStart">
             </div>
         </div>
 
-        <!-- Description -->
-        <div class="form-group row">
-            <label for="eventedittime" class="col-sm-2 col-form-label fw-bold">Description:</label>
-            <div class="col-sm-10">
-                <input asp-for="Description" type="text" class="form-control shadow-sm">
+        <!-- END -->
+        <div class="row">
+            <label for="eventEditEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
+            <div class="col-sm-7">
+                <input asp-for="EndDate" type="text" class="form-control shadow-sm" id="eventEditEnd">
+            </div>
+        </div>
+
+        <!-- DESCRIPTION -->
+        <div class="row">
+            <label for="eventEditDescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-7">
+                <textarea asp-for="Description" class="form-control shadow-sm" id="eventEditDescription"></textarea>
             </div>
         </div>
 
         <!-- LOCATION -->
+        <div class="row">
+            <label for="eventEditLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-7">
+                <input asp-for="Location" type="text" class="form-control shadow-sm" id="eventEditLocation">
+            </div>
+        </div>
+
+        <!-- BRANCH -->
         <div class="form-group row">
-            <label for="eventeditlocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
-            <div class="col-sm-10">
-                <select asp-for="Location" class="custom-select shadow-sm" id="eventeditlocation">
-                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+            <label for="eventEditBranch" class="col-sm-2 col-form-label fw-bold">Branch:</label>
+            <div class="col-sm-7">
+                <select asp-for="@Model.Branch" class="form-select shadow-sm" aria-label="Branch Selection" id="eventEditBranch">
                     <option value="Augusta, GA" selected>Augusta, GA</option>
-                    <option value="Fort Wayne, IN">Fort Wayne, IN</option>
+                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+                    <option value="FortWayne, IN">FortWayne, IN</option>
                     <option value="Jonesboro, AR">Jonesboro, AR</option>
                     <option value="Madison, WI">Madison, WI</option>
                     <option value="Milwaukee, WI">Milwaukee, WI</option>
@@ -117,10 +127,10 @@
 
         <!-- TYPE -->
         <div class="form-group row">
-            <label for="eventedittype" class="col-sm-2 col-form-label fw-bold">Type:</label>
-            <div class="col-sm-10">
-                <select asp-for="Type" class="custom-select shadow-sm" id="eventedittype">
-                    <option selected value="Req">Required</option>
+            <label for="eventEditType" class="col-sm-2 col-form-label fw-bold">Type:</label>
+            <div class="col-sm-7">
+                <select asp-for="Type" class="form-select shadow-sm" aria-label="Event Type Selection" id="eventEditType">
+                    <option value="Req" selected>Required</option>
                     <option value="Fun">Fun with Coworkers</option>
                     <option value="Fam">Fun with Family</option>
                     <option value="Edu">Education</option>
@@ -128,42 +138,22 @@
             </div>
         </div>
 
-        <!-- ATTACHMENTS -->
+        <!-- BUTTONS -->
         <div class="form-group row mt-5">
-            <label class="col-sm-2"></label>
-            <div class="col-sm-10">
-                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
-                    <legend class="fw-bold">Attachments:</legend>
-                    <label for="eventdetaildescription" class="col-sm-2 col-form-label fw-bold"></label>
-                    <!-- NEW EVENTS -->
-                    <div class="form-check">
-                        <label class="form-check-label" for="eventdetailattachment">Fun with Coworkers</label>
-                        <input class="form-check-input" type="checkbox" value="" id="eventdetailattachment">
-                    </div>
-                    <!-- OPTIONAL EVENTS -->
-                    <div class="form-check">
-                        <label class="form-check-label" for="eventdetailattachment">Rewatch the event</label>
-                        <input class="form-check-input" type="checkbox" value="" id="eventdetailattachment">
-                    </div>
-
-                    <!-- BUTTONS -->
-                    <div class="form-group row mt-5">
-                        <div class="col-sm-2"></div>
-                        <div class="col-sm-7">
-                            <div class="btn-group-lg">
-                                <!-- SAVE -->
-                                <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
-                                <!-- Remove -->
-                                <a class="btn rsi-btn-white shadow-sm" type="button" >Remove</a>
-                                <!-- CANCEL -->
-                                <a class="btn rsi-btn-white shadow-sm" type="button" >Cancel</a>
-                            </div>
-                        </div>
-                    </div>
-                </fieldset>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">
+                    <!-- SAVE -->
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
+                    <!-- CANCEL -->
+                    <a class="btn rsi-btn-white shadow-sm"
+                       asp-area=""
+                       asp-controller="Event"
+                       asp-action="Details"
+                       asp-route-id="@Model.EventID">Cancel</a>
+                </div>
             </div>
         </div>
-
 
 
     </form>

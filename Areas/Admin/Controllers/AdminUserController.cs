@@ -35,10 +35,10 @@ namespace RSI_Calendar.Areas.Admin.Controllers
             {
                 var user = new RSI_Calendar.Models.User
                 {
-                    UserName = model.email,
-                    FirstName = model.fName,
-                    LastName = model.lName,
-                    Email = model.email
+                    UserName = model.Email,
+                    FirstName = model.FName,
+                    LastName = model.LName,
+                    Email = model.Email
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
@@ -47,21 +47,21 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                 {
                     var employee = new RSI_Calendar.Models.Employee
                     {
-                        FName = model.fName,
-                        LName = model.lName,
-                        Location = model.location,
-                        Role = model.role,
-                        Email = model.email
+                        FName = model.FName,
+                        LName = model.LName,
+                        Branch = model.Branch,
+                        Role = model.Role,
+                        Email = model.Email
                     };
 
-                    if(model.Role == "Admin")
+                    if(model.Role == "admin")
                     {
-                        IdentityRole adminRole = await roleManager.FindByNameAsync("Admin");
+                        IdentityRole adminRole = await roleManager.FindByNameAsync("admin");
                         await userManager.AddToRoleAsync(user, adminRole.Name);
                     }
-                    else if(model.Role == "CulAm")
+                    else if(model.Role == "culam")
                     {
-                        IdentityRole culAmRole = await roleManager.FindByNameAsync("CulAm");
+                        IdentityRole culAmRole = await roleManager.FindByNameAsync("culam");
                         await userManager.AddToRoleAsync(user, culAmRole.Name);
                     }
 
