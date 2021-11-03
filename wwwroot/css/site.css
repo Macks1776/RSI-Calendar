@@ -131,6 +131,28 @@ html {
 
 
 /* 
+**************************************************** NAV BAR
+*/
+.navbar-light {
+    background-color: var(--rsi-blue);
+}
+.nav-link {
+    color: white;
+}
+.nav-link:focus, .nav-link:hover {
+    color: #FF9292;
+}
+.nav-link.active {
+    color: var(--rsi-red);
+}
+/* RSI LOGO IN NAV BAR */
+#rsi-logo {
+    max-width: 100px;
+}
+
+
+
+/* 
 **************************************************** FORMS
 */
 .rsi-form {
@@ -222,9 +244,7 @@ html {
 /* 
 **************************************************** TODO: this currently sets the navbar to blue; that needs to happen using the bg-rsi-blue
 */
-.navbar-light {
-    background-color: var(--rsi-blue);
-}
+
 
 /* Day View CSS*/
 .day-selector {
@@ -332,7 +352,5 @@ html {
     margin: 0;
 }
 
-/* RSI LOGO IN NAV BAR */
-#rsi-logo {
-    max-width: 100px;
-}
+
+
