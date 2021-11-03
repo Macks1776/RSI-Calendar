@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Event>
+﻿@model EventSearchViewModel
 @{
     ViewData["Title"] = "Event Search";
 }
@@ -9,12 +9,12 @@
 
 <!--Search Parameters-->
 <div class="container rsi-form">
-    <form asp-action="getEvents" method="post">
+    <form asp-action="Search" method="post">
         <!--Event Name-->
         <div class="row mb-3">
             <label class="col-form-label col-sm-1 fw-bold" for="eventSearchName">Name:</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" id="eventSearchName" />
+                <input class="form-control" type="text" id="eventSearchName" asp-for="Name" />
             </div>
             <div class="col-sm-auto align-self-center">
                 <input class="form-check-input" type="checkbox" id="nameCheckbox" />
@@ -22,15 +22,15 @@
         </div>
         <!--Event Date-->
         <div class="row mb-3">
-            <label class="col-form-label col-sm-1 fw-bold" for="eventSearchDate">Date:</label>
+            <label class="col-form-label col-sm-1 fw-bold" for="eventSearchStartDate">Date:</label>
             <div class="col-sm-2">
-                <input class="form-control" type="date" id="eventSearchStartDate" />
+                <input class="form-control" type="date" id="eventSearchStartDate" asp-for="StartDate" />
             </div>
             <div class="col-sm-1 text-center align-self-center">
                 through
             </div>
             <div class="col-sm-2">
-                <input class="form-control" type="date" id="eventSearchEndDate" />
+                <input class="form-control" type="date" id="eventSearchEndDate" asp-for="EndDate" />
             </div>
             <div class="col-sm-auto align-self-center">
                 <input class="form-check-input" type="checkbox" id="dateCheckbox" />
@@ -40,16 +40,16 @@
         <div class="row mb-3">
             <label class="col-form-label col-sm-1 fw-bold" for="eventSearchBranch">Branch:</label>
             <div class="col-sm-5">
-                <select class="form-select" id="eventSearchBranch">
-                    <option value="any" selected>Any</option>
-                    <option value="augusta">Augusta, GA</option>
-                    <option value="albuquerque">Albuquerque, NM</option>
-                    <option value="fort-wayne">Fort Wayne, IN</option>
-                    <option value="jonesboro">Jonesboro, AR</option>
-                    <option value="madison">Madison, WI</option>
-                    <option value="milwaukee">Milwaukee, WI</option>
-                    <option value="mobile">Mobile, AL</option>
-                    <option value="oklahoma-city">Oklahoma, OK</option>
+                <select class="form-select" id="eventSearchBranch" asp-for="Branch">
+                    <option value="Any" selected>Any</option>
+                    <option value="Augusta, GA">Augusta, GA</option>
+                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+                    <option value="Fort Wayne, IN">Fort Wayne, IN</option>
+                    <option value="Jonesboro, AR">Jonesboro, AR</option>
+                    <option value="Madison, WI">Madison, WI</option>
+                    <option value="Milwaukee, WI">Milwaukee, WI</option>
+                    <option value="Mobile, AL">Mobile, AL</option>
+                    <option value="Oklahoma City, OK">Oklahoma City, OK</option>
                 </select>
             </div>
         </div>
@@ -57,18 +57,19 @@
         <div class="row mb-3">
             <label class="col-form-label col-sm-1 fw-bold" for="eventSearchType">Type:</label>
             <div class="col-sm-5">
-                <select class="form-select" id="eventSearchType">
-                    <option value="any" selected>Any</option>
-                    <option value="mandatory">Mandatory</option>
-                    <option value="fun">Fun</option>
-                    <option value="family">Family</option>
+                <select class="form-select" id="eventSearchType" asp-for="Type">
+                    <option value="Any" selected>Any</option>
+                    <option value="Req">Required</option>
+                    <option value="Edu">Education</option>
+                    <option value="Fun">Fun</option>
+                    <option value="Fam">Family</option>
                 </select>
             </div>
         </div>
         <!--Buttons-->
         <button type="submit" class="btn rsi-btn-blue shadow-sm">Search</button>
         <button type="reset" class="btn rsi-btn-red shadow-sm">Reset</button>
-        <button type="button" class="btn rsi-btn-white shadow-sm">Cancel</button>
+        <a type="button" class="btn rsi-btn-white shadow-sm" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
     </form>
 </div>
 
@@ -83,13 +84,13 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (Event e in Model)
+        @foreach(Event e in Model.Results)
         {
         <tr>
-            <td>@e.Name</td>
-            <td>@e.StartDate</td>
-            <td>@e.Location</td>
-            <td>@e.Type</td>
+            <td>@Html.DisplayFor(item => e.Name)</td>
+            <td>@Html.DisplayFor(item => e.StartDate)</td>
+            <td>@Html.DisplayFor(item => e.Branch)</td>
+            <td>@Html.DisplayFor(item => e.Type)</td>
         </tr>
         }
     </tbody>
