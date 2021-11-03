@@ -112,6 +112,12 @@ body {
     border-top-left-radius: 5px;
     margin: 0px 0px 0px 0px;
 }
+
+
+
+
+
+
 /* 
 ***************************************************************
 **************************************************************** RURAL SOURCING INC
@@ -241,10 +247,6 @@ html {
     background: var(--rsi-blue);
     border-color: var(--rsi-red);
 }
-/* 
-**************************************************** TODO: this currently sets the navbar to blue; that needs to happen using the bg-rsi-blue
-*/
-
 
 /* Day View CSS*/
 .day-selector {
@@ -354,3 +356,20 @@ html {
 
 
 
+
+/* 
+**************************************************** SPECIFIC: EVENT/DELETE
+*/
+#event-delete-jumbotron {
+    border: 2px solid var(--rsi-red);
+    box-shadow: var(--rsi-red) 0px 0px 10px 3px;
+}
+
+#event-delete-form {
+    background-color: var(--rsi-gray);
+    border: 2px solid var(--rsi-blue);
+    border-radius: 10px;
+    box-shadow: var(--rsi-red) 0px 0px 10px 3px;
+    margin: 50px auto;
+    padding: 20px;
+}
