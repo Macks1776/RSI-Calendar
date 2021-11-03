@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fullcalendar/main.min.css" /> <!--Default calendar styles-->
     <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- TODO: put this script into its own .js file and reference it from this file (or just reference it from Views/Calendar/Calendar) -->
+    <!-- This script handles everything in the Calendar view -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var calendarEl = document.getElementById('calendar');
@@ -38,7 +41,6 @@
                         color: 'yellow',
                         textColor: 'black'
                     }
-                    
                 ],
                 initalView: 'dayGridMonth',
                 navLinks: true,
@@ -60,6 +62,7 @@
             calendar.render();
         });
     </script>
+
 </head>
 <body>
     <header>
@@ -73,8 +76,6 @@
                 @inject SignInManager<User> signInManager
                 @if (!signInManager.IsSignedIn(User))
                 {
-
-
                     <div class="navbar d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="" stye="text-decoration: none">
@@ -83,7 +84,6 @@
                             </li>
                         </ul>
                     </div>
-
                 }
                 else
                 {
