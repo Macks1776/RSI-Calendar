@@ -1,163 +1,126 @@
 ﻿@model Event
+@{ 
+    string titleString;
+    string[] titles;
+    string linkString;
+    string[] links;
 
-<h1>CulAm/Event/Delete</h1>
+    if (TempData["titles"] == null)
+    {
+        titleString = "NO ATTACHMENT";
+        titles = titleString.Split(',');
+        linkString = "NO ATTACHMENT";
+        links = linkString.Split(',');
+    }
+    else
+    {
+        titleString = TempData["titles"].ToString();
+        titles = titleString.Split(',');
+        linkString = TempData["links"].ToString();
+        links = linkString.Split(',');
+    }
+}
 
-<h4>Confirm Delete of Employee</h4>
-
-<div class="container rsi-form">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <form method="post" asp-action="Register">
-        <!-- Event NAME -->
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
-            <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" asp-for="Name" disabled readonly />
-            </div>
-        </div>
-
-        <!-- Event LOCATION -->
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">Location:</label>
-            <input type="text" class="form-control shadow-sm" asp-for="Location" disabled readonly />
-        </div>
-
-        <!-- Type -->
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">Role:</label>
-            <input type="text" class="form-control shadow-sm" asp-for="Type" disabled readonly />
-        </div>
-
-        <div class="form-group row mt-5">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-7">
-                <div class="btn-group-lg">
-                    <!-- Delete -->
-                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
-                    <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
-                </div>
-            </div>
-        </div>
-
-    </form>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{ }
-<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+<!-- EVENT TITLE -->
+<div id="event-delete-jumbotron" class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
     <div class="container">
-        <h1 class="display-6 text-center text-white">Delete Event</h1>
+        <h1 class="display-6 text-center  text-rsi-red">Are you sure you want to delete this event?</h1>
     </div>
 </div>
 
-<div class="container mt-5 mb-5 p-5 rsi-form">
-    <form>
 
-        <!-- Title -->
-        <div class="form-group row">
-            <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Title:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value=" Greenjackets Baseball Game">
+<div id="event-delete-form" class="container mt-5 mb-5 p-5 rsi-form">
+    <form asp-controller="CulAmEvent" asp-action="Delete" method="post">
+        <!-- EVENT NAME -->
+        <div class="row">
+            <label for="eventDeleteName" class="col-sm-3 col-lg-2 col-form-label fw-bold">Name:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDeleteName" value="@Model.Name">
             </div>
         </div>
 
-
-        <!-- DATE -->
-        <div class="form-group row">
-            <label for="eventeditdate" class="col-sm-2 col-form-label fw-bold">Date:</label>
-            <label for="eventeditdate" class="col-sm-10 col-form-label fw-bold">9/18/2021</label>
-        </div>
-
-
-
-        <!-- Time -->
-        <div class="form-group row">
-            <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Time:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value=" 7:00 PM">
+        <!-- START -->
+        <div class="row">
+            <label for="eventDeleteStart" class="col-sm-3 col-lg-2 col-form-label fw-bold">Start:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDeleteStart" value="@Model.StartDate">
             </div>
         </div>
 
-        <!-- Description -->
-        <div class="form-group row">
-            <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value=" A bunch of employees are meeting at the front gate of the greenjacketsgame. Hope you can join us!">
+        <!-- END -->
+        <div class="row">
+            <label for="eventDeleteEnd" class="col-sm-3 col-lg-2 col-form-label fw-bold">End:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDeleteEnd" value="@Model.EndDate">
             </div>
         </div>
 
-
-        <!-- Location -->
-        <div class="form-group row">
-            <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Location:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value="Augusta, GA">
+        <!-- DESCRIPTION -->
+        <div class="row">
+            <label for="eventDeleteDescription" class="col-sm-3 col-lg-2 col-form-label fw-bold">Description:</label>
+            <div class="col-sm-7">
+                <textarea class="form-control-plaintext" id="eventDeleteDescription"
+                          readonly>@Model.Description</textarea>
             </div>
         </div>
 
+        <!-- LOCATION -->
+        <div class="row">
+            <label for="eventDeleteLocation" class="col-sm-3 col-lg-2 col-form-label fw-bold">Location:</label>
+            <div class="col-sm-7">
+                <input type="text" class="form-control-plaintext" id="eventDeleteLocation" value="@Model.Location" readonly>
+            </div>
+        </div>
 
+        <!-- BRANCH -->
+        <div class="row">
+            <label for="eventDeleteBranch" class="col-sm-3 col-lg-2 col-form-label fw-bold">Branch:</label>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="eventDeleteBranch" value="@Model.Branch">
+            </div>
+        </div>
 
-        <!-- Type -->
-        <div class="form-group row">
-            <label for="eventeditdescription" class="col-sm-2 col-form-label fw-bold">Type:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value="Fun with Coworkers">
+        <!-- TYPE -->
+        <div class="row">
+            <label for="eventDeleteType" class="col-sm-3 col-lg-2 col-form-label fw-bold">Event Type:</label>
+            <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="eventDeleteType" value="@Model.Type">
             </div>
         </div>
 
         <!-- ATTACHMENTS -->
-        <div class="form-group row mt-5">
-            <label class="col-sm-2"></label>
-            <div class="col-sm-10">
-                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
-                    <legend class="fw-bold">Attachments:</legend>
-                    <label for="eventdetaildescription" class="col-sm-2 col-form-label fw-bold"></label>
-                    <!-- NEW EVENTS -->
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value="Fun with Coworkers">
-                    </div>
-                    <!-- OPTIONAL EVENTS -->
-                    <div class="col-sm-10">
-                        <input type="text" readonly class="form-control-plaintext" id="eventeditdescription" value="Rewatch the Event">
-                    </div>
-
-                </fieldset>
+        <div class="row top-50">
+            <label for="eventDeleteAttachments" class="col-sm-3 col-lg-2 col-form-label fw-bold">Attachments:</label>
+            <div class="col-sm-7">
+                <ul class="list-group" id="eventDeleteAttachments">
+                    @if (titleString != "NO ATTACHMENT")
+                    {
+                        for (int i = 0; i < titles.Length; i++)
+                        {
+                            <li class="list-group-item">
+                                <a href="@links[i]" class="link-primary">@titles[i]</a>
+                            </li>
+                        }
+                    }
+                </ul>
             </div>
-
         </div>
-
 
         <!-- BUTTONS -->
         <div class="form-group row mt-5">
-            <div class="col-sm-2"></div>
+            <div class="col-sm-3 col-lg-2"></div>
             <div class="col-sm-7">
                 <div class="btn-group-lg">
-                    <!-- Delete -->
-                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Delete">
-                    <!-- Cancel -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                    <!-- DELETE -->
+                    <input class="btn rsi-btn-red shadow-sm" type="submit" value="Delete" />
+                    <!-- CANCEL -->
+                    <a class="btn rsi-btn-white shadow-sm"
+                       asp-area=""
+                       asp-controller="Event"
+                       asp-action="Details"
+                       asp-route-id="@Model.EventID">Cancel</a>
                 </div>
             </div>
         </div>
-
     </form>
 </div>
-
-

@@ -15,7 +15,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" asp-for="@Model.fName" />
+                <input type="text" class="form-control shadow-sm" asp-for="@Model.FName" />
             </div>
         </div>
 
@@ -23,7 +23,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Last Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" asp-for="@Model.lName" />
+                <input type="text" class="form-control shadow-sm" asp-for="@Model.LName" />
             </div>
         </div>
 
@@ -31,15 +31,15 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Email:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control shadow-sm" asp-for="@Model.email" />
+                <input type="text" class="form-control shadow-sm" asp-for="@Model.Email" />
             </div>
         </div>
 
-        <!-- LOCATION -->
+        <!-- BRANCH -->
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <label class="col-sm-2 col-form-label fw-bold">Branch:</label>
             <div class="col-sm-7">
-                <select asp-for="@Model.location" class="form-select shadow-sm" aria-label="Location Selection">
+                <select asp-for="@Model.Branch" class="form-select shadow-sm" aria-label="Branch Selection">
                     <option selected value="Augusta, GA">Augusta, GA</option>
                     <option value="Albuquerque, NM">Albuquerque, NM</option>
                     <option value="FortWayne, IN">FortWayne, IN</option>
@@ -56,7 +56,7 @@
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Role:</label>
             <div class="col-sm-7">
-                <select asp-for="@Model.role" class="form-select shadow-sm" aria-label="Role Selection">
+                <select asp-for="@Model.Role" class="form-select shadow-sm" aria-label="Role Selection">
                     <option selected value="user">User</option>
                     <option value="admin">Admin</option>
                     <option value="culam">Cultural Ambassador</option>
@@ -101,7 +101,7 @@
                     <!-- Register -->
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Register">
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Month">Cancel</a>
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">Cancel</a>
                 </div>
             </div>
         </div>

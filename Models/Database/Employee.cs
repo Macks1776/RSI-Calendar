@@ -11,7 +11,7 @@ namespace RSI_Calendar.Models
 
         public string FName { get; set; }
         public string LName { get; set; }
-        public string Location { get; set; }
+        public string Branch { get; set; }
         public string Role { get; set; }
 
         public string Email { get; set; }

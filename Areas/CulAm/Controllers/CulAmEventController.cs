@@ -42,7 +42,6 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                     context.Events.Update(thisEvent);
 
                 context.SaveChanges();
-                TempData["message"] = "Event: " + thisEvent.Name + " " + ViewBag.Action + "ed";
                 return RedirectToAction("Add");
             }
             else
@@ -52,9 +51,29 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var thisEvent = context.Events.Find(id);
+            var attachments = context.Attachments.Where(a => a.EventID == id).ToList();
+            
+            foreach(var attachment in attachments)
+            {
+                TempData["titles"] += attachment.Title + ",";
+                TempData["links"] += attachment.Link + ",";
+            }
+
+            TempData["id"] = id;
+            return View(thisEvent);
+        }
+
+        [HttpPost]
         public IActionResult Delete()
         {
-            return View("Delete");
+            var thisEvent = context.Events.Find(TempData["id"]);
+            context.Events.Remove(thisEvent);
+            context.SaveChanges();
+            return View("Search", "Event");
         }
     }
 }
