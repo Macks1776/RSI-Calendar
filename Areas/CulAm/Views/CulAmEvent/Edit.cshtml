@@ -33,7 +33,7 @@
         <div class="row">
             <label for="eventEditStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
             <div class="col-sm-7">
-                <input asp-for="StartDate" type="text" class="form-control shadow-sm" id="eventEditStart">
+                <input asp-for="StartDate" type="datetime-local" class="form-control shadow-sm" id="eventEditStart">
             </div>
         </div>
 
@@ -41,7 +41,7 @@
         <div class="row top-50">
             <label for="eventEditEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
             <div class="col-sm-7">
-                <input asp-for="EndDate" type="text" class="form-control shadow-sm" id="eventEditEnd">
+                <input asp-for="EndDate" type="datetime-local" class="form-control shadow-sm" id="eventEditEnd">
             </div>
         </div>
 
@@ -92,7 +92,6 @@
         </div>
 
         <!-- ATTACHMENTS TABLE -->
-
         <!-- BUTTONS -->
         <div class="form-group row mt-5">
             <div class="col-sm-2"></div>
