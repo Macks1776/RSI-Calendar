@@ -17,13 +17,16 @@ namespace RSI_Calendar.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            EventDetailsViewModel vm = new EventDetailsViewModel()
-            {
-                Event = context.Events.Find(id),
-                Attachments = (List<Attachment>)context.Attachments.Where(a => a.EventID == id).ToList()
-            };
+            var thisEvent = context.Events.Find(id);
+            var attachments = context.Attachments.Where(a => a.EventID == id);
 
-            return View(vm);
+            foreach (var attachment in attachments)
+            {
+                TempData["titles"] += attachment.Title + ",";
+                TempData["links"] += attachment.Link + ",";
+            }
+
+            return View(thisEvent);
         }
 
         [HttpGet]

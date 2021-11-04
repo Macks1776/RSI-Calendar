@@ -1,5 +1,25 @@
-﻿@model EventDetailsViewModel
-@{ }
+﻿@model Event
+@{ 
+    string titleString;
+    string[] titles;
+    string linkString;
+    string[] links;
+
+    if (TempData["titles"] == null)
+    {
+        titleString = "NO ATTACHMENT";
+        titles = titleString.Split(',');
+        linkString = "NO ATTACHMENT";
+        links = linkString.Split(',');
+    }
+    else
+    {
+        titleString = TempData["titles"].ToString();
+        titles = titleString.Split(',');
+        linkString = TempData["links"].ToString();
+        links = linkString.Split(',');
+    }
+}
 
 <!-- EVENT TITLE -->
 <div id="event-delete-jumbotron" class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
@@ -10,125 +30,97 @@
 
 
 <div id="event-delete-form" class="container mt-5 mb-5 p-5 rsi-form">
-    <form asp-action="Settings" method="post">
+    <form asp-controller="CulAmEvent" asp-action="Delete" method="post">
         <!-- EVENT NAME -->
         <div class="row">
-            <label for="eventDeleteName" class="col-sm-2 col-form-label fw-bold">Name:</label>
+            <label for="eventDeleteName" class="col-sm-3 col-lg-2 col-form-label fw-bold">Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDeleteName" value="@Model.Event.Name">
+                <input type="text" class="form-control-plaintext" id="eventDeleteName" value="@Model.Name">
             </div>
         </div>
 
         <!-- START -->
         <div class="row">
-            <label for="eventDeleteStart" class="col-sm-2 col-form-label fw-bold">Start:</label>
+            <label for="eventDeleteStart" class="col-sm-3 col-lg-2 col-form-label fw-bold">Start:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDeleteStart" value="@Model.Event.StartDate">
+                <input type="text" class="form-control-plaintext" id="eventDeleteStart" value="@Model.StartDate">
             </div>
         </div>
 
         <!-- END -->
         <div class="row">
-            <label for="eventDeleteEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
+            <label for="eventDeleteEnd" class="col-sm-3 col-lg-2 col-form-label fw-bold">End:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDeleteEnd" value="@Model.Event.EndDate">
+                <input type="text" class="form-control-plaintext" id="eventDeleteEnd" value="@Model.EndDate">
             </div>
         </div>
 
         <!-- DESCRIPTION -->
         <div class="row">
-            <label for="eventDeleteDescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
+            <label for="eventDeleteDescription" class="col-sm-3 col-lg-2 col-form-label fw-bold">Description:</label>
             <div class="col-sm-7">
                 <textarea class="form-control-plaintext" id="eventDeleteDescription"
-                          readonly>@Model.Event.Description</textarea>
+                          readonly>@Model.Description</textarea>
             </div>
         </div>
 
         <!-- LOCATION -->
         <div class="row">
-            <label for="eventDeleteLocation" class="col-sm-2 col-form-label fw-bold">Location:</label>
+            <label for="eventDeleteLocation" class="col-sm-3 col-lg-2 col-form-label fw-bold">Location:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="eventDeleteLocation" value="@Model.Event.Location" readonly>
+                <input type="text" class="form-control-plaintext" id="eventDeleteLocation" value="@Model.Location" readonly>
             </div>
         </div>
 
         <!-- BRANCH -->
         <div class="row">
-            <label for="eventDeleteBranch" class="col-sm-2 col-form-label fw-bold">Branch:</label>
+            <label for="eventDeleteBranch" class="col-sm-3 col-lg-2 col-form-label fw-bold">Branch:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDeleteBranch" value="@Model.Event.Branch">
+                <input type="text" readonly class="form-control-plaintext" id="eventDeleteBranch" value="@Model.Branch">
             </div>
         </div>
 
         <!-- TYPE -->
         <div class="row">
-            <label for="eventDeleteType" class="col-sm-2 col-form-label fw-bold">Event Type:</label>
+            <label for="eventDeleteType" class="col-sm-3 col-lg-2 col-form-label fw-bold">Event Type:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="eventDeleteType" value="@Model.Event.Type">
+                <input type="text" readonly class="form-control-plaintext" id="eventDeleteType" value="@Model.Type">
             </div>
         </div>
 
         <!-- ATTACHMENTS -->
         <div class="row top-50">
-            <label for="eventDeleteAttachments" class="col-sm-2 col-form-label fw-bold">Attachments:</label>
+            <label for="eventDeleteAttachments" class="col-sm-3 col-lg-2 col-form-label fw-bold">Attachments:</label>
             <div class="col-sm-7">
                 <ul class="list-group" id="eventDeleteAttachments">
-                    @foreach (var attachment in Model.Attachments)
+                    @if (titleString != "NO ATTACHMENT")
                     {
-        <li class="list-group-item">
-            <a href="@attachment.Link"
-               class="link-primary">
-                @attachment.Title
-            </a>
-        </li>
-}
+                        for (int i = 0; i < titles.Length; i++)
+                        {
+                            <li class="list-group-item">
+                                <a href="@links[i]" class="link-primary">@titles[i]</a>
+                            </li>
+                        }
+                    }
                 </ul>
             </div>
         </div>
 
         <!-- BUTTONS -->
-
-    <div class="form-group row mt-5">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-7">
-            <div class="btn-group-lg">
-                <!-- DELETE -->
-                <a class="btn rsi-btn-red shadow-sm"
-                   asp-area="CulAm"
-                   asp-controller="CulAmEvent"
-                   asp-action="Delete"
-                   asp-route-id="@Model.Event.EventID">Delete</a>
-                <!-- CANCEL -->
-                <a class="btn rsi-btn-white shadow-sm"
-                   asp-area=""
-                   asp-controller="Event"
-                   asp-action="Details"
-                   asp-route-id="@Model.Event.EventID">Cancel</a>
+        <div class="form-group row mt-5">
+            <div class="col-sm-3 col-lg-2"></div>
+            <div class="col-sm-7">
+                <div class="btn-group-lg">
+                    <!-- DELETE -->
+                    <input class="btn rsi-btn-red shadow-sm" type="submit" value="Delete" />
+                    <!-- CANCEL -->
+                    <a class="btn rsi-btn-white shadow-sm"
+                       asp-area=""
+                       asp-controller="Event"
+                       asp-action="Details"
+                       asp-route-id="@Model.EventID">Cancel</a>
+                </div>
             </div>
         </div>
-    </div>
-
-        <!-- TODO: This should be radio buttons because a user shouldnt be able to check yes AND no.-->
-        <!-- CALL TO ACTION -->
-        <!--<div class="row mt-5">
-    <label class="col-sm-2"></label>
-    <div class="col-sm-7">
-        <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
-            <legend class="fw-bold">Are you coming?</legend>-->
-        <!-- YES -->
-        <!--<div class="form-check">
-    <label class="form-check-label" for="eventDetailsComingYes">Yes</label>
-    <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingYes">-->
-        <!-- TODO: this should be checked or unchecked dynamically -->
-        <!--</div>-->
-        <!-- NO -->
-        <!--<div class="form-check">
-    <label class="form-check-label" for="eventDetailsComingNo">No</label>
-    <input class="form-check-input" type="checkbox" value="" id="eventDetailsComingNo">-->
-        <!-- TODO: this should be checked or unchecked dynamically -->
-        <!--</div>
-            </fieldset>
-        </div>
-    </div>-->
     </form>
 </div>
