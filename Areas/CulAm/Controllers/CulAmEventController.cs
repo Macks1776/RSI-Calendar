@@ -68,12 +68,12 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete()
+        public LocalRedirectResult Delete()
         {
             var thisEvent = context.Events.Find(TempData["id"]);
             context.Events.Remove(thisEvent);
             context.SaveChanges();
-            return View("Search", "Event");
+            return LocalRedirect("/calendar/calendar");
         }
     }
 }
