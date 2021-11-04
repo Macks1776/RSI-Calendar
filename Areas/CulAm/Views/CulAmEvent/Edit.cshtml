@@ -21,6 +21,7 @@
 
 <div class="container mt-5 mb-5 p-5 rsi-form">
     <form asp-action="Edit" method="post">
+
         <!-- TITLE -->
         <div class="row">
             <label for="eventEditTitle" class="col-md-2 col-form-label fw-bold">Title:</label>
@@ -90,6 +91,8 @@
                 </select>
             </div>
         </div>
+
+        <input type="hidden" asp-for="EventID" /> <!-- Hidden input for the event ID so its actively in the model-->
 
         <!-- ATTACHMENTS TABLE -->
         <!-- BUTTONS -->
