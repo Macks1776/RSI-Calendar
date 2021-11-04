@@ -1,65 +1,18 @@
 ﻿@model Event
 @{ 
-    string title = ViewBag.Action + " Event";
-    ViewData["Title"] = title;
+    ViewData["Title"] = ViewBag.Action + " Event";
+
+    string buttonText;
+    if (ViewBag.Action == "Add")
+    {
+        buttonText = "Add";
+    } else
+    {
+        buttonText = "Save";
+    }
 }
 
-@*<form asp-action="Edit" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-group">
-        <label asp-for="Name">Event Name</label>
-        <input asp-for="Name" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label asp-for="Type">Event Type</label>
-        <select asp-for="Type" class="form-select shadow-sm">
-            <option selected value="Req">Required</option>
-            <option value="Fun">Fun with Coworkers</option>
-            <option value="Fam">Fun with Family</option>
-            <option value="Edu">Education</option>
-        </select>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="Description">Description</label>
-        <textarea asp-for="Description" type="text"></textarea>
-    </div>
-    <div class="form-group">
-        <label asp-for="StartDate">Start</label>
-        <input asp-for="StartDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
-        <label asp-for="EndDate">End</label>
-        <input asp-for="EndDate" class="form-control" placeholder="mm/dd/yyyy hh:mm:ss am/pm" />
-    </div>
-
-    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
-    <a asp-controller="Calendar" asp-action="Calendar" asp-area="">Cancel</a>
-</form>*@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 <div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
     <div class="container">
         <h1 class="display-6 text-center text-white">@ViewBag.Action Event</h1>
@@ -85,7 +38,7 @@
         </div>
 
         <!-- END -->
-        <div class="row">
+        <div class="row top-50">
             <label for="eventEditEnd" class="col-sm-2 col-form-label fw-bold">End:</label>
             <div class="col-sm-7">
                 <input asp-for="EndDate" type="text" class="form-control shadow-sm" id="eventEditEnd">
@@ -93,7 +46,7 @@
         </div>
 
         <!-- DESCRIPTION -->
-        <div class="row">
+        <div class="row top-50">
             <label for="eventEditDescription" class="col-sm-2 col-form-label fw-bold">Description:</label>
             <div class="col-sm-7">
                 <textarea asp-for="Description" class="form-control shadow-sm" id="eventEditDescription"></textarea>
@@ -109,7 +62,7 @@
         </div>
 
         <!-- BRANCH -->
-        <div class="form-group row">
+        <div class="row">
             <label for="eventEditBranch" class="col-sm-2 col-form-label fw-bold">Branch:</label>
             <div class="col-sm-7">
                 <select asp-for="@Model.Branch" class="form-select shadow-sm" aria-label="Branch Selection" id="eventEditBranch">
@@ -126,7 +79,7 @@
         </div>
 
         <!-- TYPE -->
-        <div class="form-group row">
+        <div class="row">
             <label for="eventEditType" class="col-sm-2 col-form-label fw-bold">Type:</label>
             <div class="col-sm-7">
                 <select asp-for="Type" class="form-select shadow-sm" aria-label="Event Type Selection" id="eventEditType">
@@ -138,13 +91,15 @@
             </div>
         </div>
 
+        <!-- ATTACHMENTS TABLE -->
+
         <!-- BUTTONS -->
         <div class="form-group row mt-5">
             <div class="col-sm-2"></div>
             <div class="col-sm-7">
                 <div class="btn-group-lg">
                     <!-- SAVE -->
-                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="@buttonText">
                     <!-- CANCEL -->
                     <a class="btn rsi-btn-white shadow-sm"
                        asp-area=""
@@ -154,8 +109,6 @@
                 </div>
             </div>
         </div>
-
-
     </form>
 </div>
 

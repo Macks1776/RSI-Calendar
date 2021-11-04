@@ -358,14 +358,14 @@ html {
 
 
 /* 
-**************************************************** SPECIFIC: EVENT/DELETE
+**************************************************** DELETE Views
 */
-#event-delete-jumbotron {
+#delete-jumbotron {
     border: 2px solid var(--rsi-red);
     box-shadow: var(--rsi-red) 0px 0px 10px 3px;
 }
 
-#event-delete-form {
+#delete-form {
     background-color: var(--rsi-gray);
     border: 2px solid var(--rsi-blue);
     border-radius: 10px;
