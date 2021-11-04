@@ -42,7 +42,7 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                     context.Events.Update(thisEvent);
 
                 context.SaveChanges();
-                return RedirectToAction("Add");
+                return LocalRedirect("/calendar/calendar");
             }
             else
             {
