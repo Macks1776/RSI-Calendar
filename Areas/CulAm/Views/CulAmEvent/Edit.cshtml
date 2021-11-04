@@ -100,11 +100,22 @@
                     <!-- SAVE -->
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="@buttonText">
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm"
-                       asp-area=""
-                       asp-controller="Event"
-                       asp-action="Details"
-                       asp-route-id="@Model.EventID">Cancel</a>
+                    @if(Model.Name == null)
+                    {
+                        <a class="btn rsi-btn-white shadow-sm"
+                           asp-area=""
+                           asp-controller="Calendar"
+                           asp-action="Calendar">Cancel</a>
+                    }
+                    else
+                    {
+                        <a class="btn rsi-btn-white shadow-sm"
+                           asp-area=""
+                           asp-controller="Event"
+                           asp-action="Details"
+                           asp-route-id="@Model.EventID">Cancel</a>
+                    }
+                    
                 </div>
             </div>
         </div>
