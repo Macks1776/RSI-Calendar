@@ -32,43 +32,48 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Event thisEvent)
+        public IActionResult Edit(Event tableEvent)
         {
             if (ModelState.IsValid)
             {
-                if (thisEvent.EventID == 0)
-                    context.Events.Add(thisEvent);
+                if (tableEvent.EventID == 0)
+                    context.Events.Add(tableEvent);
                 else
-                    context.Events.Update(thisEvent);
+                    context.Events.Update(tableEvent);
 
                 context.SaveChanges();
-                return RedirectToAction("Add");
+                return LocalRedirect("/calendar/calendar");
             }
             else
             {
-                ViewBag.Action = (thisEvent.EventID == 0) ? "Add" : "Edit"; // Tertiary statement => "if event id==0 then ViewBag.Action = "Add" else ViewBag.Action = "Edit"
-                return View(thisEvent);
+                ViewBag.Action = (tableEvent.EventID == 0) ? "Add" : "Edit"; // Tertiary statement => "if event id==0 then ViewBag.Action = "Add" else ViewBag.Action = "Edit"
+                return View(tableEvent);
             }
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            EventDetailsViewModel vm = new EventDetailsViewModel()
+            var thisEvent = context.Events.Find(id);
+            var attachments = context.Attachments.Where(a => a.EventID == id).ToList();
+            
+            foreach(var attachment in attachments)
             {
-                Event = context.Events.Find(id),
-                Attachments = (List<Attachment>)context.Attachments.Where(a => a.EventID == id).ToList()
-            };
+                TempData["titles"] += attachment.Title + ",";
+                TempData["links"] += attachment.Link + ",";
+            }
 
-            return View(vm);
+            TempData["id"] = id;
+            return View(thisEvent);
         }
 
         [HttpPost]
-        public IActionResult Delete(Event deletedEvent)
+        public LocalRedirectResult Delete()
         {
-            context.Events.Remove(deletedEvent);
+            var thisEvent = context.Events.Find(TempData["id"]);
+            context.Events.Remove(thisEvent);
             context.SaveChanges();
-            return View("Search");
+            return LocalRedirect("/calendar/calendar");
         }
     }
 }
