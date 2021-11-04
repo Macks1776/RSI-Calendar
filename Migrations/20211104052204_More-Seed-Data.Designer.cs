@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RSI_Calendar.Models;
 
 namespace RSI_Calendar.Migrations
 {
     [DbContext(typeof(CalendarContext))]
-    partial class CalendarContextModelSnapshot : ModelSnapshot
+    [Migration("20211104052204_More-Seed-Data")]
+    partial class MoreSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
