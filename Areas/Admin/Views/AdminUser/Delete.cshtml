@@ -7,52 +7,59 @@
 </div>
 
 <div id="delete-form" class="container rsi-form">
-    
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <form method="post" asp-action="Delete">
 
         <!-- FIRST NAME -->
         <div class="form-group row">
-            <label for="eventEditFName" class="col-sm-2 col-form-label fw-bold">First Name:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventEditFName" value="Keyla">
+            <label for="userDeleteFName" class="col-md-2 col-form-label fw-bold">First Name:</label>
+            <div class="col-md-10">
+                <input type="text" asp-for="FName"
+                       id="userDeleteFName" class="form-control-plaintext" readonly>
             </div>
         </div>
 
         <!-- LAST NAME -->
         <div class="form-group row">
-            <label for="eventEditLName" class="col-sm-2 col-form-label fw-bold">Last Name:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventEditLName" value="Hobbs">
+            <label for="userDeleteLName" class="col-md-2 col-form-label fw-bold">Last Name:</label>
+            <div class="col-md-10">
+                <input type="text" asp-for="LName"
+                       id="userDeleteLName" class="form-control-plaintext" readonly>
             </div>
         </div>
 
         <!-- EMAIL -->
         <div class="form-group row">
-            <label for="eventEditEmail" class="col-sm-2 col-form-label fw-bold">Email:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventEditEmail" value="Khobbs89@gmail.com">
+            <label for="userDeleteEmail" class="col-md-2 col-form-label fw-bold">Email:</label>
+            <div class="col-md-10">
+                <input type="text" asp-for="Email" 
+                       id="userDeleteEmail" class="form-control-plaintext" readonly>
             </div>
         </div>
 
 
         <!-- BRANCH -->
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label fw-bold">Branch:</label>
-            <input type="text" class="form-control shadow-sm" asp-for="Branch" />
+            <label for="userDeleteBranch" class="col-md-2 col-form-label fw-bold">Branch:</label>
+            <div class="col-md-10">
+                <input type="text" asp-for="Branch" 
+                       id="userDeleteBranch" class="form-control-plaintext" readonly/>
+            </div>
+            
         </div>
 
         <!-- Role -->
         <div class="form-group row">
-            <label for="eventEditRole" class="col-sm-2 col-form-label fw-bold">Role:</label>
-            <div class="col-sm-10">
-                <input type="text" readonly class="form-control-plaintext" id="eventEditRole" value="User">
+            <label for="userDeleteRole" class="col-md-2 col-form-label fw-bold">Role:</label>
+            <div class="col-md-10">
+                <input type="text" asp-for="Role" 
+                       id="userDeleteRole" class="form-control-plaintext" readonly>
             </div>
         </div>
 
         <div class="form-group row mt-5">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-7">
+            <div class="col-md-2"></div>
+            <div class="col-md-7">
                 <div class="btn-group-lg">
                     <!-- Delete -->
                     <input class="btn rsi-btn-red shadow-sm" type="submit" value="Delete">
@@ -61,6 +68,5 @@
                 </div>
             </div>
         </div>
-
     </form>
 </div>
