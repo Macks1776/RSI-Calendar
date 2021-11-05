@@ -8,8 +8,10 @@ namespace RSI_Calendar.Models
     public class EventSearchViewModel
     {
         public string Name { get; set; }
+        public bool IncludeName { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public bool IncludeDate { get; set; }
         public string Type { get; set; }
         public string Branch { get; set; }
         public List<Event> Results { get; set; }

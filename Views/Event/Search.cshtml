@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "Event Search";
 }
+<script src="~/js/EventSearch.js"></script>
+
 <!--Page Title-->
 <div class="container bg-rsi-blue p-3 mb-3 rounded">
     <h1 class="display-6 text-center text-white">Event Search</h1>
@@ -14,26 +16,26 @@
         <div class="row mb-3">
             <label class="col-form-label col-sm-1 fw-bold" for="eventSearchName">Name:</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" id="eventSearchName" asp-for="Name" />
+                <input class="form-control" type="text" id="eventSearchName" asp-for="Name" disabled />
             </div>
             <div class="col-sm-auto align-self-center">
-                <input class="form-check-input" type="checkbox" id="nameCheckbox" />
+                <input class="form-check-input" type="checkbox" id="nameCheckbox" asp-for="IncludeName" onclick="toggleName()" />
             </div>
         </div>
         <!--Event Date-->
         <div class="row mb-3">
             <label class="col-form-label col-sm-1 fw-bold" for="eventSearchStartDate">Date:</label>
             <div class="col-sm-2">
-                <input class="form-control" type="date" id="eventSearchStartDate" asp-for="StartDate" />
+                <input class="form-control" type="date" id="eventSearchStartDate" asp-for="StartDate" disabled />
             </div>
             <div class="col-sm-1 text-center align-self-center">
                 through
             </div>
             <div class="col-sm-2">
-                <input class="form-control" type="date" id="eventSearchEndDate" asp-for="EndDate" />
+                <input class="form-control" type="date" id="eventSearchEndDate" asp-for="EndDate" disabled />
             </div>
             <div class="col-sm-auto align-self-center">
-                <input class="form-check-input" type="checkbox" id="dateCheckbox" />
+                <input class="form-check-input" type="checkbox" id="dateCheckbox" asp-for="IncludeDate" onclick="toggleDate()" />
             </div>
         </div>
         <!--Branch that is hosting the event-->
@@ -84,7 +86,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(Event e in Model.Results)
+        @foreach (Event e in Model.Results)
         {
         <tr>
             <td>@Html.DisplayFor(item => e.Name)</td>

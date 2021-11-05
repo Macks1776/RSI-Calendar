@@ -45,22 +45,25 @@ namespace RSI_Calendar.Controllers
         {
             vm.Results = context.Events.ToList();
 
-            if (!string.IsNullOrEmpty(vm.Name))
+            if (vm.IncludeName && !string.IsNullOrEmpty(vm.Name))
             {
-                vm.Results = vm.Results.Where(item => item.Name.Contains(vm.Name)).ToList();
+                vm.Results = vm.Results.Where(item => item.Name.ToLower().Contains(vm.Name.ToLower())).ToList();
             }
 
-            if (vm.StartDate != null && vm.StartDate.ToString() != "")
+            if (vm.IncludeDate)
             {
-                vm.Results = vm.Results.Where(item => item.StartDate.Date >= vm.StartDate.Date).ToList();
+                if (vm.StartDate != null && vm.StartDate.ToString() != "")
+                {
+                    vm.Results = vm.Results.Where(item => item.StartDate.Date >= vm.StartDate.Date).ToList();
+                }
+
+                if (vm.EndDate != null && vm.EndDate.ToString() != "")
+                {
+                    vm.Results = vm.Results.Where(item => item.StartDate.Date <= vm.EndDate.Date).ToList();
+                }
             }
 
-            if (vm.EndDate != null && vm.EndDate.ToString() != "")
-            {
-                vm.Results = vm.Results.Where(item => item.StartDate.Date <= vm.EndDate.Date).ToList();
-            }
-
-            if(vm.Branch != "Any")
+            if (vm.Branch != "Any")
             {
                 vm.Results = vm.Results.Where(item => item.Branch.Contains(vm.Branch)).ToList();
             }
