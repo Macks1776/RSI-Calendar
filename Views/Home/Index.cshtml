@@ -58,23 +58,23 @@
     <h2>Cultural Ambassador</h2>
     <ul>
         <li>
-            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">CulAm/CulAmEvent/Add <em>(this uses the edit page, just need a way to create new events)</em> </a>
+            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">CulAm/CulAmEvent/Add</a>
         </li>
         <li>
-            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Edit">CulAm/CulAmEvent/Edit/id <em>(this link won't actually work because to edit an event you need to pass it an event ID)</em> </a>
+            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Edit" asp-route-id="1">CulAm/CulAmEvent/Edit/id</a>
         </li>
         <li>
-            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Delete">CulAm/Event/Delete/id <em>(this link won't actually work because to delete an event you need to pass it an event ID)</em> </a>
+            <a class="nav-link text-dark" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Delete" asp-route-id="1">CulAm/Event/Delete/id</a>
         </li>
     </ul>
 
     <h2>Administrator</h2>
     <ul>
         <li>
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUser" asp-action="Edit">Admin/AdminUser/Edit/id <em>(this link won't actually work because to delete an Employee you need to pass it an employee ID)</em></a>
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUser" asp-action="Edit" asp-route-id="1">Admin/AdminUser/Edit/id</a>
         </li>
         <li>
-            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUser" asp-action="Delete">Admin/AdminUser/Delete/id <em>(this link won't actually work because to delete an Employee you need to pass it an employee ID)</em> </a>
+            <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUser" asp-action="Delete" asp-route-id="3">Admin/AdminUser/Delete/id</a>
         </li>
         <li>
             <a class="nav-link text-dark" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">Admin/User/Search</a>
