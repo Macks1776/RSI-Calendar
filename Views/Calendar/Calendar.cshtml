@@ -3,3 +3,58 @@
 <!--This is a calendar using the full library, which i think will be the easiest way. Just need to figure out a way to get JavaScript to read our table and populate the events-->
 
 <div id="calendar" class="rsi_form"></div>
+
+<!-- Input Modal for Jump To Date -->
+<div id="DateJumper" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Jump to Month and Year</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <select class="form-select" aria-label="Select Month">
+                    <option selected value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+                <select class="form-select" aria-label="Select Year">
+                    <option selected value="2021">2021</option>
+                    <option selected value="2010">2010</option>
+                    <option selected value="2011">2011</option>
+                    <option selected value="2012">2012</option>
+                    <option selected value="2013">2013</option>
+                    <option selected value="2014">2014</option>
+                    <option selected value="2015">2015</option>
+                    <option selected value="2016">2016</option>
+                    <option selected value="2017">2017</option>
+                    <option selected value="2018">2018</option>
+                    <option selected value="2019">2019</option>
+                    <option selected value="2020">2020</option>
+                    <option selected value="2021">2021</option>
+                    <option selected value="2022">2022</option>
+                    <option selected value="2023">2023</option>
+                    <option selected value="2024">2024</option>
+                    <option selected value="2025">2025</option>
+                    <option selected value="2026">2026</option>
+                    <option selected value="2027">2027</option>
+                    <option selected value="2028">2028</option>
+                    <option selected value="2029">2029</option>
+                    <option selected value="2030">2030</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn rsi-btn-blue">Go</button>
+            </div>
+        </div>
+    </div>
+</div>

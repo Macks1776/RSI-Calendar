@@ -44,10 +44,14 @@
                 ],
                 initalView: 'dayGridMonth',
                 navLinks: true,
+                height: "auto",
                 headerToolbar: {
-                    left: 'prevYear,prev,next,nextYear today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                    start: 'title',
+                    end: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                footerToolbar: {
+                    start: 'prevYear,prev,next,nextYear today',
+                    end: 'dateJumper'
                 },
                 eventClick: function (info) {
                     var eventObj = info.event;
@@ -56,6 +60,14 @@
                         info.jsEvent.preventDefault();
                     } else {
                         alert('Clicked Event: ' + eventObj.title);
+                    }
+                },
+                customButtons: {
+                    dateJumper: {
+                        text: 'Go To Date',
+                        click: function () {
+                            $('#DateJumper').modal();
+                        }
                     }
                 }
             });
