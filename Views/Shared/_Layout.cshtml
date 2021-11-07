@@ -14,55 +14,6 @@
     <link rel="stylesheet" href="~/lib/fullcalendar/main.min.css" /> <!--Default calendar styles-->
     <link rel="stylesheet" href="~/css/site.css" />
     @inject SignInManager<User> signInManager
-    <!-- TODO: put this script into its own .js file and reference it from this file (or just reference it from Views/Calendar/Calendar) -->
-    <!-- This script handles everything in the Calendar view -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                eventSources: [
-                    {
-                        url: '/calendar/getrequiredevents',
-                        color: 'red',
-                        textColor: 'white'
-                    },
-                    {
-                        url: '/calendar/geteducationevents',
-                        color: 'blue',
-                        textColor: 'white'
-                    },
-                    {
-                        url: '/calendar/getfunevents',
-                        color: 'green',
-                        textColor: 'white'
-                    },
-                    {
-                        url: '/calendar/getfamilyevents',
-                        color: 'yellow',
-                        textColor: 'black'
-                    }
-                ],
-                initalView: 'dayGridMonth',
-                navLinks: true,
-                headerToolbar: {
-                    left: 'prevYear,prev,next,nextYear today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-                },
-                eventClick: function (info) {
-                    var eventObj = info.event;
-                    if (eventObj.url) {
-                        window.open(eventObj.url);
-                        info.jsEvent.preventDefault();
-                    } else {
-                        alert('Clicked Event: ' + eventObj.title);
-                    }
-                }
-            });
-            calendar.render();
-        });
-    </script>
-
 </head>
 <body>
     <header>
@@ -158,6 +109,7 @@
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/fullcalendar/main.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/Calendar.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
