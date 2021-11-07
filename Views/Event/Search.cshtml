@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Event Search";
 }
+
 <!--Page Title-->
 <div class="container bg-rsi-blue p-3 mb-3 rounded">
     <h1 class="display-6 text-center text-white">Event Search</h1>
@@ -14,26 +15,29 @@
         <div class="row mb-3">
             <label class="col-form-label col-sm-1 fw-bold" for="eventSearchName">Name:</label>
             <div class="col-sm-5">
-                <input class="form-control" type="text" id="eventSearchName" asp-for="Name" />
+                <input class="form-control" type="text" id="eventSearchName" asp-for="Name" disabled="@(!(Model.IncludeName))" />
             </div>
             <div class="col-sm-auto align-self-center">
-                <input class="form-check-input" type="checkbox" id="nameCheckbox" />
+                <input class="form-check-input" type="checkbox" id="nameCheckbox" asp-for="IncludeName" 
+                       onclick="document.getElementById('eventSearchName').disabled = !(document.getElementById('nameCheckbox').checked);" />
             </div>
         </div>
         <!--Event Date-->
         <div class="row mb-3">
             <label class="col-form-label col-sm-1 fw-bold" for="eventSearchStartDate">Date:</label>
             <div class="col-sm-2">
-                <input class="form-control" type="date" id="eventSearchStartDate" asp-for="StartDate" />
+                <input class="form-control" type="date" id="eventSearchStartDate" asp-for="StartDate" disabled="@(!(Model.IncludeDate))" />
             </div>
             <div class="col-sm-1 text-center align-self-center">
                 through
             </div>
             <div class="col-sm-2">
-                <input class="form-control" type="date" id="eventSearchEndDate" asp-for="EndDate" />
+                <input class="form-control" type="date" id="eventSearchEndDate" asp-for="EndDate" disabled="@(!(Model.IncludeDate))" />
             </div>
             <div class="col-sm-auto align-self-center">
-                <input class="form-check-input" type="checkbox" id="dateCheckbox" />
+                <input class="form-check-input" type="checkbox" id="dateCheckbox" asp-for="IncludeDate" 
+                       onclick="document.getElementById('eventSearchStartDate').disabled = !(document.getElementById('dateCheckbox').checked);
+                                document.getElementById('eventSearchEndDate').disabled = !(document.getElementById('dateCheckbox').checked);" />
             </div>
         </div>
         <!--Branch that is hosting the event-->
@@ -67,9 +71,12 @@
             </div>
         </div>
         <!--Buttons-->
-        <button type="submit" class="btn rsi-btn-blue shadow-sm">Search</button>
-        <button type="reset" class="btn rsi-btn-red shadow-sm">Reset</button>
-        <a type="button" class="btn rsi-btn-white shadow-sm" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+        <div class="row gap-sm-3">
+            <span class="col-sm-1"></span>
+            <button type="submit" class="btn rsi-btn-blue shadow-sm col-sm-auto">Search</button>
+            <a type="button" class="btn rsi-btn-red shadow-sm col-sm-auto" asp-action="Search">Clear</a>
+            <a type="button" class="btn rsi-btn-white shadow-sm col-sm-auto" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+        </div>
     </form>
 </div>
 
@@ -84,9 +91,9 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(Event e in Model.Results)
+        @foreach (Event e in Model.Results)
         {
-        <tr>
+        <tr onmouseover="style.cursor = 'pointer';" onclick="window.open('/event/details/' + @e.EventID);">
             <td>@Html.DisplayFor(item => e.Name)</td>
             <td>@Html.DisplayFor(item => e.StartDate)</td>
             <td>@Html.DisplayFor(item => e.Branch)</td>
