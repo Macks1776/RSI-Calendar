@@ -71,11 +71,13 @@
             </div>
         </div>
         <!--Buttons-->
-        <div class="row gap-sm-3">
+        <div class="row">
             <span class="col-sm-1"></span>
-            <button type="submit" class="btn rsi-btn-blue shadow-sm col-sm-auto">Search</button>
-            <a type="button" class="btn rsi-btn-red shadow-sm col-sm-auto" asp-action="Search">Clear</a>
-            <a type="button" class="btn rsi-btn-white shadow-sm col-sm-auto" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+            <div class="col-sm-5">
+                <button type="submit" class="btn rsi-btn-blue shadow-sm col-sm-auto">Search</button>
+                <a type="button" class="btn rsi-btn-red shadow-sm col-sm-auto" asp-action="Search">Clear</a>
+                <a type="button" class="btn rsi-btn-white shadow-sm col-sm-auto" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+            </div>
         </div>
     </form>
 </div>
