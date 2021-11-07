@@ -1,6 +1,7 @@
 ﻿//JavaScript for the calendar functionality
 
 document.addEventListener('DOMContentLoaded', function () {
+    var DateJumper = document.getElementById('DateJumper');
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         eventSources: [
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
             dateJumper: {
                 text: 'Go To Date',
                 click: function () {
-                    alert('Button Click Worked');
+
                 }
             }
         }

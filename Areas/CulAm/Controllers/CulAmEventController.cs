@@ -18,7 +18,13 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "Add";
-            return View("Edit", new Event());
+            var newEvent = new Event
+            {
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today
+            };
+
+            return View("Edit", newEvent);
         }
 
         // "event" is a resevered word so that's why I am using tableEvent and thisEvent
