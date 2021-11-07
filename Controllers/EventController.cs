@@ -34,6 +34,10 @@ namespace RSI_Calendar.Controllers
         {
             EventSearchViewModel vm = new EventSearchViewModel()
             {
+                IncludeName = false,
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today,
+                IncludeDate = false,
                 Results = new List<Event>()
             };
 
@@ -43,6 +47,7 @@ namespace RSI_Calendar.Controllers
         [HttpPost]
         public IActionResult Search(EventSearchViewModel vm)
         {
+            
             vm.Results = context.Events.ToList();
 
             if (vm.IncludeName && !string.IsNullOrEmpty(vm.Name))
@@ -61,6 +66,11 @@ namespace RSI_Calendar.Controllers
                 {
                     vm.Results = vm.Results.Where(item => item.StartDate.Date <= vm.EndDate.Date).ToList();
                 }
+            }
+            else
+            {
+                vm.StartDate = DateTime.Today;
+                vm.EndDate = DateTime.Today;
             }
 
             if (vm.Branch != "Any")
