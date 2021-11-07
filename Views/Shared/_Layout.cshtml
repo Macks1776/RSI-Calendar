@@ -13,20 +13,19 @@
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fullcalendar/main.min.css" /> <!--Default calendar styles-->
     <link rel="stylesheet" href="~/css/site.css" />
-
+    @inject SignInManager<User> signInManager
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 bg-rsi-blue">
             <div class="container">
-                <!-- LOGO -->
-                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">
-                    <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
-                </a>
-                @using Microsoft.AspNetCore.Identity
-                @inject SignInManager<User> signInManager
-                @if (!signInManager.IsSignedIn(User))
+                @if (!signInManager.IsSignedIn(User)) // NOT SIGNED IN
                 {
+                    // LOGO
+                    <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                        <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
+                    </a>
+                    // LOGIN
                     <div class="navbar d-sm-inline-flex flex-sm-row-reverse">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="" stye="text-decoration: none">
@@ -36,8 +35,13 @@
                         </ul>
                     </div>
                 }
-                else
+                else // IS SIGNED IN
                 {
+                    // LOGO
+                    <a class="navbar-brand text-white" asp-area="" asp-controller="Calendar" asp-action="Calendar">
+                        <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
+                    </a>
+                    // NAVIGATION TOGGLE FOR SMALL SCREENS
                     <button class="navbar-toggler navbar-toggler-icon" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-bs-toggler-icon"></span>
@@ -66,12 +70,13 @@
                                     <a class="nav-link @Nav.Active("CulAm", currentView)" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">New Event</a>
                                 </li>
                             }
-                            <!-- LOGIN/LOGOUT && SETTINGS -->
+                            <!-- SETTINGS -->
                             <li class="nav-item ms-auto">
                                 <a class="nav-link" 
                                    asp-controller="User" 
                                    asp-action="Settings">@User.Identity.Name</a>
                             </li>
+                            <!-- LOG OUT -->
                             <li class="nav-item" stye="text-decoration: none">
                                 <form method="post" asp-action="LogOut" asp-controller="User"
                                       asp-area="">
