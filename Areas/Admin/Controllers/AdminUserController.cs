@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using RSI_Calendar.Models;
 using RSI_Calendar.Areas.Admin.Models;
+using System.Linq;
 
 namespace RSI_Calendar.Areas.Admin.Controllers
 {
@@ -134,9 +135,18 @@ namespace RSI_Calendar.Areas.Admin.Controllers
             return View("Search");
         }
 
+        [HttpGet]
         public IActionResult Search()
         {
             return View("Search");
+        }
+
+        [HttpPost]
+        public IActionResult Search(UserSearchViewModel vm)
+        {
+            vm.Results = context.Employees.ToList();
+
+            return View(vm);
         }
     }
 }
