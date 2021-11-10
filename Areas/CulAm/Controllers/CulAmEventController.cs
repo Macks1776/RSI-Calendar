@@ -18,7 +18,13 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "Add";
-            return View("Edit", new Event());
+            var newEvent = new Event
+            {
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today
+            };
+
+            return View("Edit", newEvent);
         }
 
         // "event" is a resevered word so that's why I am using tableEvent and thisEvent
@@ -32,22 +38,22 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Event thisEvent)
+        public IActionResult Edit(Event tableEvent)
         {
             if (ModelState.IsValid)
             {
-                if (thisEvent.EventID == 0)
-                    context.Events.Add(thisEvent);
+                if (tableEvent.EventID == 0)
+                    context.Events.Add(tableEvent);
                 else
-                    context.Events.Update(thisEvent);
+                    context.Events.Update(tableEvent);
 
                 context.SaveChanges();
-                return RedirectToAction("Add");
+                return LocalRedirect("/calendar/calendar");
             }
             else
             {
-                ViewBag.Action = (thisEvent.EventID == 0) ? "Add" : "Edit"; // Tertiary statement => "if event id==0 then ViewBag.Action = "Add" else ViewBag.Action = "Edit"
-                return View(thisEvent);
+                ViewBag.Action = (tableEvent.EventID == 0) ? "Add" : "Edit"; // Tertiary statement => "if event id==0 then ViewBag.Action = "Add" else ViewBag.Action = "Edit"
+                return View(tableEvent);
             }
         }
 
