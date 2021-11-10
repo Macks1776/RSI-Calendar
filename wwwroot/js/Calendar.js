@@ -1,8 +1,8 @@
 ﻿//JavaScript for the calendar functionality
 
 document.addEventListener('DOMContentLoaded', function () {
-    var DateJumper = document.getElementById('DateJumper');
     var calendarEl = document.getElementById('calendar');
+    var DateJumper = new bootstrap.Modal(document.getElementById('DateJumper'), focus);
     var calendar = new FullCalendar.Calendar(calendarEl, {
         eventSources: [
             {
@@ -50,10 +50,25 @@ document.addEventListener('DOMContentLoaded', function () {
             dateJumper: {
                 text: 'Go To Date',
                 click: function () {
-
+                    DateJumper.show();
                 }
             }
         }
     });
     calendar.render();
+
+    document.getElementById('SubmitJump').addEventListener('click', function () {
+        let month = $("#MonthPicker option:selected").val();
+        let year = $("#YearPicker option:selected").val();
+        DateJumper.hide();
+
+        var date = year + '-' + month + '-01';
+
+        calendar.gotoDate(date);
+        calendar.changeView('dayGridMonth');
+
+    });
 });
+
+
+
