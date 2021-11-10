@@ -143,6 +143,11 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                 Results = new List<Employee>()
             };
 
+            // Search view opens with list of Employees ordered by Last Name
+            vm.Results = context.Employees
+                .OrderBy(e => e.LName)
+                .ToList();
+
             return View(vm);
         }
 
