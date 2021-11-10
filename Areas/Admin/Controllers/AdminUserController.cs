@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using RSI_Calendar.Models;
 using RSI_Calendar.Areas.Admin.Models;
+using System.Linq;
 
 namespace RSI_Calendar.Areas.Admin.Controllers
 {
@@ -134,9 +135,41 @@ namespace RSI_Calendar.Areas.Admin.Controllers
             return View("Search");
         }
 
+        [HttpGet]
         public IActionResult Search()
         {
-            return View("Search");
+            UserSearchViewModel vm = new UserSearchViewModel()
+            {
+                Results = new List<Employee>()
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public IActionResult Search(UserSearchViewModel vm)
+        {
+            vm.Results = context.Employees.ToList();
+
+            if (!string.IsNullOrEmpty(vm.Term))
+            {
+                string searchText = vm.Term.ToLower();
+                vm.Results = vm.Results.Where(item => item.FName.ToLower().Contains(searchText) 
+                || item.LName.ToLower().Contains(searchText)
+                || item.Email.ToLower().Contains(searchText)).ToList();
+            }
+
+            if (vm.Branch != "Any")
+            {
+                vm.Results = vm.Results.Where(item => item.Branch.Contains(vm.Branch)).ToList();
+            }
+
+            if (vm.Role != "Any")
+            {
+                vm.Results = vm.Results.Where(item => item.Role.Contains(vm.Role)).ToList();
+            }
+
+            return View(vm);
         }
     }
 }
