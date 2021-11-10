@@ -2,8 +2,9 @@
 {
     public static class Nav
     {
-        public static string Active(string value, string current) => (value == current) ? "active" : "";
-
-        public static string Active(int value, int current) => (value == current) ? "active" : "";
+        // If the "path" entered is equal to "currentController/currentAction", give the link a class
+        // of "Active". Settings for "Active" class are found in site.css.
+        public static string Active(string path, string currentController, string currentAction) => 
+            (path == currentController + "/" + currentAction) ? "active" : "";
     }
 }
