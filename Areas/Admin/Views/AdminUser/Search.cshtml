@@ -64,13 +64,14 @@
 </div>
 
 <!--Search Results-->
-<table class="table table-secondary table-hover table-bordered border-dark">
+<table class="table table-secondary table-striped">
     <thead>
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Branch</th>
             <th>Role</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -81,6 +82,10 @@
             <td>@Html.DisplayFor(item => e.Email)</td>
             <td>@Html.DisplayFor(item => e.Branch)</td>
             <td>@Html.DisplayFor(item => e.Role)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@e.ID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@e.ID">Delete</a>
+            </td>
         </tr>
         }
     </tbody>
