@@ -15,7 +15,8 @@
         <div class="form-group row">
             <label for="userSettingsFName" class="col-sm-2 col-form-label fw-bold">First Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="userSettingsFName" value="@Model.FName">
+                <input type="text" class="form-control-plaintext" 
+                       id="userSettingsFName" asp-for="FName">
             </div>
         </div>
 
@@ -23,7 +24,8 @@
         <div class="form-group row">
             <label for="userSettingsLName" class="col-sm-2 col-form-label fw-bold">Last Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" id="userSettingsLName" value="@Model.LName">
+                <input type="text" class="form-control-plaintext" 
+                       id="userSettingsLName" asp-for="LName">
             </div>
         </div>
 
@@ -31,7 +33,8 @@
         <div class="form-group row">
             <label for="userSettingsEmail" class="col-sm-2 col-form-label fw-bold">Email:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="userSettingsEmail" value="@Model.Email">
+                <input type="text" readonly class="form-control-plaintext" 
+                       id="userSettingsEmail" asp-for="Email">
             </div>
         </div>
 
@@ -39,7 +42,8 @@
         <div class="form-group row">
             <label for="userSettingsRole" class="col-sm-2 col-form-label fw-bold">Role:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="userSettingsRole" value="@Model.Role">
+                <input type="text" readonly class="form-control-plaintext" 
+                       id="userSettingsRole" asp-for="Role">
             </div>
         </div>
 
@@ -47,26 +51,29 @@
         <div class="form-group row">
             <label for="userSettingsLocation" class="col-sm-2 col-form-label fw-bold">Branch:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="userSettingsLocation" value="@Model.Branch">
+                <input type="text" readonly class="form-control-plaintext" 
+                       id="userSettingsLocation" asp-for="Branch">
             </div>
         </div>
 
         <!-- PASSWORD -->
-        <div class="form-group row top-50">
+        @*<div class="form-group row top-50">
             <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
             <div class="col-sm-7">
-                <input type="password" class="form-control shadow-sm rsi-password" id="userSettingsPassword" value="@Model.Password">
+                <input type="password" class="form-control shadow-sm rsi-password" 
+                       id="userSettingsPassword" asp-for="Password">
             </div>
-        </div>
+        </div>*@
         
         <!-- SHOW/HIDE PASSWORD -->
-        <div class="form-group row top-50">
+        @*<div class="form-group row top-50">
             <label class="col-sm-2"></label>
             <div class="col-sm-7">
                 <label class="form-check-label" for="userSettingsShowPassword">Show Password?</label>
-                <input class="form-check-input passwordToggle" type="checkbox" id="userSettingsShowPassword" onclick="toggle_password();">
+                <input class="form-check-input passwordToggle" type="checkbox" 
+                       id="userSettingsShowPassword" onclick="toggle_password();">
             </div>
-        </div>
+        </div>*@
 
 
         <!-- NOTIFICATIONS -->
@@ -90,17 +97,17 @@
         </div>-->
 
         <!-- BUTTONS -->
-        <div class="form-group row mt-5">
+        <!--<div class="form-group row mt-5">
             <div class="col-sm-2"></div>
             <div class="col-sm-7">
-                <div class="btn-group-lg">
+                <div class="btn-group-lg">-->
                     <!-- SAVE -->
-                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
+                    <!--<input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">-->
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+                    <!--<a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
                 </div>
             </div>
-        </div>
+        </div>-->
     </form>
 </div>
 
