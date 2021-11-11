@@ -62,6 +62,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link @Nav.Active("AdminUser/Search", currentController, currentAction)" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">User Search</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @Nav.Active("AdminUser/Register", currentController, currentAction)" asp-area="Admin" asp-controller="AdminUser" asp-action="Register">New User</a>
+                                </li>
                             }
                             <!-- CULAM SPECIFIC NAV LINKS -->
                             @if(User.IsInRole("CulAm"))
