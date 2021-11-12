@@ -41,6 +41,12 @@ namespace RSI_Calendar.Controllers
                 Results = new List<Event>()
             };
 
+            // Search View opens with a list of all future events ordered by startdate
+            vm.Results = context.Events
+                .Where(item => item.StartDate.Date >= DateTime.Today)
+                .OrderBy(e => e.StartDate)
+                .ToList();
+
             return View(vm);
         }
 
