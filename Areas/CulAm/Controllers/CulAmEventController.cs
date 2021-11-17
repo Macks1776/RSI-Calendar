@@ -119,5 +119,12 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                 return LocalRedirect(returnURL);
             }
         }
+
+        [HttpGet]
+        public IActionResult ManageAttachments(int id)
+        {
+            var attachments = context.Attachments.Where(a => a.EventID == id).ToList();
+            return View(attachments);
+        }
     }
 }

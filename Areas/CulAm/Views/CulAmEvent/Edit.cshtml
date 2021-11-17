@@ -128,12 +128,11 @@
                     }
                 </ul>
 
-                <button type="button" class="btn rsi-btn-blue" data-bs-toggle="modal" data-bs-target="#attachmentModal">
-                    Add Attachment
-                </button>
+                <button type="button" class="btn rsi-btn-blue" data-bs-toggle="modal" data-bs-target="#attachmentModal">Add Attachment</button>
+                <button type="submit" class="btn rsi-btn-white" asp-controller="CulAmEvent" asp-action="ManageAttachments">Manage Attachments</button>
 
                 <!-- Modal -->
-                <div class="modal fade" id="attachmentModal" tabindex="-1" aria-labelledby="Add Attachment" aria-hidden="true">
+                <div class="modal fade" data-bs-backdrop="static" id="attachmentModal" tabindex="-1" aria-labelledby="Add Attachment" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -141,10 +140,10 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <label for="eventEditType" class="col-md-2 col-form-label fw-bold">Title:</label>
+                                <label for="AttachmentName" class="col-md-2 col-form-label fw-bold">Title:</label>
                                 <input asp-for="AttachmentName" type="text" class="form-control shadow-sm" />
 
-                                <label for="eventEditType" class="col-md-2 col-form-label fw-bold">Link:</label>
+                                <label for="AttachmentLink" class="col-md-2 col-form-label fw-bold">Link:</label>
                                 <input asp-for="AttachmentLink" type="text" class="form-control shadow-sm" />
                             </div>
                             <div class="modal-footer">
