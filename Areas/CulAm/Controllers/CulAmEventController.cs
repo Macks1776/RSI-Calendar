@@ -34,6 +34,14 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         {
             ViewBag.Action = "Edit";
             var tableEvent = context.Events.Find(id);
+            var attachments = context.Attachments.Where(a => a.EventID == id);
+
+            foreach (var attachment in attachments)
+            {
+                TempData["titles"] += attachment.Title + ",";
+                TempData["links"] += attachment.Link + ",";
+            }
+
             return View(tableEvent);
         }
 
@@ -80,6 +88,43 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             context.Events.Remove(thisEvent);
             context.SaveChanges();
             return LocalRedirect("/calendar/calendar");
+        }
+
+        [HttpPost]
+        public IActionResult AddAttachment(Event tableEvent)
+        {
+            if (ModelState.IsValid)
+            {
+                if (tableEvent.EventID == 0)
+                    context.Events.Add(tableEvent);
+                else
+                    context.Events.Update(tableEvent);
+
+                Attachment attachment = new Attachment
+                {
+                    EventID = tableEvent.EventID,
+                    Title = tableEvent.AttachmentName,
+                    Link = tableEvent.AttachmentLink
+                };
+
+                context.Attachments.Add(attachment);
+
+                context.SaveChanges();
+                string returnURL = "/culam/culamevent/edit/" + tableEvent.EventID;
+                return LocalRedirect(returnURL);
+            }
+            else
+            {
+                string returnURL = "/culamevent/edit/" + tableEvent.EventID;
+                return LocalRedirect(returnURL);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult ManageAttachments(int id)
+        {
+            var attachments = context.Attachments.Where(a => a.EventID == id).ToList();
+            return View(attachments);
         }
     }
 }
