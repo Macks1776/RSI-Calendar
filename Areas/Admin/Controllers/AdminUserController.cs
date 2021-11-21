@@ -141,7 +141,7 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                 {
                     context.SaveChanges();
                     TempData["message"] = "Employee " + employee.FName + " " + employee.LName + " Deleted.";
-                    return View("Search");
+                    return LocalRedirect("/calendar/calendar");
                 }
                 else
                     return View(employee);
