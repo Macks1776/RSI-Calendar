@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,5 +19,12 @@ namespace RSI_Calendar.Models
         public string Location { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        // The NotMapped attribute will keep these fields from being put into the database but still let them be used by the class
+        [NotMapped]
+        public string AttachmentName { get; set; }
+        [NotMapped]
+        public string AttachmentLink { get; set; }
+
     }
 }
