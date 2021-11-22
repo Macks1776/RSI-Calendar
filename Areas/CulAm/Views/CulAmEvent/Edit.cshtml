@@ -1,15 +1,34 @@
 ﻿@model Event
 @{ 
-    int id = Model.EventID;
     ViewData["Title"] = ViewBag.Action + " Event";
 
     string buttonText;
     if (ViewBag.Action == "Add")
     {
         buttonText = "Add";
-    } else
+    }
+    else
     {
         buttonText = "Save";
+    }
+    string titleString;
+    string[] titles;
+    string linkString;
+    string[] links;
+
+    if (TempData["titles"] == null)
+    {
+        titleString = "NO ATTACHMENT";
+        titles = titleString.Split(',');
+        linkString = "NO ATTACHMENT";
+        links = linkString.Split(',');
+    }
+    else
+    {
+        titleString = TempData["titles"].ToString();
+        titles = titleString.Split(',');
+        linkString = TempData["links"].ToString();
+        links = linkString.Split(',');
     }
 }
 
@@ -124,7 +143,7 @@
                             </div>
                             <div class="modal-body">
                                 <label for="AttachmentName" class="col-md-2 col-form-label fw-bold">Title:</label>
-                                <input asp-for="AttachmentName" type="text" class="form-control shadow-sm" />
+                                <input asp-for="AttachmentTitle" type="text" class="form-control shadow-sm" />
 
                                 <label for="AttachmentLink" class="col-md-2 col-form-label fw-bold">Link:</label>
                                 <input asp-for="AttachmentLink" type="text" class="form-control shadow-sm" />
@@ -159,7 +178,7 @@
                            asp-area=""
                            asp-controller="Event"
                            asp-action="Details"
-                           asp-route-id="@id">Cancel</a>
+                           asp-route-id="@Model.EventID">Cancel</a>
                     }
                     
                 </div>

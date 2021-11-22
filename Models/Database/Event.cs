@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,5 +19,13 @@ namespace RSI_Calendar.Models
         public string Location { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
+        // Fields not included in the databse but needed for adding Attachments
+        [NotMapped]
+        public string AttachmentTitle { get; set; }
+        
+        [NotMapped]
+        public string AttachmentLink { get; set; }
+
     }
 }

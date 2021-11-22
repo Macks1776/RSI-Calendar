@@ -105,7 +105,7 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                 Attachment attachment = new Attachment
                 {
                     EventID = tableEvent.EventID,
-                    Title = tableEvent.AttachmentName,
+                    Title = tableEvent.AttachmentTitle,
                     Link = tableEvent.AttachmentLink
                 };
 
