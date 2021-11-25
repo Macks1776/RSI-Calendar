@@ -123,6 +123,29 @@ html {
     background-color: var(--rsi-blue) !important;
 }
 
+/* MOBILE NAV */
+#mobileNav-ul {
+    text-align: center;
+    list-style: none;
+    padding: 0px;
+    font-size: x-large;
+}
+.mobile-navItem {
+    line-height: 50px;
+}
+a.bo-bottom {
+    border-bottom: .5px var(--rsi-gray) solid;
+}
+a.bo-top {
+    border-top: .5px var(--rsi-gray) solid;
+}
+button.navbar-toggler {
+    margin: 10px;
+}
+.navbar-toggler {
+    border-color: var(--rsi-gray) !important;
+}
+
 
 
 /* 
