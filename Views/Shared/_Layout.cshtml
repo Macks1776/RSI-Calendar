@@ -34,7 +34,7 @@
                         <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
                     </a>
 
-                    // FLEX MENU
+                    // FLEX MENU -- everything in here is hidden when the screen is small
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarNav">
                         <ul class="navbar-nav flex-grow-1">
 
@@ -88,7 +88,7 @@
 
 
                     <!-- USERNAME/SETTINGS LINK -->
-                    <div class="ms-sm-auto" >
+                    <div class="ms-auto" >
                         <div class="dropdown nav-item">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 @User.Identity.Name
@@ -111,17 +111,6 @@
                             </ul>
                         </div>
                     </div>
-
-                    // NAVIGATION TOGGLE FOR SMALL SCREENS
-                    <button type="button" 
-                            class="navbar-toggler" 
-                            data-bs-toggle="collapse" 
-                            data-bs-target="#navbarNav" 
-                            aria-controls="navbarSupportedContent" 
-                            aria-expanded="false" 
-                            aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
                 }
             </div>           
         </nav>
@@ -140,6 +129,33 @@
         <div class="container">
             &copy; 2021 - RSI_Calendar - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+        
+        @if (signInManager.IsSignedIn(User))
+        {
+            <!-- MOBILE NAV -->
+            <nav class="navbar d-sm-none fixed-bottom navbar-expand-sm navbar-dark bg-rsi-blue justify-content-center">
+                <!-- Menu Button -->
+                <button type="button"
+                        class="navbar-toggler"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mobileNavBar"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu -->
+                <div class="navbar-collapse collapse" id="mobileNavBar">
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </nav>
+        }
     </footer>
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
