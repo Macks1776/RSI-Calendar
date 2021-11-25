@@ -104,17 +104,23 @@ html {
     background-color: var(--rsi-blue);
 }
 .nav-link {
-    color: white;
+    color: rgba(255,255,255,.55);
 }
 .nav-link:focus, .nav-link:hover {
-    color: #FF9292;
+    color: #FFF;
 }
 .nav-link.active {
-    color: var(--rsi-red);
+    color: #fff;
 }
 /* RSI LOGO IN NAV BAR */
 #rsi-logo {
     max-width: 100px;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--rsi-blue) !important;
 }
 
 
