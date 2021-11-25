@@ -88,16 +88,28 @@
 
 
                     <!-- USERNAME/SETTINGS LINK -->
-                    <div>
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item ms-auto">
-                                <a class="nav-link ms-auto
-                                @Nav.Active("User/Settings", currentController, currentAction)"
-                                    asp-area=""
-                                    asp-controller="User"
-                                    asp-action="Settings">@User.Identity.Name</a>
-                            </li>
-                        </ul>
+                    <div class="ms-sm-auto" >
+                        <div class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                @User.Identity.Name
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item text-rsi-blue
+                                       @Nav.Active("User/Settings", currentController, currentAction)"
+                                       asp-area=""
+                                       asp-controller="User"
+                                       asp-action="Settings">Settings</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="text-center">
+                                    <form method="post" asp-action="LogOut" asp-controller="User" asp-area="">
+                                        <input type="submit" class="btn btn-sm text-rsi-red"
+                                                       value="Log Out" />
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
 
                     // NAVIGATION TOGGLE FOR SMALL SCREENS
