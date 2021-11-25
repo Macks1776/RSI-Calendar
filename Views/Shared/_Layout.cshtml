@@ -34,7 +34,7 @@
                         <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
                     </a>
 
-                    // FLEX MENU -- everything in here is hidden when the screen is small
+                    // NON-MOBILE NAVIGATION -- everything in here is hidden when the screen is small
                     <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarNav">
                         <ul class="navbar-nav flex-grow-1">
 
@@ -132,8 +132,8 @@
         
         @if (signInManager.IsSignedIn(User))
         {
-            <!-- MOBILE NAV -->
-            <nav class="navbar d-sm-none fixed-bottom navbar-expand-sm navbar-dark bg-rsi-blue justify-content-center">
+            <!-- MOBILE NAVIGATION -->
+            <nav class="navbar d-sm-none fixed-bottom navbar-dark bg-rsi-blue justify-content-center">
                 <!-- Menu Button -->
                 <button type="button"
                         class="navbar-toggler"
@@ -147,11 +147,49 @@
 
                 <!-- Menu -->
                 <div class="navbar-collapse collapse" id="mobileNavBar">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <ul id="mobileNav-ul">
+                        <!-- CALENDAR NAV BUTTON -->
+                        <li class="nav-item mobile-navItem">
+                            <a class="nav-link mobile-navLink bo-bottom
+                                   @Nav.Active("Calendar/Calendar", currentController, currentAction)"
+                               asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
+                        </li>
+
+                        <!-- EVENT SEARCH NAV BUTTON -->
+                        <li class="nav-item mobile-navItem">
+                            <a class="nav-link mobile-navLink
+                                   @Nav.Active("Event/Search", currentController, currentAction)"
+                               asp-area="" asp-controller="Event" asp-action="Search">Event Search</a>
+                        </li>
+
+                        <!-- ADMIN SPECIFIC NAV LINKS -->
+                        @if(User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item mobile-navItem">
+                                <a class="nav-link mobile-navLink bo-top
+                                    @Nav.Active("AdminUser/Search", currentController, currentAction)" 
+                                    asp-area="Admin" asp-controller="AdminUser" asp-action="Search"
+                                    >User Search</a>
+                            </li>
+                            <li class="nav-item mobile-navItem">
+                                <a class="nav-link mobile-navLink bo-top 
+                                    @Nav.Active("AdminUser/Register", currentController, currentAction)" 
+                                    asp-area="Admin" asp-controller="AdminUser" asp-action="Register"
+                                    >New User</a>
+                            </li>
+                        }
+
+
+                        <!-- CULAM SPECIFIC NAV LINKS -->
+                        @if(User.IsInRole("CulAm"))
+                        {
+                            <li class="nav-item mobile-navItem">
+                                <a class="nav-link mobile-navLink bo-top 
+                                    @Nav.Active("CulAmEvent/Add", currentController, currentAction)" 
+                                    asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add"
+                                    >New Event</a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </nav>
