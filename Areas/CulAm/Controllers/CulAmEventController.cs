@@ -45,7 +45,6 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
 
             TempData["EventID"] = id;
 
-            }
             return View(tableEvent);
         }
 
@@ -108,7 +107,6 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                 {
                     EventID = tableEvent.EventID,
                     Title = tableEvent.AttachmentTitle,
-                    Title = tableEvent.AttachmentName,
                     Link = tableEvent.AttachmentLink
                 };
 
@@ -121,7 +119,6 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             else
             {
                 string returnURL = "/culam/culamevent/edit/" + tableEvent.EventID;
-                string returnURL = "/culamevent/edit/" + tableEvent.EventID;
                 return LocalRedirect(returnURL);
             }
         }
