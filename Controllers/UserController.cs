@@ -62,17 +62,62 @@ namespace RSI_Calendar.Controllers
         }
 
         [HttpGet]
-        public IActionResult Settings(int id = 1)
+        public async Task<IActionResult> Settings()
         {
-            Employee employee = context.Employees.Find(id);
+            var user = await userManager.GetUserAsync(User);
+            if(user != null)
+            {
+                string userEmail = user.Email.ToString();
+                var employeeList = context.Employees.Where(e => e.Email == userEmail).ToList();
+                Employee employee = employeeList[0];
 
-            return View(employee);
+                return View(employee);
+            }
+
+            return View("Calendar");
         }
 
         [HttpPost]
-        public IActionResult Settings()
+        public IActionResult Settings(Employee employee)
         {
+            if (ModelState.IsValid)
+            {
+                context.Employees.Update(employee);
+                context.SaveChanges();
+                TempData["message"] = "Changes saved.";
+                return View("Settings");
+            }
+
+            TempData["message"] = "There was a problem.\nNo changes saved.";
             return View("Settings");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(Employee employee)
+        {
+            if(ModelState.IsValid)
+            {
+                User user = await userManager.FindByEmailAsync(employee.Email);
+
+                if(user != null)
+                {
+                    var result = await userManager.ChangePasswordAsync(user, employee.OldPassword, employee.NewPassword);
+
+                    if(result.Succeeded)
+                    {
+                        context.Employees.Update(employee);
+                        TempData["message"] = "Changes Saved";
+                        return RedirectToAction("Settings");
+                    }
+                }             
+            }
+            else
+            {
+                TempData["message"] = "There was a problem changing your password. \nPassword was NOT changed.";
+                return RedirectToAction("Settings");
+            }
+
+            return RedirectToAction("Settings");
         }
     }
 }
