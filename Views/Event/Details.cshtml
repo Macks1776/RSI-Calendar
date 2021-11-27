@@ -92,7 +92,7 @@
                 <ul class="list-group" id="eventDetailsAttachments">
                     @if (titleString != "NO ATTACHMENT")
                     {
-                        for (int i = 0; i < titles.Length; i++)
+                        for (int i = 0; i < titles.Length - 1; i++)
                         {
                             <li class="list-group-item">
                                 <a href="@links[i]" class="link-primary">@titles[i]</a>
