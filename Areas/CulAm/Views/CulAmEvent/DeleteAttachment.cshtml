@@ -1,0 +1,41 @@
+﻿@model Attachment
+@{
+    ViewData["Title"] = "Delete Attachment";
+}
+
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">Edit Attachment</h1>
+    </div>
+</div>
+
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form asp-action="DeleteAttachment" method="post">
+        <!-- TITLE -->
+        <div class="row">
+            <label for="attachmentTitle" class="col-md-2 col-form-label fw-bold">Title:</label>
+            <div class="col-md-7">
+                <input asp-for="Title" readonly class="form-control shadow-sm" id="attachmentTitle">
+            </div>
+        </div>
+        <!-- Link -->
+        <div class="row">
+            <label for="attachmentLink" class="col-md-2 col-form-label fw-bold">Title:</label>
+            <div class="col-md-7">
+                <input asp-for="Link" readonly class="form-control shadow-sm" id="attachmentLink">
+            </div>
+        </div>
+
+        <!-- Hidden Fields -->
+        <div class="row">
+            <input asp-for="EventID" type="hidden" />
+            <input asp-for="ID" type="hidden" />
+        </div>
+
+        <button class="btn rsi-btn-blue" type="submit">Delete</button>
+        <a class="rsi-button-red" asp-area=""
+           asp-controller="Event"
+           asp-action="Details"
+           asp-route-id="@Model.EventID">Cancel</a>
+    </form>
+</div>
