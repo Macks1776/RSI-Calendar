@@ -78,7 +78,8 @@
                                 <a class="nav-link @Nav.Active("User/Settings", currentController, currentAction)" 
                                    asp-area=""
                                    asp-controller="User" 
-                                   asp-action="Settings">@User.Identity.Name</a>
+                                   asp-action="Settings"
+                                   method="get">@User.Identity.Name</a>
                             </li>
                             <!-- LOG OUT -->
                             <li class="nav-item" stye="text-decoration: none">
