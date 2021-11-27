@@ -92,7 +92,7 @@
         <div class="row">
             <label for="eventEditBranch" class="col-md-2 col-form-label fw-bold">Branch:</label>
             <div class="col-md-7">
-                <select asp-for="@Model.Branch" class="form-select shadow-sm" aria-label="Branch Selection" id="eventEditBranch">
+                <select asp-for="Branch" class="form-select shadow-sm" aria-label="Branch Selection" id="eventEditBranch">
                     <option value="Augusta, GA" selected>Augusta, GA</option>
                     <option value="Albuquerque, NM">Albuquerque, NM</option>
                     <option value="FortWayne, IN">FortWayne, IN</option>
@@ -119,7 +119,6 @@
         </div>
 
         <input type="hidden" asp-for="EventID" /> <!-- Hidden input for the event ID so its actively in the model-->
-
         <!-- ATTACHMENTS TABLE -->
         <div class="row top-50">
             <label for="eventDetailsAttachments" class="col-md-2 col-form-label fw-bold">Attachments:</label>
@@ -146,6 +145,22 @@
                 <button type="button" class="btn rsi-btn-blue" data-bs-toggle="modal" data-bs-target="#attachmentModal">Add Attachment</button>
 
                 <!-- Add Attachment Modal -->
+                <ul class="list-group" id="eventDetailsAttachments">
+                    @if (titleString != "NO ATTACHMENT")
+                    {
+                        for (int i = 0; i < titles.Length - 1; i++)
+                        {
+                            <li class="list-group-item">
+                                <a href="@links[i]" class="link-primary">@titles[i]</a>
+                            </li>
+                        }
+                    }
+                </ul>
+
+                <button type="button" class="btn rsi-btn-blue" data-bs-toggle="modal" data-bs-target="#attachmentModal">Add Attachment</button>
+                <button type="submit" class="btn rsi-btn-white" asp-controller="CulAmEvent" asp-action="ManageAttachments">Manage Attachments</button>
+
+                <!-- Modal -->
                 <div class="modal fade" data-bs-backdrop="static" id="attachmentModal" tabindex="-1" aria-labelledby="Add Attachment" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -156,6 +171,7 @@
                             <div class="modal-body">
                                 <label for="AttachmentName" class="col-md-2 col-form-label fw-bold">Title:</label>
                                 <input asp-for="AttachmentTitle" type="text" class="form-control shadow-sm" />
+                                <input asp-for="AttachmentName" type="text" class="form-control shadow-sm" />
 
                                 <label for="AttachmentLink" class="col-md-2 col-form-label fw-bold">Link:</label>
                                 <input asp-for="AttachmentLink" type="text" class="form-control shadow-sm" />
@@ -163,6 +179,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="AddAttachment">Add</button>
+                                <button type="submit" class="btn btn-primary" asp-action="AddAttachment" asp-controller="CulAmEvent">Add</button>
                             </div>
                         </div>
                     </div>
@@ -182,11 +199,30 @@
                         asp-controller="Event"
                         asp-action="Details"
                         asp-route-id="@Model.EventID">Cancel</a>
+                    @if (Model.Name == null)
+                    {
+                        <a class="btn rsi-btn-white shadow-sm"
+                           asp-area=""
+                           asp-controller="Calendar"
+                           asp-action="Calendar">Cancel</a>
+                    }
+                    else
+                    {
+                        <a class="btn rsi-btn-white shadow-sm"
+                           asp-area=""
+                           asp-controller="Event"
+                           asp-action="Details"
+                           asp-route-id="@Model.EventID">Cancel</a>
+                    }
                 </div>
             </div>
         </div>
     </form>
 </div>
+
+
+
+
 
 
 

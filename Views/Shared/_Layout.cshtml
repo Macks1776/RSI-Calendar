@@ -17,7 +17,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 bg-rsi-blue">
+        <nav class="navbar navbar-dark navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3 bg-rsi-blue">
             <div class="container">
                 @if (!signInManager.IsSignedIn(User)) // NOT SIGNED IN
                 {
@@ -25,54 +25,65 @@
                     <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">
                         <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
                     </a>
-                    // LOGIN
-                    <div class="navbar d-sm-inline-flex flex-sm-row-reverse">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="" stye="text-decoration: none">
-                                <a asp-action="LogIn" asp-controller="User"
-                                   asp-area="" class="btn btn-outline-light">Log In</a>
-                            </li>
-                        </ul>
-                    </div>
                 }
                 else // IS SIGNED IN
                 {
                     // LOGO
-                    <a class="navbar-brand text-white" asp-area="" asp-controller="Calendar" asp-action="Calendar">
+                    <a class="navbar-brand text-white" 
+                       asp-area="" asp-controller="Calendar" asp-action="Calendar">
                         <img id="rsi-logo" src="~/images/rsi-logo-white-text.png" />
                     </a>
-                    // NAVIGATION TOGGLE FOR SMALL SCREENS
-                    <button class="navbar-toggler navbar-toggler-icon" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-bs-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+
+                    // NON-MOBILE NAVIGATION -- everything in here is hidden when the screen is small
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" id="navbarNav">
                         <ul class="navbar-nav flex-grow-1">
+
                             <!-- CALENDAR NAV BUTTON -->
                             <li class="nav-item">
-                                <a class="nav-link @Nav.Active("Calendar/Calendar", currentController, currentAction)" asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
+                                <a class="nav-link 
+                                   @Nav.Active("Calendar/Calendar", currentController, currentAction)" 
+                                   asp-area="" asp-controller="Calendar" asp-action="Calendar"
+                                   >Calendar</a>
                             </li>
+
                             <!-- EVENT SEARCH NAV BUTTON -->
                             <li class="nav-item">
-                                <a class="nav-link @Nav.Active("Event/Search", currentController, currentAction)" asp-area="" asp-controller="Event" asp-action="Search">Event Search</a>
+                                <a class="nav-link 
+                                   @Nav.Active("Event/Search", currentController, currentAction)" 
+                                   asp-area="" asp-controller="Event" asp-action="Search"
+                                   >Event Search</a>
                             </li>
+
+
                             <!-- ADMIN SPECIFIC NAV LINKS -->
                             @if(User.IsInRole("Admin"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @Nav.Active("AdminUser/Search", currentController, currentAction)" asp-area="Admin" asp-controller="AdminUser" asp-action="Search">User Search</a>
+                                    <a class="nav-link 
+                                       @Nav.Active("AdminUser/Search", currentController, currentAction)" 
+                                       asp-area="Admin" asp-controller="AdminUser" asp-action="Search"
+                                       >User Search</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link @Nav.Active("AdminUser/Register", currentController, currentAction)" asp-area="Admin" asp-controller="AdminUser" asp-action="Register">New User</a>
+                                    <a class="nav-link 
+                                       @Nav.Active("AdminUser/Register", currentController, currentAction)" 
+                                       asp-area="Admin" asp-controller="AdminUser" asp-action="Register"
+                                       >New User</a>
                                 </li>
                             }
+
+
                             <!-- CULAM SPECIFIC NAV LINKS -->
                             @if(User.IsInRole("CulAm"))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link @Nav.Active("CulAmEvent/Add", currentController, currentAction)" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add">New Event</a>
+                                    <a class="nav-link 
+                                       @Nav.Active("CulAmEvent/Add", currentController, currentAction)" 
+                                       asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add"
+                                       >New Event</a>
                                 </li>
                             }
+
                             <!-- SETTINGS -->
                             <li class="nav-item ms-auto">
                                 <a class="nav-link @Nav.Active("User/Settings", currentController, currentAction)" 
@@ -90,6 +101,32 @@
                                 </form>
                             </li>
                         </ul>
+                    </div>
+
+
+                    <!-- USERNAME/SETTINGS LINK -->
+                    <div class="ms-auto" >
+                        <div class="dropdown nav-item">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                @User.Identity.Name
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item text-rsi-blue
+                                       @Nav.Active("User/Settings", currentController, currentAction)"
+                                       asp-area=""
+                                       asp-controller="User"
+                                       asp-action="Settings">Settings</a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="text-center">
+                                    <form method="post" asp-action="LogOut" asp-controller="User" asp-area="">
+                                        <input type="submit" class="btn btn-sm text-rsi-red"
+                                                       value="Log Out" />
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 }
             </div>           
@@ -109,6 +146,71 @@
         <div class="container">
             &copy; 2021 - RSI_Calendar - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+        
+        @if (signInManager.IsSignedIn(User))
+        {
+            <!-- MOBILE NAVIGATION -->
+            <nav class="navbar d-sm-none fixed-bottom navbar-dark bg-rsi-blue justify-content-center">
+                <!-- Menu Button -->
+                <button type="button"
+                        class="navbar-toggler"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mobileNavBar"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Menu -->
+                <div class="navbar-collapse collapse" id="mobileNavBar">
+                    <ul id="mobileNav-ul">
+                        <!-- CALENDAR NAV BUTTON -->
+                        <li class="nav-item mobile-navItem">
+                            <a class="nav-link mobile-navLink bo-bottom
+                                   @Nav.Active("Calendar/Calendar", currentController, currentAction)"
+                               asp-area="" asp-controller="Calendar" asp-action="Calendar">Calendar</a>
+                        </li>
+
+                        <!-- EVENT SEARCH NAV BUTTON -->
+                        <li class="nav-item mobile-navItem">
+                            <a class="nav-link mobile-navLink
+                                   @Nav.Active("Event/Search", currentController, currentAction)"
+                               asp-area="" asp-controller="Event" asp-action="Search">Event Search</a>
+                        </li>
+
+                        <!-- ADMIN SPECIFIC NAV LINKS -->
+                        @if(User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item mobile-navItem">
+                                <a class="nav-link mobile-navLink bo-top
+                                    @Nav.Active("AdminUser/Search", currentController, currentAction)" 
+                                    asp-area="Admin" asp-controller="AdminUser" asp-action="Search"
+                                    >User Search</a>
+                            </li>
+                            <li class="nav-item mobile-navItem">
+                                <a class="nav-link mobile-navLink bo-top 
+                                    @Nav.Active("AdminUser/Register", currentController, currentAction)" 
+                                    asp-area="Admin" asp-controller="AdminUser" asp-action="Register"
+                                    >New User</a>
+                            </li>
+                        }
+
+
+                        <!-- CULAM SPECIFIC NAV LINKS -->
+                        @if(User.IsInRole("CulAm"))
+                        {
+                            <li class="nav-item mobile-navItem">
+                                <a class="nav-link mobile-navLink bo-top 
+                                    @Nav.Active("CulAmEvent/Add", currentController, currentAction)" 
+                                    asp-area="CulAm" asp-controller="CulAmEvent" asp-action="Add"
+                                    >New Event</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </nav>
+        }
     </footer>
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>

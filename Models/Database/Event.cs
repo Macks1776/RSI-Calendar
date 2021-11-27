@@ -23,10 +23,15 @@ namespace RSI_Calendar.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+
         // Fields not included in the databse but needed for adding Attachments
         [NotMapped]
         public string AttachmentTitle { get; set; }
         
+        // The NotMapped attribute will keep these fields from being put into the database but still let them be used by the class
+        [NotMapped]
+        public string AttachmentName { get; set; }
+
         [NotMapped]
         public string AttachmentLink { get; set; }
 
