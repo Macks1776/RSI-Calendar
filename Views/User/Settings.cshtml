@@ -11,11 +11,16 @@
 
 <div class="container mt-5 mb-5 p-5 rsi-form">
     <form asp-action="Settings" method="post">
+        <!-- ID For Model Binding but not displayed -->
+        <div class="row">
+            <input asp-for="@Model.ID" hidden />
+        </div>
+
         <!-- FIRST NAME -->
         <div class="form-group row">
             <label for="userSettingsFName" class="col-sm-2 col-form-label fw-bold">First Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" 
+                <input type="text" class="form-control"
                        id="userSettingsFName" asp-for="FName">
             </div>
         </div>
@@ -24,7 +29,7 @@
         <div class="form-group row">
             <label for="userSettingsLName" class="col-sm-2 col-form-label fw-bold">Last Name:</label>
             <div class="col-sm-7">
-                <input type="text" class="form-control-plaintext" 
+                <input type="text" class="form-control"
                        id="userSettingsLName" asp-for="LName">
             </div>
         </div>
@@ -33,7 +38,7 @@
         <div class="form-group row">
             <label for="userSettingsEmail" class="col-sm-2 col-form-label fw-bold">Email:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" 
+                <input type="text" class="form-control-plaintext"
                        id="userSettingsEmail" asp-for="Email">
             </div>
         </div>
@@ -42,7 +47,7 @@
         <div class="form-group row">
             <label for="userSettingsRole" class="col-sm-2 col-form-label fw-bold">Role:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" 
+                <input type="text" readonly class="form-control-plaintext"
                        id="userSettingsRole" asp-for="Role">
             </div>
         </div>
@@ -51,63 +56,66 @@
         <div class="form-group row">
             <label for="userSettingsLocation" class="col-sm-2 col-form-label fw-bold">Branch:</label>
             <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" 
-                       id="userSettingsLocation" asp-for="Branch">
+                <select asp-for="@Model.Branch" class="form-select shadow-sm" aria-label="Branch Selection">
+                    <option value="Augusta, GA">Augusta, GA</option>
+                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+                    <option value="FortWayne, IN">FortWayne, IN</option>
+                    <option value="Jonesboro, AR">Jonesboro, AR</option>
+                    <option value="Madison, WI">Madison, WI</option>
+                    <option value="Milwaukee, WI">Milwaukee, WI</option>
+                    <option value="Mobile, AL">Mobile, AL</option>
+                    <option value="Oklahoma City, OK">Oklahoma City, OK</option>
+                </select>
             </div>
         </div>
 
-        <!-- PASSWORD -->
-        @*<div class="form-group row top-50">
-            <label for="userSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
+        <!-- Passord Field -->
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label fw-bold">Password:</label>
             <div class="col-sm-7">
-                <input type="password" class="form-control shadow-sm rsi-password" 
-                       id="userSettingsPassword" asp-for="Password">
+                <button type="button" class="btn rsi-btn-blue" data-bs-toggle="modal" data-bs-target="#passwordModal">Change Password</button>
             </div>
-        </div>*@
-        
-        <!-- SHOW/HIDE PASSWORD -->
-        @*<div class="form-group row top-50">
-            <label class="col-sm-2"></label>
-            <div class="col-sm-7">
-                <label class="form-check-label" for="userSettingsShowPassword">Show Password?</label>
-                <input class="form-check-input passwordToggle" type="checkbox" 
-                       id="userSettingsShowPassword" onclick="toggle_password();">
-            </div>
-        </div>*@
+        </div>
 
-
-        <!-- NOTIFICATIONS -->
-        <!--<div class="form-group row mt-5">
-            <label class="col-sm-2"></label>
-            <div class="col-sm-7">
-                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
-                    <legend class="fw-bold">Notifications</legend>-->
-                    <!-- NEW EVENTS -->
-                    <!--<div class="form-check">
-                        <label class="form-check-label" for="userSettingsNotificationsNew">New Events</label>
-                        <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsNew" checked>--> <!-- TODO: this should be checked or unchecked dynamically -->
-                    <!--</div>-->
-                    <!-- OPTIONAL EVENTS -->
-                    <!--<div class="form-check">
-                        <label class="form-check-label" for="userSettingsNotificationsOptional">Optional Events</label>
-                        <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsOptional">--> <!-- TODO: this should be checked or unchecked dynamically -->
-                    <!--</div>
-                </fieldset>
-            </div>
-        </div>-->
-
-        <!-- BUTTONS -->
-        <!--<div class="form-group row mt-5">
+        <!-- Form Buttons -->
+        <div class="form-group row mt-5">
             <div class="col-sm-2"></div>
             <div class="col-sm-7">
-                <div class="btn-group-lg">-->
-                    <!-- SAVE -->
-                    <!--<input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">-->
+                <div class="btn-group-lg">
+                    <!-- Register -->
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save Changes">
                     <!-- CANCEL -->
-                    <!--<a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
+                    <a class="btn rsi-btn-white shadow-sm" type="button" asp-area="" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
                 </div>
             </div>
-        </div>-->
+        </div>
+
+
+        <!-- Password Modal -->
+        <div class="modal fade" data-bs-backdrop="static" id="passwordModal" tabindex="-1" aria-labelledby="Change Password" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addAttachmentLabel">Change Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="OldPassword" class="col-md-2 col-form-label fw-bold">Old Password:</label>
+                        <input asp-for="OldPassword" type="password" class="form-control shadow-sm" />
+
+                        <label for="NewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
+                        <input asp-for="NewPassword" type="password" class="form-control shadow-sm" />
+
+                        <label for="ConfirmNewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
+                        <input asp-for="ConfirmNewPassword" type="password" class="form-control shadow-sm" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" asp-area="" asp-controller="User" asp-action="ChangePassword">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </form>
 </div>
 
