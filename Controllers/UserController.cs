@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using RSI_Calendar.Models;
+using RSI_Calendar.Services;
+using SendGrid;
+using SendGrid.Helpers.Mail;
+using Microsoft.Extensions.Options;
 
 namespace RSI_Calendar.Controllers
 {
@@ -117,6 +121,20 @@ namespace RSI_Calendar.Controllers
                 return RedirectToAction("Settings");
             }
 
+            return RedirectToAction("Settings");
+        }
+
+        public async Task<IActionResult> SendTestEmail()
+        {
+            var key = "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";
+            var client = new SendGridClient(key);
+            var from = new EmailAddress("testcalender177@gmail.com", "Test McTest");
+            var subject = "Test Email";
+            var to = new EmailAddress("maxswann1995@gmail.com", "Max Swann");
+            var plainTextContent = "this was a test email. this isn't too hard to do I think";
+            var htmlContent = "<strong>and easy to do possibly</strong>";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
             return RedirectToAction("Settings");
         }
     }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using RSI_Calendar.Models;
 using RSI_Calendar.Areas.Admin.Models;
 using System.Linq;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
 namespace RSI_Calendar.Areas.Admin.Controllers
 {
@@ -70,6 +72,10 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                     context.SaveChanges();
 
                     TempData["message"] = "Added Employee " + employee.FName + " " + employee.LName;
+
+                    string fullName = model.FName + " " + model.LName;
+
+                    await SendNewAcctEmail(model.Email, fullName, model.Password);
 
                     return View("Register");
                 }
@@ -190,6 +196,19 @@ namespace RSI_Calendar.Areas.Admin.Controllers
             }
 
             return View(vm);
+        }
+
+        static async Task SendNewAcctEmail(string toEmail, string toName, string tempPassword)
+        {
+            var key = "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"; //Need to store this differently but I can't get it to access right via powershell
+            var client = new SendGridClient(key);
+            var from = new EmailAddress("testcalender177@gmail.com", "Test McTest");
+            var subject = "New Account Information";
+            var to = new EmailAddress(toEmail, toName);
+            var plainTextContent = $"Welcome to Rural Sourcing! Below is your log in information for our Cultural Calendar.</br>User Name: {toEmail}\n\tPassword: {tempPassword}\n\nPlease login and change your password as soon as possible.\nClick the link to log in https://localhost:5001/user/login";
+            var htmlContent = $"<strong>Welcome to Rural Sourcing!</strong> This is your login information for our <em>Cultural Calendar</em> User Name: {toEmail}   Password: {tempPassword}  Please login and change your password as soon as possible. Click <a href='https://localhost:5001/user/login'>Log In</a> to get started.";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
         }
     }
 }
