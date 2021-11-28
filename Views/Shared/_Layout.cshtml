@@ -83,23 +83,6 @@
                                        >New Event</a>
                                 </li>
                             }
-
-                            <!-- SETTINGS -->
-                            <li class="nav-item ms-auto">
-                                <a class="nav-link @Nav.Active("User/Settings", currentController, currentAction)" 
-                                   asp-area=""
-                                   asp-controller="User" 
-                                   asp-action="Settings"
-                                   method="get">@User.Identity.Name</a>
-                            </li>
-                            <!-- LOG OUT -->
-                            <li class="nav-item" stye="text-decoration: none">
-                                <form method="post" asp-action="LogOut" asp-controller="User"
-                                      asp-area="">
-                                    <input type="submit" value="Log Out"
-                                           class="btn btn-outline-light" />
-                                </form>
-                            </li>
                         </ul>
                     </div>
 
@@ -116,13 +99,14 @@
                                        @Nav.Active("User/Settings", currentController, currentAction)"
                                        asp-area=""
                                        asp-controller="User"
-                                       asp-action="Settings">Settings</a>
+                                       asp-action="Settings"
+                                       method="get">Settings</a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li class="text-center">
                                     <form method="post" asp-action="LogOut" asp-controller="User" asp-area="">
                                         <input type="submit" class="btn btn-sm text-rsi-red"
-                                                       value="Log Out" />
+                                               value="Log Out" />
                                     </form>
                                 </li>
                             </ul>
