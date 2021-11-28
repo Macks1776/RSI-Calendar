@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
@@ -11,5 +12,7 @@ namespace RSI_Calendar.Models
 
         [NotMapped]
         public IList<string> RoleNames { get; set; }
+
+
     }
 }

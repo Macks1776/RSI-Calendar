@@ -127,12 +127,27 @@ namespace RSI_Calendar.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(Employee employee)
+        public async Task<IActionResult> Delete(Employee employee)
         {
+            // Deleting the Employee
             context.Employees.Remove(employee);
-            context.SaveChanges();
-            TempData["message"] = "Employee " + employee.FName + " " + employee.LName + " Deleted.";
-            return View("Search");
+
+            // Deleting the Log In Credtitials
+            User deletedUser = await userManager.FindByEmailAsync(employee.Email);
+            if(deletedUser != null)
+            {
+                IdentityResult result = await userManager.DeleteAsync(deletedUser);
+                if (result.Succeeded)
+                {
+                    context.SaveChanges();
+                    TempData["message"] = "Employee " + employee.FName + " " + employee.LName + " Deleted.";
+                    return LocalRedirect("/calendar/calendar");
+                }
+                else
+                    return View(employee);
+            }
+            else
+                return View(employee);
         }
 
         [HttpGet]

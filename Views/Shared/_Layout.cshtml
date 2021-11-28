@@ -99,13 +99,14 @@
                                        @Nav.Active("User/Settings", currentController, currentAction)"
                                        asp-area=""
                                        asp-controller="User"
-                                       asp-action="Settings">Settings</a>
+                                       asp-action="Settings"
+                                       method="get">Settings</a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li class="text-center">
                                     <form method="post" asp-action="LogOut" asp-controller="User" asp-area="">
                                         <input type="submit" class="btn btn-sm text-rsi-red"
-                                                       value="Log Out" />
+                                               value="Log Out" />
                                     </form>
                                 </li>
                             </ul>
