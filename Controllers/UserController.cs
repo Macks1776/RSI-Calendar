@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using RSI_Calendar.Models;
-using RSI_Calendar.Services;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using System.ComponentModel.DataAnnotations;

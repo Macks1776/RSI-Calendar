@@ -12,7 +12,6 @@ using RSI_Calendar.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using RSI_Calendar.Services;
 
 namespace RSI_Calendar
 {
@@ -41,9 +40,6 @@ namespace RSI_Calendar
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<CalendarContext>().AddDefaultTokenProviders();
-
-            services.AddTransient<IEmailSender, EmailSender>();
-            services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
