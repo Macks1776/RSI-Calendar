@@ -80,7 +80,7 @@ namespace RSI_Calendar.Areas.Admin.Controllers
 
                     await SendNewAcctEmail(model.Email, fullName, model.Password);
 
-                    return View("Register");
+                    return LocalRedirect("/admin/adminuser/search");
                 }
                 else
                 {
@@ -149,8 +149,8 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                 if (result.Succeeded)
                 {
                     context.SaveChanges();
-                    TempData["message"] = "Employee " + employee.FName + " " + employee.LName + " Deleted.";
-                    return LocalRedirect("/calendar/calendar");
+                    TempData["message"] = employee.FName + " " + employee.LName + " has been deleted.";
+                    return LocalRedirect("/admin/adminuser/search");
                 }
                 else
                     return View(employee);
