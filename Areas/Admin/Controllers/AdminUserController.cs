@@ -54,7 +54,10 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                         LName = model.LName,
                         Branch = model.Branch,
                         Role = model.Role,
-                        Email = model.Email
+                        Email = model.Email,
+                        ReceiveEduNotis = true,
+                        ReceiveFamNotis = true,
+                        ReceiveFunNotis = true
                     };
 
                     if(model.Role == "admin")
@@ -196,6 +199,85 @@ namespace RSI_Calendar.Areas.Admin.Controllers
             }
 
             return View(vm);
+        }
+
+        public async Task<IActionResult> RequestResetPassword(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByEmailAsync(employee.Email);
+                if (user == null)
+                {
+                    TempData["message"] = "The email provided did not belong to a register user.";
+                    return View("Edit", employee); //This should probably go back to the forgot password page and show a message saying user not found.
+                }
+
+                var token = await userManager.GeneratePasswordResetTokenAsync(user);
+                var link = Url.Action("ResetPassword", "User", new { Token = token, Email = user.Email }, Request.Scheme);
+
+                string fullName = user.FirstName + " " + user.LastName;
+                await PasswordResetEmail(user.Email, fullName, link);
+
+                TempData["message"] = $"Password reset email sent to {user.Email}";
+                return View("Edit", employee);
+
+            }
+            else
+            {
+                TempData["message"] = "There was an error.";
+                return View("Edit", employee); // Return back to the forgot password view with what the errors are.
+            }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ResetPassword(string token, string email)
+        {
+            var model = new ResetPasswordViewModel { Token = token, Email = email };
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel resetPassword)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userManager.FindByEmailAsync(resetPassword.Email);
+                if (user == null)
+                {
+                    TempData["message"] = "The email provided did not belong to a register user. Please check your entry or contact your Admin.";
+                    return View("ForgotPassword"); // return a view saying that the user doesn't exist
+                }
+
+                var restPassResult = await userManager.ResetPasswordAsync(user, resetPassword.Token, resetPassword.Password);
+
+                if (!restPassResult.Succeeded)
+                {
+                    TempData["message"] = "There was an error. Please try again or contact your Admin.";
+                    return View("ForgotPassword"); // Return a view saying that there was an error
+                }
+
+                return View("ResetPasswordConfirmation");
+            }
+            else
+            {
+                TempData["message"] = "There was an error. Please try again or contact your Admin.";
+                return View("ForgotPassword"); // Return a view saying that there was an error
+            }
+        }
+
+        static async Task PasswordResetEmail(string email, string fullName, string link)
+        {
+            var key = "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"; // not the properplace to store it, but I couldn't get the enviorment vairiable to work
+            var client = new SendGridClient(key);
+            var from = new EmailAddress("testcalender177@gmail.com", "Test McTest");
+            var subject = "Admin Password Reset Request";
+            var to = new EmailAddress(email, fullName);
+            var plainTextContent = $"Your Admin has requested to reset your password. Go to this link to reset your password, {link}";
+            var htmlContent = $"Your Admin has requested to reset your password. Go to this <a href={link}>Link</a> to reset your password.";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
         }
 
         static async Task SendNewAcctEmail(string toEmail, string toName, string tempPassword)
