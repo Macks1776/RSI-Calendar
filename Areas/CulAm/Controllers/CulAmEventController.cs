@@ -141,6 +141,11 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         public LocalRedirectResult Delete()
         {
             var thisEvent = context.Events.Find(TempData["id"]);
+            var attachments = context.Attachments.Where(a => a.EventID == thisEvent.EventID).ToList();
+            foreach(var a in attachments)
+            {
+                context.Attachments.Remove(a);
+            }
             context.Events.Remove(thisEvent);
             context.SaveChanges();
             return LocalRedirect("/calendar/calendar");
