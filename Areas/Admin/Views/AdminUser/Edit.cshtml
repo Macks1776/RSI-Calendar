@@ -13,6 +13,7 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <form method="post" asp-action="Edit">
 
+        <input asp-for="ID" type="hidden" />
         <!-- FIRST NAME -->
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">First Name:</label>
@@ -69,27 +70,7 @@
 
         <!-- PASSWORD -->
         <div class="form-group row top-50">
-            <label for="AdminEditSettingsPassword" class="col-sm-2 col-form-label fw-bold">Password:</label>
-            <div class="col-sm-7">
-                <input type="password" class="form-control shadow-sm rsi-password" id="AdminEditSettingsPassword" value="">
-            </div>
-        </div>
-
-        <!--CONFIRM PASSWORD -->
-        <div class="form-group row top-50">
-            <label for="AdminEditSettingsConfirmPassword" class="col-sm-2 col-form-label fw-bold"> Confirm Password:</label>
-            <div class="col-sm-7">
-                <input type="password" class="form-control shadow-sm rsi-password" id="AdminEditSettingsConfirmPassword" value="">
-            </div>
-        </div>
-
-        <!-- SHOW/HIDE PASSWORD -->
-        <div class="form-group row top-50">
-            <label class="col-sm-2"></label>
-            <div class="col-sm-7">
-                <label class="form-check-label" for="AdminEditSettingsShowPassword">Show Password?</label>
-                <input class="form-check-input passwordToggle" type="checkbox" id="AdminEditSettingsShowPassword" onclick="toggle_password();">
-            </div>
+            <button type="submit" class="btn rsi-btn-white" asp-action="RequestResetPassword" asp-controller="AdminUser" asp-area="Admin">Send Password Reset Email</button>
         </div>
 
         <!-- PASSWORD Right now this is disabled because I have to think hard

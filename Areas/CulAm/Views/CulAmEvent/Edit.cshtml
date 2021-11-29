@@ -11,6 +11,7 @@
     {
         buttonText = "Save";
     }
+
     string titleString;
     string[] titles;
     string linkString;
@@ -38,7 +39,6 @@
     }
 }
 
-
 <div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
     <div class="container">
         <h1 class="display-6 text-center text-white">@ViewBag.Action Event</h1>
@@ -47,6 +47,8 @@
 
 <div class="container mt-5 mb-5 p-5 rsi-form">
     <form asp-action="Edit" method="post">
+
+        <input asp-for="EventID" type="hidden" />
 
         <!-- TITLE -->
         <div class="row">

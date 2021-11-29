@@ -3,7 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using RSI_Calendar.Models;
+using Attachment = RSI_Calendar.Models.Attachment; //SendGrid has a class called 'Attachment' that isn't used, but this using statment makes it so that when we type attachment it knows we mean our attachment
 
 namespace RSI_Calendar.Areas.CulAm.Controllers
 {
@@ -49,7 +52,7 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Event tableEvent)
+        public async Task<IActionResult> Edit(Event tableEvent)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +60,56 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                     context.Events.Add(tableEvent);
                 else
                     context.Events.Update(tableEvent);
+
+                if(tableEvent.Type == "Req")
+                {
+                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch).ToList();
+
+                    foreach (var e in employees)
+                    {
+                        string fullName = e.FName + " " + e.LName;
+                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Required");
+                    }
+                }
+                else if(tableEvent.Type == "Edu")
+                {
+                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveEduNotis == true);
+
+                    foreach (var e in employees)
+                    {
+                        string fullName = e.FName + " " + e.LName;
+                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Educational");
+                    }
+                }
+                else if (tableEvent.Type == "Fam")
+                {
+                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFamNotis == true);
+
+                    foreach (var e in employees)
+                    {
+                        string fullName = e.FName + " " + e.LName;
+                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Fun w/ Family");
+                    }
+                }
+                else if (tableEvent.Type == "Fun")
+                {
+                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFunNotis == true);
+
+                    foreach (var e in employees)
+                    {
+                        string fullName = e.FName + " " + e.LName;
+                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Fun w/ Co-Workers");
+                    }
+                }
+
 
                 context.SaveChanges();
                 return LocalRedirect("/calendar/calendar");
@@ -164,5 +217,17 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             return View(attachments);
         }
 
+        static async Task EventNotificationEmail(string email, string fullName, string link, string eventName, string eventType)
+        {
+            var key = "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"; // not the properplace to store it, but I couldn't get the enviorment vairiable to work
+            var client = new SendGridClient(key);
+            var from = new EmailAddress("testcalender177@gmail.com", "Test McTest");
+            var subject = $"New {eventType} Event: {eventName}";
+            var to = new EmailAddress(email, fullName);
+            var plainTextContent = $"RSI Cultrual Event Calendar Notification: New {eventType} Event {eventName} view at {link}";
+            var htmlContent = $"RSI Cultrual Event Calendar Notification: New {eventType} Event <em><a href='{link}'>{eventName}</a></em>.";
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
+            var response = await client.SendEmailAsync(msg);
+        }
     }
 }

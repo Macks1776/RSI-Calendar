@@ -17,7 +17,11 @@ namespace RSI_Calendar.Models
         public string Role { get; set; }
 
         public string Email { get; set; }
-        public string Password { get; set; }
+
+        // Bools for if the user want's to recieve emails for these events. Requried can't be opted out of.
+        public bool ReceiveFamNotis { get; set; }
+        public bool ReceiveEduNotis { get; set; }
+        public bool ReceiveFunNotis { get; set; }
 
         [NotMapped]
         [DataType(DataType.Password)]
