@@ -93,19 +93,20 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                 @User.Identity.Name
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+                            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end bg-dark" aria-labelledby="dropdownMenuLink">
                                 <li>
-                                    <a class="dropdown-item text-rsi-blue
+                                    <a class="dropdown-item
                                        @Nav.Active("User/Settings", currentController, currentAction)"
                                        asp-area=""
                                        asp-controller="User"
-                                       asp-action="Settings">Settings</a>
+                                       asp-action="Settings"
+                                       method="get">Settings</a>
                                 </li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li class="text-center">
                                     <form method="post" asp-action="LogOut" asp-controller="User" asp-area="">
-                                        <input type="submit" class="btn btn-sm text-rsi-red"
-                                                       value="Log Out" />
+                                        <input type="submit" class="dropdown-item" id="btnLogout"
+                                               value="Log Out" />
                                     </form>
                                 </li>
                             </ul>

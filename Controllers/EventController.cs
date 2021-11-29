@@ -18,7 +18,7 @@ namespace RSI_Calendar.Controllers
         public IActionResult Details(int id)
         {
             var thisEvent = context.Events.Find(id);
-            var attachments = context.Attachments.Where(a => a.EventID == id);
+            var attachments = context.Attachments.Where(a => a.EventID == id).ToList();
 
             foreach (var attachment in attachments)
             {

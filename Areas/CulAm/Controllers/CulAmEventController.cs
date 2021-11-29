@@ -40,7 +40,10 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             {
                 TempData["titles"] += attachment.Title + ",";
                 TempData["links"] += attachment.Link + ",";
+                TempData["id"] += attachment.ID + ",";
             }
+
+            TempData["EventID"] = id;
 
             return View(tableEvent);
         }
@@ -103,7 +106,7 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
                 Attachment attachment = new Attachment
                 {
                     EventID = tableEvent.EventID,
-                    Title = tableEvent.AttachmentName,
+                    Title = tableEvent.AttachmentTitle,
                     Link = tableEvent.AttachmentLink
                 };
 
@@ -115,16 +118,51 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             }
             else
             {
-                string returnURL = "/culamevent/edit/" + tableEvent.EventID;
+                string returnURL = "/culam/culamevent/edit/" + tableEvent.EventID;
                 return LocalRedirect(returnURL);
             }
         }
 
         [HttpGet]
+        public IActionResult EditAttachment(int id)
+        {
+            var attachment = context.Attachments.Find(id);
+            return View(attachment);
+        }
+
+        [HttpPost]
+        public IActionResult EditAttachment(Attachment attachment)
+        {
+            var editedAttachment = context.Attachments.Find(attachment.ID);
+
+            editedAttachment.Link = attachment.Link;
+            editedAttachment.Title = attachment.Title;
+            context.Attachments.Update(editedAttachment);
+            context.SaveChanges();
+
+            return LocalRedirect("/culam/culamevent/edit/" + attachment.EventID);
+        }
+
+        [HttpGet]
+        public IActionResult DeleteAttachment(int id)
+        {
+            var attachment = context.Attachments.Find(id);
+            return View(attachment);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteAttachment(Attachment attachment)
+        {
+            context.Attachments.Remove(attachment);
+            context.SaveChanges();
+            return LocalRedirect("/culam/culamevent/edit/" + attachment.EventID);
+        }
+
         public IActionResult ManageAttachments(int id)
         {
             var attachments = context.Attachments.Where(a => a.EventID == id).ToList();
             return View(attachments);
         }
+
     }
 }
