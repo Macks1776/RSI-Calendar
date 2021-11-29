@@ -163,7 +163,10 @@ button.navbar-toggler {
     padding: 20px;
 }
 
-
+/* Calendar Legend */
+#legend {
+    padding: 5px;
+}
 
 
 /* 
