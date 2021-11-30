@@ -68,10 +68,17 @@
             </div>
         </div>
 
-        <!-- PASSWORD -->
-        <div class="form-group row top-50">
-            <button type="submit" class="btn rsi-btn-white" asp-action="RequestResetPassword" asp-controller="AdminUser" asp-area="Admin">Send Password Reset Email</button>
-        </div>
+        <!--<br /> <br />-->
+        <!-- SEND PASSWORD RESET EMAIL -->
+        <!--<div class="form-group row top-50">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-7">
+                <button type="submit" class="btn btn-lg rsi-btn-blue"
+                        asp-action="RequestResetPassword" asp-controller="AdminUser" asp-area="Admin">
+                    Send Email to Reset Password
+                </button>
+            </div>
+        </div>-->
 
         <!-- PASSWORD Right now this is disabled because I have to think hard
     <div class="form-group row">
@@ -110,12 +117,17 @@
             <div class="col-sm-7">
                 <div class="btn-group-lg">
                     <!-- Edit -->
-                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Edit"> <!--@ViewBag.Action-->
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">
+                    <!-- SEND PASSWORD RESET EMAIL -->
+                    <button type="submit" class="btn btn-lg rsi-btn-blue"
+                            asp-action="RequestResetPassword" asp-controller="AdminUser" asp-area="Admin">
+                        Send Email to Reset Password
+                    </button>
                     <!-- CANCEL -->
                     <a class="btn rsi-btn-white shadow-sm"
                        asp-area="Admin"
                        asp-controller="AdminUser"
-                       asp-action="Search" >Cancel</a>
+                       asp-action="Search">Cancel</a>
                 </div>
             </div>
         </div>

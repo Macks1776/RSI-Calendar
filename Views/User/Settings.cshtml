@@ -60,42 +60,36 @@
             </div>
         </div>
 
-        <!-- Notification Options -->
-        <div class="form-group row mt-5">
-            <div class="row">
-                <label for="eduNotis" class="col-sm-2 col-form-label fw-bold">Educational Events:</label>
-                <div class="col-sm-7">
-                    <select asp-for="@Model.ReceiveEduNotis" class="form-select shadow-sm" aria-label="Educational Notificaion Selector">
-                        <option value="True">True</option>
-                        <option value="False">False</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <label for="funNotis" class="col-sm-2 col-form-label fw-bold">Fun With Coworkers Events:</label>
-                <div class="col-sm-7">
-                    <select asp-for="@Model.ReceiveFunNotis" class="form-select shadow-sm" aria-label="Cowoker Fun Notificaion Selector">
-                        <option value="True">True</option>
-                        <option value="False">False</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <label for="eduNotis" class="col-sm-2 col-form-label fw-bold">Fun With Family Events:</label>
-                <div class="col-sm-7">
-                    <select asp-for="@Model.ReceiveFamNotis" class="form-select shadow-sm" aria-label="Family Fun Notificaion Selector">
-                        <option value="True">True</option>
-                        <option value="False">False</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <!-- Passord Field -->
+        <!-- Password Field -->
         <div class="form-group row">
             <label class="col-sm-2 col-form-label fw-bold">Password:</label>
             <div class="col-sm-7">
                 <button type="button" class="btn rsi-btn-blue" data-bs-toggle="modal" data-bs-target="#passwordModal">Change Password</button>
+            </div>
+        </div>
+
+        <!-- NOTIFICATIONS -->
+        <div class="form-group row mt-5">
+            <label class="col-sm-2"></label>
+            <div class="col-sm-7">
+                <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
+                    <legend class="fw-bold">Notifications for Event Types</legend>
+                    <!-- EDUCATIONAL -->
+                    <div class="form-check">
+                        <label class="form-check-label">Educational</label>
+                        <input asp-for="@Model.ReceiveEduNotis" class="form-check-input" type="checkbox">
+                    </div>
+                    <!-- FUN -->
+                    <div class="form-check">
+                        <label class="form-check-label">Fun with Coworkers</label>
+                        <input asp-for="@Model.ReceiveFunNotis" class="form-check-input" type="checkbox">
+                    </div>
+                    <!-- FAMILY -->
+                    <div class="form-check">
+                        <label class="form-check-label">Bring the Family</label>
+                        <input asp-for="@Model.ReceiveFamNotis" class="form-check-input" type="checkbox">
+                    </div>
+                </fieldset>
             </div>
         </div>
 
@@ -111,6 +105,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <!-- Password Modal -->
         <div class="modal fade" data-bs-backdrop="static" id="passwordModal" tabindex="-1" aria-labelledby="Change Password" aria-hidden="true">
@@ -137,88 +133,88 @@
                 </div>
             </div>
         </div>
-                <!-- SHOW/HIDE PASSWORD -->
-                @*<div class="form-group row top-50">
-                        <label class="col-sm-2"></label>
-                        <div class="col-sm-7">
-                            <label for="userSettingsShowPassword" class="form-check-label">Show Password?</label>
-                            <input type="checkbox" onclick="toggle_password();" id="userSettingsShowPassword"
-                                class="form-check-input passwordToggle">
-                        </div>
-                    </div>
 
-
-                    <!-- Password Modal -->
-                    <div class="modal fade" data-bs-backdrop="static" id="passwordModal" tabindex="-1" aria-labelledby="Change Password" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="addAttachmentLabel">Change Password</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <label for="OldPassword" class="col-md-2 col-form-label fw-bold">Old Password:</label>
-                                    <input asp-for="OldPassword" type="password" class="form-control shadow-sm" />
-
-                                    <label for="NewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
-                                    <input asp-for="NewPassword" type="password" class="form-control shadow-sm" />
-
-                                    <label for="ConfirmNewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
-                                    <input asp-for="ConfirmNewPassword" type="password" class="form-control shadow-sm" />
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary" asp-area="" asp-controller="User" asp-action="ChangePassword">Submit</button>
-                                </div>
-                            </div>
-                    <!-- NOTIFICATIONS -->
-                    <!--<div class="form-group row mt-5">
-                <label class="col-sm-2"></label>
-                <div class="col-sm-7">
-                    <fieldset class=" p-3 border border-dark border-1 shadow-sm rounded">
-                        <legend class="fw-bold">Notifications</legend>-->
-                    <!-- NEW EVENTS -->
-                    <!--<div class="form-check">
-                <label class="form-check-label" for="userSettingsNotificationsNew">New Events</label>
-                <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsNew" checked>-->
-                    <!-- TODO: this should be checked or unchecked dynamically -->
-                    <!--</div>-->
-                    <!-- OPTIONAL EVENTS -->
-                    <!--<div class="form-check">
-                <label class="form-check-label" for="userSettingsNotificationsOptional">Optional Events</label>
-                <input class="form-check-input" type="checkbox" value="" id="userSettingsNotificationsOptional">-->
-                    <!-- TODO: this should be checked or unchecked dynamically -->
-                    <!--</div>
-                        </fieldset>
-                    </div>
-                </div>-->
-                    <!-- BUTTONS -->
-                    <!--<div class="form-group row mt-5">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-7">
-                    <div class="btn-group-lg">-->
-                    <!-- SAVE -->
-                    <!--<input class="btn rsi-btn-blue shadow-sm" type="submit" value="Save">-->
-                    <!-- CANCEL -->
-                    <!--<a class="btn rsi-btn-white shadow-sm" type="button" asp-controller="Calendar" asp-action="Calendar">Cancel</a>
-                        </div>
-                    </div>
-                </div>-->
-                </form>
-
-                <br /><br /><br />
-
-
-                <!-- LOGOUT -->
-                <form method="post" asp-action="LogOut" asp-controller="User" asp-area="">
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label fw-bold"></label>
-                        <div class="col-sm-7">
-                            <input type="submit" class="btn rsi-btn-red"
-                                   value="Log Out" />
-                        </div>
-                    </div>*@
     </form>
 </div>
 
 <script src="~/js/Passwords.js"></script>
+
+
+
+
+
+
+
+<!-- SHOW/HIDE PASSWORD -->
+@*<div class="form-group row top-50">
+        <label class="col-sm-2"></label>
+        <div class="col-sm-7">
+            <label for="userSettingsShowPassword" class="form-check-label">Show Password?</label>
+            <input type="checkbox" onclick="toggle_password();" id="userSettingsShowPassword"
+                   class="form-check-input passwordToggle">
+        </div>
+    </div>*@
+
+
+
+
+<!-- Password Modal -->
+@*<div class="modal fade" data-bs-backdrop="static" id="passwordModal" tabindex="-1" aria-labelledby="Change Password" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addAttachmentLabel">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label for="OldPassword" class="col-md-2 col-form-label fw-bold">Old Password:</label>
+                    <input asp-for="OldPassword" type="password" class="form-control shadow-sm" />
+
+                    <label for="NewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
+                    <input asp-for="NewPassword" type="password" class="form-control shadow-sm" />
+
+                    <label for="ConfirmNewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
+                    <input asp-for="ConfirmNewPassword" type="password" class="form-control shadow-sm" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" asp-area="" asp-controller="User" asp-action="ChangePassword">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+<!-- Notification Options -->
+@*<div class="form-group row mt-5">
+        <div class="row">
+            <label for="eduNotis" class="col-sm-2 col-form-label fw-bold">Educational Events:</label>
+            <div class="col-sm-7">
+                <select asp-for="@Model.ReceiveEduNotis" class="form-select shadow-sm" aria-label="Educational Notificaion Selector">
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label for="funNotis" class="col-sm-2 col-form-label fw-bold">Fun With Coworkers Events:</label>
+            <div class="col-sm-7">
+                <select asp-for="@Model.ReceiveFunNotis" class="form-select shadow-sm" aria-label="Cowoker Fun Notificaion Selector">
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <label for="eduNotis" class="col-sm-2 col-form-label fw-bold">Fun With Family Events:</label>
+            <div class="col-sm-7">
+                <select asp-for="@Model.ReceiveFamNotis" class="form-select shadow-sm" aria-label="Family Fun Notificaion Selector">
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+            </div>
+        </div>
+    </div>*@

@@ -116,8 +116,8 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                     context.SaveChanges();
                 }
 
-                return View("Month");
-                                      
+                return LocalRedirect("/admin/adminuser/search");
+
             }
             else
             {
