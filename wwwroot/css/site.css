@@ -169,6 +169,12 @@ button.navbar-toggler {
     padding-left: 15px !important;
 }
 
+/* Login */
+.rsi-form-login {
+    max-width: 400px;
+    margin: auto;
+}
+
 
 /* 
 **************************************************** TEXT
