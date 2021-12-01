@@ -280,7 +280,7 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         {
             //Removed the key for the api to make SendGrid happy. Contact me and I will give you the key and the instructions on how to use it
             //Without it app works just fine, just won't be able to send emails.
-            var key = ""; // not the properplace to store it, but I couldn't get the enviorment vairiable to work
+            var key = "key"; // not the properplace to store it, but I couldn't get the enviorment vairiable to work
             var client = new SendGridClient(key);
             var from = new EmailAddress("testcalender177@gmail.com", "Test McTest");
             string subject;
