@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('SubmitBranch').addEventListener('click', function () {
         let branch = $("#BranchPicker option:selected").val();
-        DateJumper.hide();
+        BranchPicker.hide();
 
         calendar = new FullCalendar.Calendar(calendarEl, {
             eventSources: [
