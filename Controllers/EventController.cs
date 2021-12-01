@@ -22,8 +22,8 @@ namespace RSI_Calendar.Controllers
 
             foreach (var attachment in attachments)
             {
-                TempData["titles"] += attachment.Title + ",";
-                TempData["links"] += attachment.Link + ",";
+                TempData["titles"] += attachment.Title + "`";
+                TempData["links"] += attachment.Link + "`";
             }
 
             return View(thisEvent);

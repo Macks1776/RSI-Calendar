@@ -8,16 +8,16 @@
     if(TempData["titles"] == null)
     {
         titleString = "NO ATTACHMENT";
-        titles = titleString.Split(',');
+        titles = titleString.Split('`');
         linkString = "NO ATTACHMENT";
-        links = linkString.Split(',');
+        links = linkString.Split('`');
     }
     else
     {
         titleString = TempData["titles"].ToString();
-        titles = titleString.Split(',');
+        titles = titleString.Split('`');
         linkString = TempData["links"].ToString();
-        links = linkString.Split(',');
+        links = linkString.Split('`');
     }
 }
 
