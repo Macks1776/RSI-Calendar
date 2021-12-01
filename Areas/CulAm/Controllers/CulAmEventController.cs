@@ -275,9 +275,12 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             return View(attachments);
         }
 
+        //Method for sending emails using SendGrid link is an optional paramater since you don't have a link for deleted events
         static async Task EventNotificationEmail(string email, string fullName, string eventName, string eventType, string function, string link = "nolink")
         {
-            var key = "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"; // not the properplace to store it, but I couldn't get the enviorment vairiable to work
+            //Removed the key for the api to make SendGrid happy. Contact me and I will give you the key and the instructions on how to use it
+            //Without it app works just fine, just won't be able to send emails.
+            var key = ""; // not the properplace to store it, but I couldn't get the enviorment vairiable to work
             var client = new SendGridClient(key);
             var from = new EmailAddress("testcalender177@gmail.com", "Test McTest");
             string subject;
