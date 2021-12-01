@@ -57,58 +57,61 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             if (ModelState.IsValid)
             {
                 if (tableEvent.EventID == 0)
+                {
+                    if (tableEvent.Type == "Req")
+                    {
+                        string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                        var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch).ToList();
+
+                        foreach (var e in employees)
+                        {
+                            string fullName = e.FName + " " + e.LName;
+                            await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Required", "Add", link);
+                        }
+                    }
+                    else if (tableEvent.Type == "Edu")
+                    {
+                        string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                        var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveEduNotis == true);
+
+                        foreach (var e in employees)
+                        {
+                            string fullName = e.FName + " " + e.LName;
+                            await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Educational", "Add", link);
+                        }
+                    }
+                    else if (tableEvent.Type == "Fam")
+                    {
+                        string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                        var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFamNotis == true);
+
+                        foreach (var e in employees)
+                        {
+                            string fullName = e.FName + " " + e.LName;
+                            await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Fun w/ Family", "Add", link);
+                        }
+                    }
+                    else if (tableEvent.Type == "Fun")
+                    {
+                        string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                        var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFunNotis == true);
+
+                        foreach (var e in employees)
+                        {
+                            string fullName = e.FName + " " + e.LName;
+                            await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Fun w/ Co-Workers", "Add", link);
+                        }
+                    }
+
                     context.Events.Add(tableEvent);
+                }
                 else
                     context.Events.Update(tableEvent);
 
-                if(tableEvent.Type == "Req")
-                {
-                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
-
-                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch).ToList();
-
-                    foreach (var e in employees)
-                    {
-                        string fullName = e.FName + " " + e.LName;
-                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Required");
-                    }
-                }
-                else if(tableEvent.Type == "Edu")
-                {
-                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
-
-                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveEduNotis == true);
-
-                    foreach (var e in employees)
-                    {
-                        string fullName = e.FName + " " + e.LName;
-                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Educational");
-                    }
-                }
-                else if (tableEvent.Type == "Fam")
-                {
-                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
-
-                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFamNotis == true);
-
-                    foreach (var e in employees)
-                    {
-                        string fullName = e.FName + " " + e.LName;
-                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Fun w/ Family");
-                    }
-                }
-                else if (tableEvent.Type == "Fun")
-                {
-                    string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
-
-                    var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFunNotis == true);
-
-                    foreach (var e in employees)
-                    {
-                        string fullName = e.FName + " " + e.LName;
-                        await EventNotificationEmail(e.Email, fullName, link, tableEvent.Name, "Fun w/ Co-Workers");
-                    }
-                }
 
 
                 context.SaveChanges();
@@ -138,15 +141,65 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
         }
 
         [HttpPost]
-        public LocalRedirectResult Delete()
+        public async Task<LocalRedirectResult> Delete()
         {
-            var thisEvent = context.Events.Find(TempData["id"]);
-            var attachments = context.Attachments.Where(a => a.EventID == thisEvent.EventID).ToList();
+            var tableEvent = context.Events.Find(TempData["id"]);
+            var attachments = context.Attachments.Where(a => a.EventID == tableEvent.EventID).ToList();
             foreach(var a in attachments)
             {
                 context.Attachments.Remove(a);
             }
-            context.Events.Remove(thisEvent);
+            context.Events.Remove(tableEvent);
+
+            if (tableEvent.Type == "Req")
+            {
+                string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch).ToList();
+
+                foreach (var e in employees)
+                {
+                    string fullName = e.FName + " " + e.LName;
+                    await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Required", "Delete");
+                }
+            }
+            else if (tableEvent.Type == "Edu")
+            {
+                string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveEduNotis == true);
+
+                foreach (var e in employees)
+                {
+                    string fullName = e.FName + " " + e.LName;
+                    await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Educational", "Delete");
+                }
+            }
+            else if (tableEvent.Type == "Fam")
+            {
+                string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFamNotis == true);
+
+                foreach (var e in employees)
+                {
+                    string fullName = e.FName + " " + e.LName;
+                    await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Fun w/ Family", "Delete");
+                }
+            }
+            else if (tableEvent.Type == "Fun")
+            {
+                string link = "https://localhost:5001/event/details/" + tableEvent.EventID.ToString();
+
+                var employees = context.Employees.Where(e => e.Branch == tableEvent.Branch && e.ReceiveFunNotis == true);
+
+                foreach (var e in employees)
+                {
+                    string fullName = e.FName + " " + e.LName;
+                    await EventNotificationEmail(e.Email, fullName, tableEvent.Name, "Fun w/ Co-Workers", "Delete");
+                }
+            }
+
             context.SaveChanges();
             return LocalRedirect("/calendar/calendar");
         }
@@ -222,17 +275,35 @@ namespace RSI_Calendar.Areas.CulAm.Controllers
             return View(attachments);
         }
 
-        static async Task EventNotificationEmail(string email, string fullName, string link, string eventName, string eventType)
+        static async Task EventNotificationEmail(string email, string fullName, string eventName, string eventType, string function, string link = "nolink")
         {
             var key = "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"; // not the properplace to store it, but I couldn't get the enviorment vairiable to work
             var client = new SendGridClient(key);
             var from = new EmailAddress("testcalender177@gmail.com", "Test McTest");
-            var subject = $"New {eventType} Event: {eventName}";
+            string subject;
+
+            if(function.ToUpper() == "ADD")
+                subject = $"New {eventType} Event: {eventName}";
+            else
+                subject = $"New {eventType} Event: {eventName}";
+
             var to = new EmailAddress(email, fullName);
-            var plainTextContent = $"RSI Cultrual Event Calendar Notification: New {eventType} Event {eventName} view at {link}";
-            var htmlContent = $"RSI Cultrual Event Calendar Notification: New {eventType} Event <em><a href='{link}'>{eventName}</a></em>.";
+            string plainTextContent;
+
+            if(function.ToUpper() == "ADD")
+                plainTextContent = $"RSI Cultrual Event Calendar Notification: New {eventType} Event {eventName}";
+            else
+                plainTextContent = $"RSI Cultrual Event Calendar Notification: Deleted {eventType} Event: {eventName}";
+
+            string htmlContent;
+            if(function.ToUpper() == "ADD")
+                htmlContent = $"RSI Cultrual Event Calendar Notification: New {eventType} Event <em><a href='{link}'>{eventName}</a></em>.";
+            else
+                htmlContent = $"RSI Cultrual Event Calendar Notification: Deleted {eventType} Event <em>>{eventName}</em>.";
+            
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
         }
+
     }
 }
