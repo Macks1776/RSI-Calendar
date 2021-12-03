@@ -1,6 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@namespace RSI_Calendar.Areas.Admin.Models
+@model UserSearchViewModel
 @{
     ViewData["Title"] = "User Search";
 }
@@ -11,21 +10,21 @@
 
 <!--Search Parameters-->
 <div class="container rsi-form">
-    <form>
-        <!--Event Name-->
+    <form asp-action="Search" method="post">
+        <!--User Search Term-->
         <div class="row mb-3">
-            <label class="col-form-label col-sm-2 col-lg-1 fw-bold" for="userSearchName">Term:</label>
+            <label class="col-form-label col-sm-2 col-lg-1 fw-bold" for="userSearchTerm">Term:</label>
             <div class="col-sm-10 col-lg-5">
-                <input class="form-control" type="text" id="userSearchName" 
-                       placeholder="First Name, Last Name, or Email Address"/>
+                <input class="form-control" type="text" id="userSearchTerm" asp-for="Term"
+                       placeholder="First Name, Last Name, or Email Address" />
             </div>
         </div>
         <!-- User Branch -->
         <div class="row mb-3">
             <label class="col-form-label col-sm-2 col-lg-1 fw-bold" for="userSearchBranch">Branch:</label>
             <div class="col-sm-10 col-lg-5">
-                <select class="form-select" id="userSearchBranch">
-                    <option value="any" selected>Any</option>
+                <select class="form-select" id="userSearchBranch" asp-for="Branch">
+                    <option value="Any" selected>Any</option>
                     <option value="Augusta, GA">Augusta, GA</option>
                     <option value="Albuquerque, NM">Albuquerque, NM</option>
                     <option value="Fort Wayne, IN">Fort Wayne, IN</option>
@@ -41,9 +40,9 @@
         <div class="row mb-3">
             <label class="col-form-label col-sm-2 col-lg-1 fw-bold" for="userSearchRole">Role:</label>
             <div class="col-sm-10 col-lg-5">
-                <select class="form-select" id="userSearchRole">
-                    <option value="any" selected>Any</option>
-                    <option value="user">User</option>
+                <select class="form-select" id="userSearchRole" asp-for="Role">
+                    <option value="Any" selected>Any</option>
+                    <option value="user">Employee</option>
                     <option value="culam">Cultural Ambassador</option>
                     <option value="admin">Administrator</option>
                 </select>
@@ -53,8 +52,8 @@
         <div class="row mb-3">
             <div class=" col-sm-2 col-lg-1"></div>
             <div class="col-sm-10 col-lg-5">
-                <button type="button" class="btn rsi-btn-blue shadow-sm">Search</button>
-                <button type="reset" class="btn rsi-btn-red shadow-sm">Reset</button>
+                <button type="submit" class="btn rsi-btn-blue shadow-sm">Search</button>
+                <a type="button" class="btn rsi-btn-red shadow-sm col-sm-auto" asp-action="Search">Clear</a>
                 <a type="button" class="btn rsi-btn-white shadow-sm"
                    asp-area=""
                    asp-controller="Calendar"
@@ -65,30 +64,30 @@
 </div>
 
 <!--Search Results-->
-<table class="table table-bordered table-dark table-striped table-hover">
+<table class="table table-secondary table-striped">
     <thead>
         <tr>
             <th>Name</th>
+            <th>Email</th>
             <th>Branch</th>
             <th>Role</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
+        @foreach (Employee e in Model.Results)
+        {
         <tr>
-            <td>LName, FName</td>
-            <td>Augusta, GA</td>
-            <td>User</td>
+            <td>@Html.DisplayFor(item => e.LName), @Html.DisplayFor(item => e.FName)</td>
+            <td>@Html.DisplayFor(item => e.Email)</td>
+            <td>@Html.DisplayFor(item => e.Branch)</td>
+            <td>@Html.DisplayFor(item => e.Role)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@e.ID" target="_blank">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@e.ID" target="_blank">Delete</a>
+            </td>
         </tr>
-        <tr>
-            <td>LName, FName</td>
-            <td>Augusta, GA</td>
-            <td>Admin</td>
-        </tr>
-        <tr>
-            <td>LName, FName</td>
-            <td>Augusta, GA</td>
-            <td>Cultural Ambassador</td>
-        </tr>
+        }
     </tbody>
 </table>
 

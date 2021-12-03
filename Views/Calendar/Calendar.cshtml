@@ -5,24 +5,27 @@
 <div id="calendar" class="rsi_form"></div>
 
 <!-- Calendar Legend -->
-<div id="CalendarLegend" class="row">
-    <div class="col">
-        <figure class="figure">
+<div class="container mt-5 mb-5 rsi-form" id="legend">
+    <div class="row">
+        <h6>Legend</h6>
+    </div>
+    <div id="CalendarLegend" class="row">
+        <div class="col-sm-3">
             <img src="/images/blue-calendar-icon.png" class="figure-img img-fluid rounded" alt="Blue Event">
             <figcaption class="figure-caption">Educational</figcaption>
-        </figure>
-        <figure class="figure">
+        </div>
+        <div class="col-sm-3">
             <img src="/images/red-calendar-icon.png" class="figure-img img-fluid rounded" alt="Red Event">
             <figcaption class="figure-caption">Required</figcaption>
-        </figure>
-        <figure class="figure">
+        </div>
+        <div class="col-sm-3">
             <img src="/images/green-calendar-icon.png" class="figure-img img-fluid rounded" alt="Green Event">
             <figcaption class="figure-caption">Fun With Co-Workers</figcaption>
-        </figure>
-        <figure class="figure">
+        </div>
+        <div class="col-sm-3">
             <img src="/images/yellow-calendar-icon.png" class="figure-img img-fluid rounded" alt="Yellow Event">
             <figcaption class="figure-caption">Family Fun</figcaption>
-        </figure>
+        </div>
     </div>
 </div>
 
@@ -51,31 +54,42 @@
                 </select>
                 <select id="YearPicker" class="form-select" aria-label="Select Year">
                     <option selected value="2021">2021</option>
-                    <option value="2010">2010</option>
-                    <option value="2011">2011</option>
-                    <option value="2012">2012</option>
-                    <option value="2013">2013</option>
-                    <option value="2014">2014</option>
-                    <option value="2015">2015</option>
-                    <option value="2016">2016</option>
-                    <option value="2017">2017</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
-                    <option value="2021">2021</option>
-                    <option value="2022">2022</option>
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025">2025</option>
-                    <option value="2026">2026</option>
-                    <option value="2027">2027</option>
-                    <option value="2028">2028</option>
-                    <option value="2029">2029</option>
-                    <option value="2030">2030</option>
+                    @for(int i = 2010; i <= 2030; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
                 </select>
             </div>
             <div class="modal-footer">
                 <button id="SubmitJump" type="button" class="btn rsi-btn-blue">Go</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Input Modal for Change Branch -->
+<div id="BranchJumper" class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Change Branch</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <select id="BranchPicker" class="form-select" aria-label="Select Branch">
+                    <option selected>Select Branch</option>
+                    <option value="Augusta, GA">Augusta, GA</option>
+                    <option value="Albuquerque, NM">Albuquerque, NM</option>
+                    <option value="FortWayne, IN">FortWayne, IN</option>
+                    <option value="Jonesboro, AR">Jonesboro, AR</option>
+                    <option value="Madison, WI">Madison, WI</option>
+                    <option value="Milwaukee, WI">Milwaukee, WI</option>
+                    <option value="Mobile, AL">Mobile, AL</option>
+                    <option value="Oklahoma City, OK">Oklahoma City, OK</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button id="SubmitBranch" type="button" class="btn rsi-btn-blue">Go</button>
             </div>
         </div>
     </div>

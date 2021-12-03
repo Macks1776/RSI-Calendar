@@ -104,17 +104,49 @@ html {
     background-color: var(--rsi-blue);
 }
 .nav-link {
-    color: white;
+    color: rgba(255,255,255,.55);
 }
 .nav-link:focus, .nav-link:hover {
-    color: #FF9292;
+    color: #FFF;
 }
 .nav-link.active {
-    color: var(--rsi-red);
+    color: #fff;
 }
 /* RSI LOGO IN NAV BAR */
 #rsi-logo {
     max-width: 100px;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--rsi-blue) !important;
+}
+
+#btnLogout:hover {
+    color: var(--rsi-red) !important;
+}
+/* MOBILE NAV */
+#mobileNav-ul {
+    text-align: center;
+    list-style: none;
+    padding: 0px;
+    font-size: x-large;
+}
+.mobile-navItem {
+    line-height: 50px;
+}
+a.bo-bottom {
+    border-bottom: .5px var(--rsi-gray) solid;
+}
+a.bo-top {
+    border-top: .5px var(--rsi-gray) solid;
+}
+button.navbar-toggler {
+    margin: 10px;
+}
+.navbar-toggler {
+    border-color: var(--rsi-gray) !important;
 }
 
 
@@ -131,7 +163,17 @@ html {
     padding: 20px;
 }
 
+/* Calendar Legend */
+#legend {
+    padding: 10px !important;
+    padding-left: 15px !important;
+}
 
+/* Login */
+.rsi-form-login {
+    max-width: 400px;
+    margin: auto;
+}
 
 
 /* 

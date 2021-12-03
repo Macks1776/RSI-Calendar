@@ -1,49 +1,69 @@
 ﻿@model LoginViewModel
-@{
-    ViewBag.Title = "Login";
-}
+@{ ViewBag.Title = "Login"; }
 
-<h2>Login</h2>
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<form method="post" asp-action="LogIn" asp-route-returnUrl="@Model.ReturnUrl" asp-area="" class="text-center rsi-form">
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Username:</label></div>
-        <div class="col-sm-4">
-            <input type="text" asp-for="Username"
-                   class="form-control" />
-        </div>
-        <div class="col">
-            <span asp-validation-for="Username"
-                  class="text-danger"></span>
+
+<div class="rsi-form-login">
+    <!-- PAGE TITLE -->
+    <div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+        <div class="container">
+            <h1 class="display-6 text-center text-white">Log In</h1>
         </div>
     </div>
-    <div class="form-group row">
-        <div class="col-sm-2"><label>Password:</label></div>
-        <div class="col-sm-4">
-            <input type="password" asp-for="Password"
-                   class="form-control" />
+
+
+    <!-- LOG IN FORM -->
+    <form method="post" class="text-center rsi-form" id="rsi-login-form"
+          asp-action="LogIn" asp-route-returnUrl="@Model.ReturnUrl" asp-area="">
+
+        <!-- MODEL VALIDATION -->
+        <div class="row mb-3">
+            <div class="text-danger text-start" asp-validation-summary="ModelOnly"></div>
         </div>
-        <div class="col">
-            <span asp-validation-for="Password"
-                  class="text-danger"></span>
+
+        <!-- USERNAME -->
+        <div class="row">
+            <input type="text" asp-for="Username" placeholder="Email Address" class="form-control" />
         </div>
-    </div>
-    <div class="form-group row">
-        <div class="offset-sm-2 col-sm-4">
-            <input type="checkbox" title="Remember Me" asp-for="RememberMe"
-                   class="form-check-inline" />
-            <label asp-for="RememberMe">Remember Me</label>
+        <!-- VALIDATION -->
+        <div class="row">
+            <span class="text-danger mb-4 text-start" asp-validation-for="Username"></span>
         </div>
-    </div>
-    <div class="row">
-        <div class="offset-2 col-sm-4">
+
+        <!-- PASSWORD -->
+        <div class="row">
+            <input type="password" asp-for="Password" placeholder="Password" class="form-control" />
+        </div>
+        <!-- VALIDATION -->
+        <div class="row">
+            <span class="text-danger mb-4 text-start" asp-validation-for="Password"></span>
+        </div>
+
+        <!-- REMEMBER ME? -->
+        <div class="row mt-1">
+            <div class="col">
+                <input type="checkbox" title="Remember Me" asp-for="RememberMe"
+                       class="form-check-inline" />
+                <label asp-for="RememberMe">Remember Me</label>
+            </div>
+        </div>
+
+        <!-- LOG IN BUTTON -->
+        <div class="row mt-2">
             <button type="submit" class="btn rsi-btn-blue">Log In</button>
         </div>
-    </div>
-    <div class="row">
-        <div class="offset-2 col-sm-4">
-            Having Trouble? <a asp-action="Help">Help</a>
+
+        <!-- FORGOT PASSWORD -->
+        <div class="row mt-2">
+            <a asp-controller="User" asp-action="ForgotPassword">Forgot Password?</a>
         </div>
-    </div>
-</form>
+
+        <!-- HELP -->
+        <div class="row mt-4">
+            <div class="col">
+                Having Trouble?
+                <a asp-action="Help">Help</a>
+            </div>
+        </div>
+    </form>
+</div>
