@@ -48,52 +48,53 @@
 <div class="container mt-5 mb-5 p-5 rsi-form">
     <form asp-action="Edit" method="post">
 
-        <input asp-for="EventID" type="hidden" />
+        <!-- Hidden input for the event ID so its actively in the model-->
+        <input type="hidden" asp-for="EventID" />
 
         <!-- TITLE -->
         <div class="row">
-            <label for="eventEditTitle" class="col-md-2 col-form-label fw-bold">Title:</label>
-            <div class="col-md-7">
+            <label for="eventEditTitle" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Title:</label>
+            <div class="col-sm-8 col-md-9">
                 <input asp-for="Name" type="text" class="form-control shadow-sm" id="eventEditTitle">
             </div>
         </div>
 
         <!-- START -->
         <div class="row">
-            <label for="eventEditStart" class="col-md-2 col-form-label fw-bold">Start:</label>
-            <div class="col-md-7">
+            <label for="eventEditStart" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Start:</label>
+            <div class="col-sm-8 col-md-9">
                 <input asp-for="StartDate" type="datetime-local" class="form-control shadow-sm" id="eventEditStart">
             </div>
         </div>
 
         <!-- END -->
         <div class="row top-50">
-            <label for="eventEditEnd" class="col-md-2 col-form-label fw-bold">End:</label>
-            <div class="col-md-7">
+            <label for="eventEditEnd" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">End:</label>
+            <div class="col-sm-8 col-md-9">
                 <input asp-for="EndDate" type="datetime-local" class="form-control shadow-sm" id="eventEditEnd">
             </div>
         </div>
 
         <!-- DESCRIPTION -->
         <div class="row top-50">
-            <label for="eventEditDescription" class="col-md-2 col-form-label fw-bold">Description:</label>
-            <div class="col-md-7">
+            <label for="eventEditDescription" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Description:</label>
+            <div class="col-sm-8 col-md-9">
                 <textarea asp-for="Description" class="form-control shadow-sm" id="eventEditDescription"></textarea>
             </div>
         </div>
 
         <!-- LOCATION -->
         <div class="row">
-            <label for="eventEditLocation" class="col-md-2 col-form-label fw-bold">Location:</label>
-            <div class="col-md-7">
+            <label for="eventEditLocation" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Location:</label>
+            <div class="col-sm-8 col-md-9">
                 <input asp-for="Location" type="text" class="form-control shadow-sm" id="eventEditLocation">
             </div>
         </div>
 
         <!-- BRANCH -->
         <div class="row">
-            <label for="eventEditBranch" class="col-md-2 col-form-label fw-bold">Branch:</label>
-            <div class="col-md-7">
+            <label for="eventEditBranch" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Branch:</label>
+            <div class="col-sm-8 col-md-9">
                 <select asp-for="Branch" class="form-select shadow-sm" aria-label="Branch Selection" id="eventEditBranch">
                     <option value="Augusta, GA" selected>Augusta, GA</option>
                     <option value="Albuquerque, NM">Albuquerque, NM</option>
@@ -109,8 +110,8 @@
 
         <!-- TYPE -->
         <div class="row">
-            <label for="eventEditType" class="col-md-2 col-form-label fw-bold">Type:</label>
-            <div class="col-md-7">
+            <label for="eventEditType" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Type:</label>
+            <div class="col-sm-8 col-md-9">
                 <select asp-for="Type" class="form-select shadow-sm" aria-label="Event Type Selection" id="eventEditType">
                     <option value="Req" selected>Required</option>
                     <option value="Fun">Fun with Coworkers</option>
@@ -120,76 +121,90 @@
             </div>
         </div>
 
-        <input type="hidden" asp-for="EventID" /> <!-- Hidden input for the event ID so its actively in the model-->
+        <!-- ATTACHMENTS AREA -->
+        <div class="row mt-5">
+            <label for="eventDetailsAttachments" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Attachments:</label>
+            <div class="col-sm-8 col-md-9">
+                <!-- BUTTON FOR ADDING ATTACHMENTS -->
+                <button type="button" class="btn rsi-btn-blue text-xxl-center"
+                        data-bs-toggle="modal" data-bs-target="#attachmentModal">
+                    Add Attachment
+                </button>
+            </div>
+        </div>
+
         <!-- ATTACHMENTS TABLE -->
-        <div class="row top-50">
-            <label for="eventDetailsAttachments" class="col-md-2 col-form-label fw-bold">Attachments:</label>
-            <div class="col-md-7">
-                @if (titleString != "NO ATTACHMENT")
-                {
-                    for (int i = 0; i < titles.Length - 1; i++)
-                    {
-                        <div class="row bg-white">
-                            <div class="col">
-                                <a href="@links[i]" class="link-primary">@titles[i]</a>
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn rsi-btn-blue" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="EditAttachment" asp-route-id="@ids[i]" formmethod="get">Edit</button>
-                            </div>
-                            <div class="col">
-                                <button type="submit" class="btn rsi-btn-red" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="DeleteAttachment" asp-route-id="@ids[i]" formmethod="get">Delete</button>
-                            </div>
-                        </div>
-                    }
+        @if (titleString != "NO ATTACHMENT")
+        {
+            <div class="row mt-2">
+                <div class="col-sm-4 col-md-3"></div>
+                <div class="col-sm-8 col-md-9">
+                    <table class="table">
+                        <tbody>
+                            @for (int i = 0; i < titles.Length - 1; i++)
+                            {
+                                <tr>
+                                    <td colspan="10">
+                                        <a href="@links[i]" class="link-primary">@titles[i]</a>
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn rsi-btn-white"
+                                                asp-area="CulAm" asp-controller="CulAmEvent" asp-action="EditAttachment" asp-route-id="@ids[i]"
+                                                formmethod="get">
+                                            Edit
+                                        </button>
+                                        <button type="submit" class="btn rsi-btn-white"
+                                                asp-area="CulAm" asp-controller="CulAmEvent" asp-action="DeleteAttachment" asp-route-id="@ids[i]"
+                                                formmethod="get">
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
 
-                }
+        <!-- MODAL: Add Attachment -->
+        <div class="modal fade" data-bs-backdrop="static" id="attachmentModal" tabindex="-1" aria-labelledby="Add Attachment" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addAttachmentLabel">Add Attachment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label for="AttachmentName" class="col-md-2 col-form-label fw-bold">Title:</label>
+                        <input asp-for="AttachmentTitle" type="text" class="form-control shadow-sm" />
 
-                <button type="button" class="btn rsi-btn-blue" data-bs-toggle="modal" data-bs-target="#attachmentModal">Add Attachment</button>
-                <button type="submit" class="btn rsi-btn-white" asp-controller="CulAmEvent" asp-action="ManageAttachments">Manage Attachments</button>
-
-                <!-- Add Attachment Modal -->
-                <div class="modal fade" data-bs-backdrop="static" id="attachmentModal" tabindex="-1" aria-labelledby="Add Attachment" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="addAttachmentLabel">Add Attachment</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <label for="AttachmentName" class="col-md-2 col-form-label fw-bold">Title:</label>
-                                <input asp-for="AttachmentTitle" type="text" class="form-control shadow-sm" />
-
-                                <label for="AttachmentLink" class="col-md-2 col-form-label fw-bold">Link:</label>
-                                <input asp-for="AttachmentLink" type="text" class="form-control shadow-sm" />
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="AddAttachment">Add</button>
-                            </div>
-                        </div>
+                        <label for="AttachmentLink" class="col-md-2 col-form-label fw-bold">Link:</label>
+                        <input asp-for="AttachmentLink" type="text" class="form-control shadow-sm" />
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn rsi-btn-blue" asp-area="CulAm" asp-controller="CulAmEvent" asp-action="AddAttachment">Add</button>
+                        <button type="button" class="btn rsi-btn-white" data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- BUTTONS -->
         <div class="form-group row mt-5">
-            <div class="col-md-2"></div>
-            <div class="col-md-7">
+            <div class="col-sm-4 col-md-3"></div>
+            <div class="col-sm-8 col-md-9">
                 <div class="btn-group-lg">
                     <!-- SAVE -->
                     <input class="btn rsi-btn-blue shadow-sm" type="submit" value="@buttonText">
                     <!-- CANCEL -->
-                    <a class="btn rsi-btn-white shadow-sm"
-                        asp-area=""
-                        asp-controller="Event"
-                        asp-action="Details"
-                        asp-route-id="@Model.EventID">Cancel</a>
                     @if (Model.Name == null)
                     {
                         <a class="btn rsi-btn-white shadow-sm"
                            asp-area=""
                            asp-controller="Calendar"
-                           asp-action="Calendar">Cancel</a>
+                           asp-action="Calendar">Cancel
+                        </a> 
                     }
                     else
                     {
@@ -197,7 +212,8 @@
                            asp-area=""
                            asp-controller="Event"
                            asp-action="Details"
-                           asp-route-id="@Model.EventID">Cancel</a>
+                           asp-route-id="@Model.EventID">Cancel
+                        </a>
                     }
                 </div>
             </div>
