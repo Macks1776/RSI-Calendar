@@ -7,22 +7,34 @@ document.addEventListener('DOMContentLoaded', function () {
     var calendar = new FullCalendar.Calendar(calendarEl, {
         eventSources: [
             {
-                url: '/calendar/getrequiredevents',
+                url: '/calendar/ReqEventJson',
+                extraParams: {
+                    branch: 'default'
+                },
                 color: 'red',
                 textColor: 'white'
             },
             {
-                url: '/calendar/geteducationevents',
+                url: '/calendar/EduEventJson',
+                extraParams: {
+                    branch: 'default'
+                },
                 color: 'blue',
                 textColor: 'white'
             },
             {
-                url: '/calendar/getfunevents',
+                url: '/calendar/FunEventJson',
+                extraParams: {
+                    branch: 'default'
+                },
                 color: 'green',
                 textColor: 'white'
             },
             {
-                url: '/calendar/getfamilyevents',
+                url: '/calendar/FamEventJson',
+                extraParams: {
+                    branch: 'default'
+                },
                 color: 'yellow',
                 textColor: 'black'
             }
@@ -77,28 +89,40 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.getElementById('SubmitBranch').addEventListener('click', function () {
-        let branch = $("#BranchPicker option:selected").val();
+        let branchVal = $("#BranchPicker option:selected").val();
         BranchPicker.hide();
 
         calendar = new FullCalendar.Calendar(calendarEl, {
             eventSources: [
                 {
-                    url: '/calendar/getrequiredevents/' + branch,
+                    url: '/calendar/ReqEventJson',
+                    extraParams: {
+                        branch: branchVal
+                    },
                     color: 'red',
                     textColor: 'white'
                 },
                 {
-                    url: '/calendar/geteducationevents' + branch,
+                    url: '/calendar/EduEventJson',
+                    extraParams: {
+                        branch: branchVal
+                    },
                     color: 'blue',
                     textColor: 'white'
                 },
                 {
-                    url: '/calendar/getfunevents' + branch,
+                    url: '/calendar/FunEventJson',
+                    extraParams: {
+                        branch: branchVal
+                    },
                     color: 'green',
                     textColor: 'white'
                 },
                 {
-                    url: '/calendar/getfamilyevents' + branch,
+                    url: '/calendar/FamEventJson',
+                    extraParams: {
+                        branch: branchVal
+                    },
                     color: 'yellow',
                     textColor: 'black'
                 }

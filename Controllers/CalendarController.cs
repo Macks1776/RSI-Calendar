@@ -43,107 +43,110 @@ namespace RSI_Calendar.Controllers
             return json;
         }
 
-        public async Task<string> GetRequiredEvents(string branch = "default")
+        public async Task<string> ReqEventJson(string branch)
         {
-            List<Event> requiredEvents;
+            List<Event> events = new List<Event>();
 
-            if(branch == "default")
+            if (branch.ToLower() == "default")
             {
                 var user = await userManager.GetUserAsync(User);
-                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
-                requiredEvents = context.Events.Where(e => e.Type == "Req" && e.Branch == employee[0].Branch).ToList();
+                var employeeList = context.Employees.Where(e => e.Email == user.Email).ToList();
+                events = context.Events.Where(e => e.Type == "Req" && e.Branch == employeeList[0].Branch).ToList();
             }
-            else
-                requiredEvents = context.Events.Where(e => e.Type == "Req" && e.Branch == branch).ToList();
+            else 
+                events = context.Events.Where(e => e.Type == "Req" && e.Branch == branch).ToList();
 
-            List<CalendarEvent> requiredEventList = new List<CalendarEvent>();
+            List<CalendarEvent> eventList = new List<CalendarEvent>();
 
-            foreach (var data in requiredEvents)
+            foreach (var e in events)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
-                requiredEventList.Add(calevent);
+                CalendarEvent calEvent = new CalendarEvent(e.EventID, e.Name, e.StartDate, e.EndDate, e.Description, e.Type);
+                eventList.Add(calEvent);
             }
 
-            string jsonRequiredEvents = JsonConvert.SerializeObject(requiredEventList);
+            string jsonEvents = JsonConvert.SerializeObject(eventList);
 
-            return jsonRequiredEvents;
+            return jsonEvents;
         }
 
-        public async Task<string> GetEducationEvents(string branch = "default")
+        public async Task<string> EduEventJson(string branch)
         {
-            List<Event> educationEvents;
+            List<Event> events = new List<Event>();
 
-            if (branch == "default")
+            if (branch.ToLower() == "default")
             {
                 var user = await userManager.GetUserAsync(User);
-                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
-                educationEvents = context.Events.Where(e => e.Type == "Edu" && e.Branch == employee[0].Branch).ToList();
+                var employeeList = context.Employees.Where(e => e.Email == user.Email).ToList();
+                events = context.Events.Where(e => e.Type == "Edu" && e.Branch == employeeList[0].Branch).ToList();
             }
             else
-                educationEvents = context.Events.Where(e => e.Type == "Edu" && e.Branch == branch).ToList();
-            List<CalendarEvent> educationEventList = new List<CalendarEvent>();
+                events = context.Events.Where(e => e.Type == "Edu" && e.Branch == branch).ToList();
 
-            foreach (var data in educationEvents)
+            List<CalendarEvent> eventList = new List<CalendarEvent>();
+
+            foreach (var e in events)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
-                educationEventList.Add(calevent);
+                CalendarEvent calEvent = new CalendarEvent(e.EventID, e.Name, e.StartDate, e.EndDate, e.Description, e.Type);
+                eventList.Add(calEvent);
             }
 
-            string jsonEducationEvents = JsonConvert.SerializeObject(educationEventList);
+            string jsonEvents = JsonConvert.SerializeObject(eventList);
 
-            return jsonEducationEvents;
+            return jsonEvents;
         }
 
-        public async Task<string> GetFamilyEvents(string branch = "default")
+        public async Task<string> FunEventJson(string branch)
         {
-            List<Event> familyEvents;
+            List<Event> events = new List<Event>();
 
-            if (branch == "default")
+            if (branch.ToLower() == "default")
             {
                 var user = await userManager.GetUserAsync(User);
-                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
-                familyEvents = context.Events.Where(e => e.Type == "Fam" && e.Branch == employee[0].Branch).ToList();
+                var employeeList = context.Employees.Where(e => e.Email == user.Email).ToList();
+                events = context.Events.Where(e => e.Type == "Fun" && e.Branch == employeeList[0].Branch).ToList();
             }
             else
-                familyEvents = context.Events.Where(e => e.Type == "Fam" && e.Branch == branch).ToList();
-            List<CalendarEvent> familyEventList = new List<CalendarEvent>();
+                events = context.Events.Where(e => e.Type == "Fun" && e.Branch == branch).ToList();
 
-            foreach (var data in familyEvents)
+            List<CalendarEvent> eventList = new List<CalendarEvent>();
+
+            foreach (var e in events)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
-                familyEventList.Add(calevent);
+                CalendarEvent calEvent = new CalendarEvent(e.EventID, e.Name, e.StartDate, e.EndDate, e.Description, e.Type);
+                eventList.Add(calEvent);
             }
 
-            string jsonFamilyEvents = JsonConvert.SerializeObject(familyEventList);
+            string jsonEvents = JsonConvert.SerializeObject(eventList);
 
-            return jsonFamilyEvents;
+            return jsonEvents;
         }
 
-        public async Task<string> GetFunEvents(string branch = "default")
+        public async Task<string> FamEventJson(string branch)
         {
-            List<Event> funEvents;
+            List<Event> events = new List<Event>();
 
-            if (branch == "default")
+            if (branch.ToLower() == "default")
             {
                 var user = await userManager.GetUserAsync(User);
-                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
-                funEvents = context.Events.Where(e => e.Type == "Fun" && e.Branch == employee[0].Branch).ToList();
+                var employeeList = context.Employees.Where(e => e.Email == user.Email).ToList();
+                events = context.Events.Where(e => e.Type == "Fam" && e.Branch == employeeList[0].Branch).ToList();
             }
             else
-                funEvents = context.Events.Where(e => e.Type == "Fun" && e.Branch == branch).ToList();
-            List<CalendarEvent> funEventList = new List<CalendarEvent>();
+                events = context.Events.Where(e => e.Type == "Fam" && e.Branch == branch).ToList();
 
-            foreach (var data in funEvents)
+            List<CalendarEvent> eventList = new List<CalendarEvent>();
+
+            foreach (var e in events)
             {
-                CalendarEvent calevent = new CalendarEvent(data.EventID, data.Name, data.StartDate, data.EndDate, data.Description, data.Type);
-                funEventList.Add(calevent);
+                CalendarEvent calEvent = new CalendarEvent(e.EventID, e.Name, e.StartDate, e.EndDate, e.Description, e.Type);
+                eventList.Add(calEvent);
             }
 
-            string jsonFamilyEvents = JsonConvert.SerializeObject(funEventList);
+            string jsonEvents = JsonConvert.SerializeObject(eventList);
 
-            return jsonFamilyEvents;
+            return jsonEvents;
         }
-        
+
     }
 }
 
