@@ -119,18 +119,23 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label for="OldPassword" class="col-md-2 col-form-label fw-bold">Old Password:</label>
-                        <input asp-for="OldPassword" type="password" class="form-control shadow-sm" />
+                        <label for="OldPassword" class="fw-bold">Old Password:</label>
+                        <input asp-for="OldPassword" type="password" class="form-control shadow-sm rsi-password" />
 
-                        <label for="NewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
-                        <input asp-for="NewPassword" type="password" class="form-control shadow-sm" />
+                        <label for="NewPassword" class="fw-bold">New Password:</label>
+                        <input asp-for="NewPassword" type="password" class="form-control shadow-sm rsi-password" />
 
-                        <label for="ConfirmNewPassword" class="col-md-2 col-form-label fw-bold">New Password:</label>
-                        <input asp-for="ConfirmNewPassword" type="password" class="form-control shadow-sm" />
+                        <label for="ConfirmNewPassword" class="fw-bold">New Password:</label>
+                        <input asp-for="ConfirmNewPassword" type="password" class="form-control shadow-sm rsi-password" />
+
+                        <!-- SHOW/HIDE PASSWORD -->
+                        <label for="registerShowPassword" class="form-check-label">Show Password?</label>
+                        <input type="checkbox" onclick="toggle_password();" id="registerShowPassword"
+                                       class="form-check-input passwordToggle">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary" asp-area="" asp-controller="User" asp-action="ChangePassword">Submit</button>
+                        <button type="button" class="btn rsi-btn-white" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn rsi-btn-blue" asp-area="" asp-controller="User" asp-action="ChangePassword">Submit</button>
                     </div>
                 </div>
             </div>
