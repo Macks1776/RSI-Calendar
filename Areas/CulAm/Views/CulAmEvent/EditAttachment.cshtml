@@ -1,0 +1,52 @@
+﻿@model Attachment
+@{ 
+    ViewData["Title"] = "Edit Attachment";
+}
+
+<!-- PAGE TITLE -->
+<div class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
+    <div class="container">
+        <h1 class="display-6 text-center text-white">Edit Attachment</h1>
+    </div>
+</div>
+
+<!-- EDIT FORM -->
+<div class="container mt-5 mb-5 p-5 rsi-form">
+    <form asp-action="EditAttachment" method="post">
+
+        <!-- TITLE -->
+        <div class="row">
+            <label for="attachmentTitle" class="col-sm-3 col-md-2 col-form-label fw-bold text-sm-end">Title:</label>
+            <div class="col-sm-9 col-md-10">
+                <input asp-for="Title" type="text" class="form-control shadow-sm" id="attachmentTitle">
+            </div>
+        </div>
+
+        <!-- Link -->
+        <div class="row">
+            <label for="attachmentLink" class="col-sm-3 col-md-2 col-form-label fw-bold text-sm-end">Link:</label>
+            <div class="col-sm-9 col-md-10">
+                <input asp-for="Link" type="text" class="form-control shadow-sm" id="attachmentLink">
+            </div>
+        </div>
+
+        <!-- Hidden Fields -->
+        <div class="row">
+            <input asp-for="EventID" type="hidden" />
+            <input asp-for="ID" type="hidden" />
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="row mt-5">
+            <div class="col-sm-3 col-md-2"></div>
+            <div class="col-sm-9 col-md-10">
+                <button class="btn rsi-btn-blue" type="submit">Save</button>
+                <a class="btn rsi-btn-white" asp-area="CulAm"
+                   asp-controller="CulAmEvent"
+                   asp-action="Edit"
+                   asp-route-id="@Model.EventID">Cancel</a>
+            </div>
+        </div>
+
+    </form>
+</div>

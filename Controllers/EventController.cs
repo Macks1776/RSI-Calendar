@@ -18,12 +18,12 @@ namespace RSI_Calendar.Controllers
         public IActionResult Details(int id)
         {
             var thisEvent = context.Events.Find(id);
-            var attachments = context.Attachments.Where(a => a.EventID == id);
+            var attachments = context.Attachments.Where(a => a.EventID == id).ToList();
 
             foreach (var attachment in attachments)
             {
-                TempData["titles"] += attachment.Title + ",";
-                TempData["links"] += attachment.Link + ",";
+                TempData["titles"] += attachment.Title + "`";
+                TempData["links"] += attachment.Link + "`";
             }
 
             return View(thisEvent);
@@ -40,6 +40,12 @@ namespace RSI_Calendar.Controllers
                 IncludeDate = false,
                 Results = new List<Event>()
             };
+
+            // Search View opens with a list of all future events ordered by startdate
+            vm.Results = context.Events
+                .Where(item => item.StartDate.Date >= DateTime.Today)
+                .OrderBy(e => e.StartDate)
+                .ToList();
 
             return View(vm);
         }

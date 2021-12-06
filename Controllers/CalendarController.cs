@@ -1,16 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using RSI_Calendar.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace RSI_Calendar.Controllers
 {
     public class CalendarController : Controller
     {
         private CalendarContext context { get; set; }
+        private UserManager<User> userManager;
+        private SignInManager<User> signInManager;
 
-        public CalendarController(CalendarContext ctx) => context = ctx;
+        public CalendarController(UserManager<User> userMgr, SignInManager<User> signInMgr, CalendarContext ctx)
+        {
+            userManager = userMgr;
+            signInManager = signInMgr;
+            context = ctx;
+        }
 
         public IActionResult Calendar()
         {
@@ -33,9 +43,19 @@ namespace RSI_Calendar.Controllers
             return json;
         }
 
-        public string GetRequiredEvents()
+        public async Task<string> GetRequiredEvents(string branch = "default")
         {
-            var requiredEvents = context.Events.Where(e => e.Type == "Req").ToList();
+            List<Event> requiredEvents;
+
+            if(branch == "default")
+            {
+                var user = await userManager.GetUserAsync(User);
+                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
+                requiredEvents = context.Events.Where(e => e.Type == "Req" && e.Branch == employee[0].Branch).ToList();
+            }
+            else
+                requiredEvents = context.Events.Where(e => e.Type == "Req" && e.Branch == branch).ToList();
+
             List<CalendarEvent> requiredEventList = new List<CalendarEvent>();
 
             foreach (var data in requiredEvents)
@@ -49,9 +69,18 @@ namespace RSI_Calendar.Controllers
             return jsonRequiredEvents;
         }
 
-        public string GetEducationEvents()
+        public async Task<string> GetEducationEvents(string branch = "default")
         {
-            var educationEvents = context.Events.Where(e => e.Type == "Edu").ToList();
+            List<Event> educationEvents;
+
+            if (branch == "default")
+            {
+                var user = await userManager.GetUserAsync(User);
+                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
+                educationEvents = context.Events.Where(e => e.Type == "Edu" && e.Branch == employee[0].Branch).ToList();
+            }
+            else
+                educationEvents = context.Events.Where(e => e.Type == "Edu" && e.Branch == branch).ToList();
             List<CalendarEvent> educationEventList = new List<CalendarEvent>();
 
             foreach (var data in educationEvents)
@@ -65,9 +94,18 @@ namespace RSI_Calendar.Controllers
             return jsonEducationEvents;
         }
 
-        public string GetFamilyEvents()
+        public async Task<string> GetFamilyEvents(string branch = "default")
         {
-            var familyEvents = context.Events.Where(e => e.Type == "Fam").ToList();
+            List<Event> familyEvents;
+
+            if (branch == "default")
+            {
+                var user = await userManager.GetUserAsync(User);
+                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
+                familyEvents = context.Events.Where(e => e.Type == "Fam" && e.Branch == employee[0].Branch).ToList();
+            }
+            else
+                familyEvents = context.Events.Where(e => e.Type == "Fam" && e.Branch == branch).ToList();
             List<CalendarEvent> familyEventList = new List<CalendarEvent>();
 
             foreach (var data in familyEvents)
@@ -81,9 +119,18 @@ namespace RSI_Calendar.Controllers
             return jsonFamilyEvents;
         }
 
-        public string GetFunEvents()
+        public async Task<string> GetFunEvents(string branch = "default")
         {
-            var funEvents = context.Events.Where(e => e.Type == "Fun").ToList();
+            List<Event> funEvents;
+
+            if (branch == "default")
+            {
+                var user = await userManager.GetUserAsync(User);
+                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
+                funEvents = context.Events.Where(e => e.Type == "Fun" && e.Branch == employee[0].Branch).ToList();
+            }
+            else
+                funEvents = context.Events.Where(e => e.Type == "Fun" && e.Branch == branch).ToList();
             List<CalendarEvent> funEventList = new List<CalendarEvent>();
 
             foreach (var data in funEvents)

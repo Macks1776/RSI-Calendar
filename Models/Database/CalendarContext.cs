@@ -22,53 +22,6 @@ namespace RSI_Calendar.Models
 
             builder.Entity<Attachment>().HasKey(x => x.ID);
 
-            // EMPLOYEE SEED DATA
-            builder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    ID = 1,
-                    FName = "Larry",
-                    LName = "Overholt",
-                    Branch = "Augusta, GA",
-                    Role = "Admin",
-                    Email = "loverhol@smartweb.augustatech.edu",
-                    Password = "LarryOverholt2021"
-                },
-
-                new Employee
-                {
-                    ID = 2,
-                    FName = "Max",
-                    LName = "Swann",
-                    Branch = "Augusta, GA",
-                    Role = "Employee",
-                    Email = "maxswann1995@gmail.com",
-                    Password = "MaxSwann2021"
-                },
-
-                new Employee
-                {
-                    ID = 3,
-                    FName = "Keyla",
-                    LName = "Washington",
-                    Branch = "Augusta, GA",
-                    Role = "CultrualAmbassador",
-                    Email = "khobbswa@smartweb.augustatech.edu",
-                    Password = "KeylaWashington2021"
-                },
-
-                new Employee
-                {
-                    ID = 4,
-                    FName = "Matthew",
-                    LName = "Jeffreys",
-                    Branch = "Augusta, GA",
-                    Role = "CultrualAmbassador",
-                    Email = "mcjeffreys7@gmail.com",
-                    Password = "MatthewJeffreys2021"
-                }
-                );
-
             // EVENT SEED DATA
             builder.Entity<Event>().HasData(
                 new Event

@@ -1,5 +1,7 @@
 ﻿@model Event
 @{ 
+    ViewData["Title"] = "Event Delete";
+
     string titleString;
     string[] titles;
     string linkString;
@@ -24,7 +26,12 @@
 <!-- EVENT TITLE -->
 <div id="delete-jumbotron" class="jumbotron jumbotron-fluid bg-rsi-blue p-3 mb-3 rounded">
     <div class="container">
-        <h1 class="display-6 text-center  text-rsi-red">Are you sure you want to delete this event?</h1>
+        <div class="row">
+            <h1 class="display-6 text-center text-rsi-red">Are you sure you want to delete this event?</h1>
+        </div>
+        <div class="row">
+            <h5 class="text-center text-rsi-red">* This action cannot be undone</h5>
+        </div>
     </div>
 </div>
 
@@ -95,7 +102,7 @@
                 <ul class="list-group" id="eventDeleteAttachments">
                     @if (titleString != "NO ATTACHMENT")
                     {
-                        for (int i = 0; i < titles.Length; i++)
+                        for (int i = 0; i < titles.Length -1; i++)
                         {
                             <li class="list-group-item">
                                 <a href="@links[i]" class="link-primary">@titles[i]</a>

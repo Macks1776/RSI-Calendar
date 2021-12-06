@@ -10,8 +10,8 @@ using RSI_Calendar.Models;
 namespace RSI_Calendar.Migrations
 {
     [DbContext(typeof(CalendarContext))]
-    [Migration("20211104052204_More-Seed-Data")]
-    partial class MoreSeedData
+    [Migration("20211129214258_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -404,8 +404,14 @@ namespace RSI_Calendar.Migrations
                     b.Property<string>("LName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool>("ReceiveEduNotis")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ReceiveFamNotis")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("ReceiveFunNotis")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Role")
                         .HasColumnType("nvarchar(max)");
@@ -413,48 +419,6 @@ namespace RSI_Calendar.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Employees");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Branch = "Augusta, GA",
-                            Email = "loverhol@smartweb.augustatech.edu",
-                            FName = "Larry",
-                            LName = "Overholt",
-                            Password = "LarryOverholt2021",
-                            Role = "Admin"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Branch = "Augusta, GA",
-                            Email = "maxswann1995@gmail.com",
-                            FName = "Max",
-                            LName = "Swann",
-                            Password = "MaxSwann2021",
-                            Role = "Employee"
-                        },
-                        new
-                        {
-                            ID = 3,
-                            Branch = "Augusta, GA",
-                            Email = "khobbswa@smartweb.augustatech.edu",
-                            FName = "Keyla",
-                            LName = "Washington",
-                            Password = "KeylaWashington2021",
-                            Role = "CultrualAmbassador"
-                        },
-                        new
-                        {
-                            ID = 4,
-                            Branch = "Augusta, GA",
-                            Email = "mcjeffreys7@gmail.com",
-                            FName = "Matthew",
-                            LName = "Jeffreys",
-                            Password = "MatthewJeffreys2021",
-                            Role = "CultrualAmbassador"
-                        });
                 });
 
             modelBuilder.Entity("RSI_Calendar.Models.Event", b =>
@@ -477,6 +441,7 @@ namespace RSI_Calendar.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
