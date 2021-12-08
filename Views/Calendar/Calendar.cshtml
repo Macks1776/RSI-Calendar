@@ -1,3 +1,5 @@
+﻿@model CalendarViewModel
+
 ﻿@{ ViewData["Title"] = "Calendar"; }
 
 <!--This is a calendar using the full library, which i think will be the easiest way. Just need to figure out a way to get JavaScript to read our table and populate the events-->
@@ -69,28 +71,31 @@
 
 <!-- Input Modal for Change Branch -->
 <div id="BranchJumper" class="modal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Change Branch</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <select id="BranchPicker" class="form-select" aria-label="Select Branch">
-                    <option selected>Select Branch</option>
-                    <option value="Augusta, GA">Augusta, GA</option>
-                    <option value="Albuquerque, NM">Albuquerque, NM</option>
-                    <option value="FortWayne, IN">FortWayne, IN</option>
-                    <option value="Jonesboro, AR">Jonesboro, AR</option>
-                    <option value="Madison, WI">Madison, WI</option>
-                    <option value="Milwaukee, WI">Milwaukee, WI</option>
-                    <option value="Mobile, AL">Mobile, AL</option>
-                    <option value="Oklahoma City, OK">Oklahoma City, OK</option>
-                </select>
-            </div>
-            <div class="modal-footer">
-                <button id="SubmitBranch" type="button" class="btn rsi-btn-blue">Go</button>
+    <form asp-action="ChangeBranch" method="post">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Branch</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label>Select Branch</label>
+                    <select asp-for="Branch" id="BranchPicker" class="form-select" aria-label="Select Branch">
+                        <option value="Augusta, GA">Augusta, GA</option>
+                        <option value="Albuquerque, NM">Albuquerque, NM</option>
+                        <option value="FortWayne, IN">FortWayne, IN</option>
+                        <option value="Jonesboro, AR">Jonesboro, AR</option>
+                        <option value="Madison, WI">Madison, WI</option>
+                        <option value="Milwaukee, WI">Milwaukee, WI</option>
+                        <option value="Mobile, AL">Mobile, AL</option>
+                        <option value="Oklahoma City, OK">Oklahoma City, OK</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn rsi-btn-blue shadow-sm" type="submit" value="View" />
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+    
 </div>
