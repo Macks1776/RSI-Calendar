@@ -22,9 +22,21 @@ namespace RSI_Calendar.Controllers
             context = ctx;
         }
 
+        [HttpGet]
         public IActionResult Calendar()
         {
-            return View("Calendar");
+            var calendar = new CalendarViewModel();
+            calendar.Branch = "default";
+            TempData["CalendarBranch"] = calendar.Branch;
+            return View("Calendar", calendar);
+        }
+
+        [HttpPost]
+        public IActionResult ChangeBranch(CalendarViewModel calendar)
+        {
+            TempData["CalendarBranch"] = calendar.Branch;
+            //var cal = new CalendarViewModel(calendar.Branch);
+            return View("Calendar", calendar);
         }
 
         public string GetCalendarData()
@@ -43,8 +55,9 @@ namespace RSI_Calendar.Controllers
             return json;
         }
 
-        public async Task<string> ReqEventJson(string branch)
+        public async Task<string> ReqEventJson()
         {
+            string branch = TempData.Peek("CalendarBranch").ToString();
             List<Event> events = new List<Event>();
 
             if (branch.ToLower() == "default")
@@ -69,8 +82,9 @@ namespace RSI_Calendar.Controllers
             return jsonEvents;
         }
 
-        public async Task<string> EduEventJson(string branch)
+        public async Task<string> EduEventJson()
         {
+            string branch = TempData.Peek("CalendarBranch").ToString();
             List<Event> events = new List<Event>();
 
             if (branch.ToLower() == "default")
@@ -95,8 +109,9 @@ namespace RSI_Calendar.Controllers
             return jsonEvents;
         }
 
-        public async Task<string> FunEventJson(string branch)
+        public async Task<string> FunEventJson()
         {
+            string branch = TempData.Peek("CalendarBranch").ToString();
             List<Event> events = new List<Event>();
 
             if (branch.ToLower() == "default")
@@ -121,8 +136,9 @@ namespace RSI_Calendar.Controllers
             return jsonEvents;
         }
 
-        public async Task<string> FamEventJson(string branch)
+        public async Task<string> FamEventJson()
         {
+            string branch = TempData.Peek("CalendarBranch").ToString();
             List<Event> events = new List<Event>();
 
             if (branch.ToLower() == "default")

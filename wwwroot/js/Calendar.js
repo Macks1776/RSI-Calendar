@@ -162,6 +162,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
         });
+
+        calendar.refetchEvents();
     });
 });
 
