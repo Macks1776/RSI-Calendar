@@ -1,5 +1,7 @@
 @model Event
 @{
+    ViewData["Title"] = "Event Details";
+
     string titleString;
     string[] titles;
     string linkString;
@@ -33,8 +35,8 @@
     <form>
         <!-- START -->
         <div class="row">
-            <label for="eventDetailsStart" class="col-md-2 col-form-label fw-bold">Start:</label>
-            <div class="col-md-7">
+            <label for="eventDetailsStart" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Start:</label>
+            <div class="col-sm-8 col-md-9">
                 <input type="text" class="form-control-plaintext" id="eventDetailsStart"
                        value="@Model.StartDate" readonly>
             </div>
@@ -42,8 +44,8 @@
 
         <!-- END -->
         <div class="row">
-            <label for="eventDetailsEnd" class="col-md-2 col-form-label fw-bold">End:</label>
-            <div class="col-md-7">
+            <label for="eventDetailsEnd" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">End:</label>
+            <div class="col-sm-8 col-md-9">
                 <input type="text" class="form-control-plaintext" id="eventDetailsEnd"
                        value="@Model.EndDate" readonly>
             </div>
@@ -51,8 +53,8 @@
 
         <!-- DESCRIPTION -->
         <div class="row">
-            <label for="eventDetailsDescription" class="col-md-2 col-form-label fw-bold">Description:</label>
-            <div class="col-md-7">
+            <label for="eventDetailsDescription" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Description:</label>
+            <div class="col-sm-8 col-md-9">
                 <textarea class="form-control-plaintext" id="eventDetailsDescription"
                           readonly>@Model.Description</textarea>
             </div>
@@ -60,8 +62,8 @@
 
         <!-- LOCATION -->
         <div class="row">
-            <label for="eventDetailsLocation" class="col-md-2 col-form-label fw-bold">Location:</label>
-            <div class="col-md-7">
+            <label for="eventDetailsLocation" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Location:</label>
+            <div class="col-sm-8 col-md-9">
                 <input type="text" class="form-control-plaintext" id="eventDetailsLocation"
                        value="@Model.Location" readonly>
             </div>
@@ -69,8 +71,8 @@
 
         <!-- BRANCH -->
         <div class="row">
-            <label for="eventDetailsBranch" class="col-md-2 col-form-label fw-bold">Branch:</label>
-            <div class="col-md-7">
+            <label for="eventDetailsBranch" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Branch:</label>
+            <div class="col-sm-8 col-md-9">
                 <input type="text" class="form-control-plaintext" id="eventDetailsBranch"
                        value="@Model.Branch" readonly>
             </div>
@@ -78,17 +80,17 @@
 
         <!-- TYPE -->
         <div class="row">
-            <label for="eventDetailsType" class="col-md-2 col-form-label fw-bold">Event Type:</label>
-            <div class="col-md-7">
+            <label for="eventDetailsType" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Event Type:</label>
+            <div class="col-sm-8 col-md-9">
                 <input type="text" class="form-control-plaintext" id="eventDetailsType"
                        value="@Model.Type" readonly>
             </div>
         </div>
 
         <!-- ATTACHMENTS -->
-        <div class="row top-50">
-            <label for="eventDetailsAttachments" class="col-md-2 col-form-label fw-bold">Attachments:</label>
-            <div class="col-md-7">
+        <div class="row">
+            <label for="eventDetailsAttachments" class="col-sm-4 col-md-3 col-form-label fw-bold text-sm-end">Attachments:</label>
+            <div class="col-sm-8 col-md-9">
                 <ul class="list-group" id="eventDetailsAttachments">
                     @if (titleString != "NO ATTACHMENT")
                     {
@@ -108,8 +110,8 @@
         @if (User.IsInRole("CulAm"))
         {
             <div class="form-group row mt-5">
-                <div class="col-md-2"></div>
-                <div class="col-md-7">
+                <div class="col-sm-4 col-md-3"></div>
+                <div class="col-sm-8 col-md-9">
                     <div class="btn-group-lg">
                         <!-- EDIT -->
                         <a class="btn rsi-btn-blue shadow-sm"
