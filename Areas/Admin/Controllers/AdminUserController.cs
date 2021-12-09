@@ -41,7 +41,7 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                     UserName = model.Email,
                     FirstName = model.FName,
                     LastName = model.LName,
-                    Email = model.Email
+                    Email = model.Email.ToLower()
                 };
 
                 var result = await userManager.CreateAsync(user, model.Password);
@@ -54,7 +54,7 @@ namespace RSI_Calendar.Areas.Admin.Controllers
                         LName = model.LName,
                         Branch = model.Branch,
                         Role = model.Role,
-                        Email = model.Email,
+                        Email = model.Email.ToLower(),
                         ReceiveEduNotis = true,
                         ReceiveFamNotis = true,
                         ReceiveFunNotis = true
