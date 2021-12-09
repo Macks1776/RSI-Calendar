@@ -23,11 +23,22 @@ namespace RSI_Calendar.Controllers
         }
 
         [HttpGet]
-        public IActionResult Calendar()
+        public async Task<IActionResult> Calendar()
         {
             var calendar = new CalendarViewModel();
-            calendar.Branch = "default";
-            TempData["CalendarBranch"] = calendar.Branch;
+            var user = await userManager.GetUserAsync(User);
+            if (user.UserName.ToLower() == "master")
+            {
+                calendar.Branch = "Augusta, GA";
+                TempData["CalendarBranch"] = calendar.Branch;
+            }
+            else
+            {
+                var employee = context.Employees.Where(e => e.Email == user.Email).ToList();
+                calendar.Branch = employee[0].Branch;
+                TempData["CalendarBranch"] = calendar.Branch;
+            }
+
             return View("Calendar", calendar);
         }
 
