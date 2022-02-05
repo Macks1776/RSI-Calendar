@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+.idea/.idea.RSI-Calendar/.idea/vcs.xml
+.idea/.idea.RSI-Calendar/.idea/aws.xml
+.idea/.idea.RSI-Calendar/.idea/indexLayout.xml
